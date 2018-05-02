@@ -1,0 +1,185 @@
+
+<view class="page">
+  <view class="item">
+    <view class="titlewrap flexwrap">
+      <text class="ordernum">订单号：201805161315564589</text>
+      <text class="status">{{status == 0 ? '待付款' : status == 1 ? '待发货' : status == 2 ? '待收货' : status == 3 ? '待评价' : status == 4 ? '已完成' : ''}}</text>
+    </view>
+    <view class="itemlist">
+      <view class="itemwrap">
+        <image class="itemimg" src="../../../images/mine/itemexp1.jpg"></image>
+        <view class="namewrap">
+          <text>小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机</text>
+        </view>
+        <view class="versionwrap">
+          <text>版本：标准 黑色 4+46G</text>
+        </view>
+        <view class="pricewrap">
+          <text>￥3589.00</text>
+        </view>
+        <view class="countwrap">
+          <text>数量：1</text>
+        </view>
+      </view>
+      <view class="itemwrap">
+        <image class="itemimg" src="../../../images/mine/itemexp2.jpg"></image>
+        <view class="namewrap">
+          <text>联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置</text>
+        </view>
+        <view class="versionwrap">
+          <text>版本：游戏之王  16+1T+225 SSD</text>
+        </view>
+        <view class="pricewrap">
+          <text>￥8589.00</text>
+        </view>
+        <view class="countwrap">
+          <text>数量：1</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="desc">
+    <view class="msgwrap flexwrap">
+      <text>商品数量</text>
+      <text class="righttext">2</text>
+    </view>
+    <view class="msgwrap flexwrap">
+      <text>订单金额</text>
+      <text class="righttext">￥12178.00</text>
+    </view>
+    <view class="msgwrap flexwrap">
+      <text>下单时间</text>
+      <text class="righttext">2018-05-16 13:15</text>
+    </view>
+  </view>
+  <view class="personal {{status == 0 || status == 1 ? 'thelast' : ''}}">
+    <view class="quick flexwrap">
+      <text>收货人信息</text>
+      <view class="rightimage">
+        <image src="../../../images/mine/right-arrow-blue.png"></image>
+      </view>
+    </view>
+    <view class="msgwrap">
+      <view class="textwrap">
+        <text>融融</text>　<text>17620895422</text>
+      </view>
+      <view class="textwrap address">
+        <text>广东省 广州市 天河区  广州市天河区奥体南路东澳创意小镇D2栋 103</text>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{status != 0 && status != 1}}">
+  <view class="express thelast">
+    <view class="msgwrap flexwrap">
+      <text class="blue">物流信息</text>
+    </view>
+    <view class="msgwrap flexwrap">
+      <text>快递：顺丰快递</text>
+      <text class="right-text">运单号：20180701542358</text>
+    </view>
+    <view class="msglist">
+      <block wx:if="{{status == 4 }}">
+      <view class="expmsg">
+        <view class="point"></view>
+        <view class="topline"></view>
+        <view class="botline"></view>
+        <text class="date">09-17</text>
+        <text class="time">16:04</text>
+        <view class="descwrap">
+          <text>快件已签收</text>
+        </view>
+      </view>
+      </block>
+      <view class="expmsg">
+        <view class="point"></view>
+        <view class="topline"></view>
+        <view class="botline"></view>
+        <text class="date">09-17</text>
+        <text class="time">08:02</text>
+        <view class="descwrap">
+          <text>已到达天河黄村网点</text>
+        </view>
+      </view>
+      <view class="expmsg">
+        <view class="point"></view>
+        <view class="topline"></view>
+        <view class="botline"></view>
+        <text class="date">09-15</text>
+        <text class="time">20:15</text>
+        <view class="descwrap">
+          <text>顺丰快递已成功揽收快件 运单号：20180701542358</text>
+        </view>
+      </view>
+      <view class="expmsg">
+        <view class="point"></view>
+        <view class="topline"></view>
+        <view class="botline"></view>
+        <text class="date">09-15</text>
+        <text class="time">20:11</text>
+        <view class="descwrap">
+          <text>商品已打包成功并成功寄送</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{status != 1 }}">
+  <view class="footer">
+    <view class="footerwrap">
+      <block wx:if="{{status == 0 }}">
+      <view class="pay" bindtap="goPay">
+        <text>去支付</text>
+      </view>
+      <view class="cancel">
+        <text>取消订单</text>
+      </view>
+      </block>
+      <block wx:if="{{status == 2 }}">
+      <view class="tips">
+        <text>剩余5天自动收货</text>
+      </view>
+      <view class="rightbtn footbtn red" catchtap="confirm">
+        <text>确认收货</text>
+      </view>
+      <view class="subrightbtn footbtn blue">
+        <text>延后收货</text>
+      </view>
+      <view class="lastrightbtn footbtn blue" bindtap="goService">
+        <text>申请售后</text>
+      </view>
+      </block>
+      <block wx:if="{{status == 3 }}">
+      <view class="rightbtn footbtn red" catchtap="goComment">
+        <text>去评价</text>
+      </view>
+      <view class="subrightbtn footbtn blue" bindtap="goService">
+        <text>申请售后</text>
+      </view>
+      </block>
+      <block wx:if="{{status == 4 }}">
+      <view class="rightbtn footbtn red" catchtap="goCmMsg">
+        <text>查看评价</text>
+      </view>
+      <view class="subrightbtn footbtn blue" bindtap="goService">
+        <text>申请售后</text>
+      </view>
+      </block>
+    </view>
+  </view>
+  </block>
+  <view class="confirm {{confirmHide == 1 ? 'hide' : ''}}">
+    <view class="black"></view>
+    <view class="dialog">
+      <text class="title">是否确认收货</text>
+      <text class="tips">（注：未收到货确认收货，与可能钱财与货物两失）</text>
+      <view class="btn flexwrap">
+        <view class="btnwtap" bindtap="cancel">
+          <text>否</text>
+        </view>
+        <view class="btnwtap">
+          <text>是</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

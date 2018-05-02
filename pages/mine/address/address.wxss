@@ -1,0 +1,108 @@
+
+.page{
+  overflow: scroll;
+  background: #f2f2f2;
+  height:100vh;
+}
+
+.personal{
+  position: relative;
+  width: 720rpx;
+  background: #fff;
+  margin: 15rpx auto 0;
+}
+.personal .msgwrap{
+  position: relative;
+  width: 680rpx;
+  line-height: 30rpx;
+  margin: 0 auto;
+  padding: 28rpx 6rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+.personal .msgwrap .textwrap text{
+  font-size: 26rpx;
+  color: #303030;
+}
+.personal .msgwrap .textwrap.address{
+  margin-top: 20rpx;
+}
+.personal .actionwrap{
+  position: relative;
+  width: 650rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+.personal .actionwrap .select{
+  position: absolute;
+  left: 10rpx;
+  width: 160rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+.personal .actionwrap .select text{
+  display: inline-block;
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
+.personal .actionwrap .select.active text{
+  color: #00a7ff;
+}
+.personal .actionwrap .select image{
+  display: inline-block;
+  width: 27rpx;
+  height: 26rpx;
+}
+.personal .actionwrap .edit{
+  position: absolute;
+  right: 140rpx;
+  width: 102rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+.personal .actionwrap .edit text{
+  display: inline-block;
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: #00a7ff;
+}
+.personal .actionwrap .edit image{
+  display: inline-block;
+  width: 27rpx;
+  height: 26rpx;
+}
+.personal .actionwrap .delete{
+  position: absolute;
+  right: 0;
+  width: 102rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+.personal .actionwrap .delete text{
+  display: inline-block;
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: #db3838;
+}
+.personal .actionwrap .delete image{
+  display: inline-block;
+  width: 27rpx;
+  height: 26rpx;
+}
+
+.bottom{
+  position: fixed;
+  width: 100%;
+  height: 90rpx;
+  bottom: 0;
+  line-height: 90rpx;
+  background: #00a7ff;
+  color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+}
+

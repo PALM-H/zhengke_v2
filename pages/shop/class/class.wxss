@@ -1,0 +1,77 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: hidden;
+}
+
+.leftsv{
+  width: 100%;
+  height:100vh;
+  background: #fff;
+  border-right: 1rpx solid #d8d8d8;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.leftsv .classwrap{
+  position: relative;
+  width: 100%;
+  height:96rpx;
+}
+.leftsv .classwrap.active{
+  background: #f2f2f2;
+}
+.leftsv .flexwrap{
+  position: relative;
+  width: 92%;
+  height:96rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+  margin: 0 auto;
+  align-items: center;
+}
+.leftsv .classwrap image{
+  display: inline-block;
+  margin-left: 17rpx;
+  width: 60rpx;
+  height: 62rpx;
+}
+.leftsv .classwrap text{
+  position: absolute;
+  left: 100rpx;
+  color: #6a6a6a;
+  font-size: 24rpx;
+}
+
+.rightsv{
+  width: 100%;
+  height:100vh;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  flex: 2;
+}
+.rightsv .classwrap{
+  position: relative;
+  width: 100%;
+  height:94rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+  align-items: center;
+}
+.rightsv .classwrap .leftimg{
+  display: inline-block;
+  margin-left: 30rpx;
+  width: 104rpx;
+  height:52rpx;
+}
+.rightsv .classwrap text{
+  display: inline-block;
+  margin-left: 30rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.rightsv .classwrap .rightimg{
+  position: absolute;
+  right: 32rpx;
+  width: 16rpx;
+  height:26rpx;
+}

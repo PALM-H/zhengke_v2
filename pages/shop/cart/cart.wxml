@@ -1,0 +1,53 @@
+
+<view class="page">
+  <view class="itemlist">
+		<block wx:for="{{itemListArr}}" wx:key="unique">
+			<view class="itemwrap flexwrap">
+				<view class="pickwrap flexwrap" data-index="{{index}}" bindtap="selectThis">
+					<image src="../../../images/shop/pick-{{item.isselect==0?'off':'on'}}.png"></image>
+				</view>
+				<image class="itemimg" src="{{item.url}}"></image>
+				<view class="rightwrap">
+					<view class="name">
+						<text>{{item.name}}</text>
+					</view>
+					<view class="ver">
+						<text>版本：{{item.ver}}</text>
+					</view>
+					<view class="price">
+						<text>￥ {{item.price}}</text>
+					</view>
+					<view class="num flexwrap">
+						<view class="reduce flexwrap" data-index="{{index}}" bindtap="reduceNum">
+							<image src="../../../images/shop/icon34.png"></image>
+						</view>
+						<view class="number">
+							<input type="number" value="{{item.num}}" data-index="{{index}}" bindblur="bindKeyInput" />
+						</view>
+						<view class="add flexwrap" data-index="{{index}}" bindtap="addNum">
+							<image src="../../../images/shop/icon35.png"></image>
+						</view>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view class="bottom flexwrap">
+		<view class="selectall flexwrap" bindtap="selectAll">
+			<image src="../../../images/shop/pick-{{isSelectAll?'on':'off'}}.png"></image>
+			<view class="textwrap">
+				<text>全选</text>
+			</view>
+		</view>
+		<view class="total flexwrap">
+			<text>合计 </text>
+			<text class="red">￥{{total}}</text>
+		</view>
+		<view class="btndel flexwrap">
+			<text>移除购物车</text>
+		</view>
+		<view class="btnpay flexwrap" bindtap="goConfirm">
+			<text>去结算</text>
+		</view>
+	</view>
+</view>

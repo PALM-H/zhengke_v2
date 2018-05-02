@@ -1,0 +1,102 @@
+
+<view class="page">
+  <view class="primary">
+    <view class="msgwrap flexwrap">
+      <text class="title">总体评价</text>
+    </view>
+    <view class="msgwrap markwrap flexwrap">
+      <text class="title">送货速度</text>
+      <image class="mark mark1" src="../../../images/mine/star-{{prMark[0] > 0 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark2" src="../../../images/mine/star-{{prMark[0] > 1 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark3" src="../../../images/mine/star-{{prMark[0] > 2 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark4" src="../../../images/mine/star-{{prMark[0] > 3 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark5" src="../../../images/mine/star-{{prMark[0] > 4 ? 'full' : 'empty'}}.png"></image>
+    </view>
+    <view class="msgwrap markwrap flexwrap">
+      <text class="title">门店服务态度</text>
+      <image class="mark mark1" src="../../../images/mine/star-{{prMark[1] > 0 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark2" src="../../../images/mine/star-{{prMark[1] > 1 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark3" src="../../../images/mine/star-{{prMark[1] > 2 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark4" src="../../../images/mine/star-{{prMark[1] > 3 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark5" src="../../../images/mine/star-{{prMark[1] > 4 ? 'full' : 'empty'}}.png"></image>
+    </view>
+    <view class="msgwrap markwrap flexwrap">
+      <text class="title">包裹完整性</text>
+      <image class="mark mark1" src="../../../images/mine/star-{{prMark[2] > 0 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark2" src="../../../images/mine/star-{{prMark[2] > 1 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark3" src="../../../images/mine/star-{{prMark[2] > 2 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark4" src="../../../images/mine/star-{{prMark[2] > 3 ? 'full' : 'empty'}}.png"></image>
+      <image class="mark mark5" src="../../../images/mine/star-{{prMark[2] > 4 ? 'full' : 'empty'}}.png"></image>
+    </view>
+  </view>
+
+  <view class="itemlist">
+    <view class="item">
+      <view class="titlewrap flexwrap">
+        <text class="title">商品评价</text>
+      </view>
+      <view class="itemlist">
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp1.jpg"></image>
+          <view class="namewrap">
+            <text>小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：标准 黑色 4+46G</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥3589.00</text>
+          </view>
+        </view>
+      </view>
+      <view class="markwrap flexwrap">
+        <text class="title">商品与描述一致性</text>
+        <image class="mark mark1" src="../../../images/mine/star-{{itemMark[0] > 0 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark2" src="../../../images/mine/star-{{itemMark[0] > 1 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark3" src="../../../images/mine/star-{{itemMark[0] > 2 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark4" src="../../../images/mine/star-{{itemMark[0] > 3 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark5" src="../../../images/mine/star-{{itemMark[0] > 4 ? 'full' : 'empty'}}.png"></image>
+      </view>
+      <view class="commentwrap">
+        <text class="title">商品评价</text>
+        <view class="textwrap">
+          <text>手机不错，性能很好，外观漂亮，手感舒适，适合游戏，发热量小，非常满意，下次再来</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="item">
+      <view class="titlewrap flexwrap">
+        <text class="title">商品评价</text>
+      </view>
+      <view class="itemlist">
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp1.jpg"></image>
+          <view class="namewrap">
+            <text>联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：游戏之王  16+1T+225 SSD</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥8589.00</text>
+          </view>
+        </view>
+      </view>
+      <view class="markwrap flexwrap">
+        <text class="title">商品与描述一致性</text>
+        <image class="mark mark1" src="../../../images/mine/star-{{itemMark[1] > 0 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark2" src="../../../images/mine/star-{{itemMark[1] > 1 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark3" src="../../../images/mine/star-{{itemMark[1] > 2 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark4" src="../../../images/mine/star-{{itemMark[1] > 3 ? 'full' : 'empty'}}.png"></image>
+        <image class="mark mark5" src="../../../images/mine/star-{{itemMark[1] > 4 ? 'full' : 'empty'}}.png"></image>
+      </view>
+      <view class="commentwrap">
+        <text class="title">商品评价</text>
+        <view class="textwrap">
+          <text>商品很好</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

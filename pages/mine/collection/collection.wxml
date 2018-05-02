@@ -1,0 +1,25 @@
+
+<view class="page">
+  <view class="item">
+    <view class="itemlist">
+      <block wx:for="{{itemArr}}" wx:key="unique">
+        <view class="itemwrap">
+          <image class="itemimg" src="{{item.url}}"></image>
+          <view class="namewrap">
+            <text>{{item.name}}</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：{{item.ver}}</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥{{item.price}}</text>
+          </view>
+          <view class="countwrap">
+            <text>取消收藏</text>
+          </view>
+          <image class="heart" src="../../../images/mine/heart-empty.png"></image>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

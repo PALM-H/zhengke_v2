@@ -1,0 +1,87 @@
+
+<scroll-view scroll-y class="page" bindscroll="scroll">
+	<image class="shopcart" src="../../../images/shop/icon0.png" bindtap="goCart"></image>
+	<view class="searchwrap {{searchFill? 'blue':''}}">
+		<view class="search flexwrap" bindtap="goSearch">
+			<view class="opacitywrap"></view>
+			<image src="../../../images/shop/icon10.png"></image>
+			<text>输入关键词搜索商品</text>
+		</view>
+	</view>
+	<view class="swiper-container">  
+		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="swiperChange">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
+        <swiper-item>
+          <image src="{{item.url}}" class="slide-image"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="dots">  
+      <block wx:for="{{imgUrls}}" wx:key="unique">  
+        <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view> 
+      </block>  
+		</view> 
+	</view> 
+	<view class="quickwrap">
+		<view class="subquickwrap flexwrap">
+			<block wx:for="{{quickArr}}" wx:for-index="index" wx:key="unique">
+				<view wx:if="{{index<4}}" class="itemwrap" data-status="{{item.status}}" bindtap="goClass">
+					<image src="{{item.url}}"></image>
+					<text>{{item.text}}</text>
+				</view>
+			</block>
+		</view>
+		<view class="subquickwrap flexwrap">
+			<block wx:for="{{quickArr}}" wx:for-index="index" wx:key="unique">
+				<view wx:if="{{index>=4}}" class="itemwrap" data-status="{{item.status}}" bindtap="goClass">
+					<image src="{{item.url}}"></image>
+					<text>{{item.text}}</text>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class="recommend">
+		<view class="title flexwrap">
+			<image src="../../../images/shop/icon9.png"></image>
+			<text>推荐商品</text>
+		</view>
+		<view class="itemlist flexwrap">
+			<block wx:for="{{recommendArr}}" wx:key="unique">
+				<view class="itemwrap" bindtap="goDetail">
+					<view class="imgwrap">
+						<image src="{{item.url}}"></image>
+						<view class="blackwrap"></view>
+						<text>￥ {{item.price}}</text>
+					</view>
+					<view class="textwrap">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class="floortitle">
+		<image src="../../../images/shop/strip.jpg"></image>
+		<text>新品上架</text>
+		<image src="../../../images/shop/strip.jpg"></image>
+	</view>
+	<view class="itemlist">
+		<block wx:for="{{itemArr}}" wx:key="unique">
+			<view class="floatwrap" bindtap="goDetail">
+				<view class="itemwrap">
+					<view class="imgwrap">
+						<image src="{{item.url}}"></image>
+					</view>
+					<view class="namewrap">
+						<text>{{item.name}}</text>
+					</view>
+					<view class="itembottom">
+						<text class="lefttext">￥ {{item.price}}</text>
+						<text class="righttext">销售：{{item.sales}}</text>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+</scroll-view>

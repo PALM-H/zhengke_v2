@@ -1,0 +1,100 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: scroll;
+}
+
+.searchbar{
+  position: relative;
+  width: 100%;
+  padding: 24rpx 10rpx;
+  background: #fff;
+  box-sizing: border-box;
+}
+.searchbar .searchwrap{
+  position: relative;
+  width: 100%;
+  height: 52rpx;
+  border: 2rpx solid #d8d8d8;
+  box-sizing: border-box;
+  border-radius: 25rpx;
+  display: flex;
+  align-items: center;
+}
+.searchbar .searchwrap .icon{
+  position: absolute;
+  left: 28rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.searchbar .searchwrap .righttext{
+  position: absolute;
+  right: 34rpx;
+  font-size: 26rpx;
+  color: #0099ff;
+}
+.searchbar .searchwrap .word{
+  width: 520rpx;
+  height: 52rpx;
+  padding-left: 76rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+
+.resultlist{
+  position: relative;
+  width: 730rpx;
+  margin: 10rpx auto 0;
+}
+.resultlist .resultwrap{
+  position: relative;
+  width: 100%;
+  padding: 12rpx 0;
+  background: #fff;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+.resultlist .resultwrap .imagewrap{
+  position: relative;
+  display: inline-block;
+  width: 126rpx;
+  height: 126rpx;
+  margin-left: 30rpx;
+}
+.resultlist .resultwrap .imagewrap image{
+  width: 126rpx;
+  height: 126rpx;
+}
+.resultlist .resultwrap .imagewrap .shadow{
+  position: absolute;
+  bottom: 0;
+  width: 126rpx;
+  height: 30rpx;
+  background: #9a9a9a;
+  opacity: 0.3;
+}
+.resultlist .resultwrap .imagewrap .textwrap{
+  position: absolute;
+  width: 126rpx;
+  bottom: 2rpx;
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+}
+.resultlist .resultwrap .itemname{
+  position: relative;
+  display: inline-block;
+  width: 520rpx;
+  height: 126rpx;
+  font-size: 23rpx;
+  color: #6a6a6a;
+  margin-left: 28rpx;
+}
+.resultlist .resultwrap .sales{
+  position: absolute;
+  bottom:12rpx;
+  right: 36rpx;
+  font-size: 22rpx;
+  color: #bbbbbb;
+}

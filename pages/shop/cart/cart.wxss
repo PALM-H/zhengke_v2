@@ -1,0 +1,151 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: scroll;
+}
+
+.itemlist{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 90rpx;
+}
+.itemlist .itemwrap{
+  position: relative;
+  width: 100%;
+  height: 170rpx;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+.itemlist .itemwrap .pickwrap{
+  position: relative;
+  width: 85rpx;
+  height: 170rpx;
+  align-items: center;
+  justify-content: center;
+}
+.itemlist .itemwrap .pickwrap image{
+  width: 26rpx;
+  height: 26rpx;
+}
+.itemlist .itemwrap .itemimg{
+  width: 169rpx;
+  height: 169rpx;
+}
+.itemlist .itemwrap .rightwrap{
+  position: relative;
+  width: 430rpx;
+  height: 170rpx;
+  margin-left: 30rpx;
+}
+.itemlist .itemwrap .rightwrap .name{
+  width: 100%;
+  height: 70rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemlist .itemwrap .rightwrap .ver{
+  width: 100%;
+  font-size: 22rpx;
+  color: #bbbbbb;
+  margin-top: 10rpx;
+}
+.itemlist .itemwrap .rightwrap .price{
+  width: 100%;
+  font-size: 23rpx;
+  color: #c62626;
+  margin-top: 10rpx;
+}
+.itemlist .itemwrap .rightwrap .num{
+  position: absolute;
+  right: 20rpx;
+  bottom: 0;
+  width: 115rpx;
+  height: 48rpx;
+  border: 1rpx solid #b8b8b8;
+  border-radius: 4rpx;
+  font-size: 18rpx;
+  color: #2f2f2f;
+}
+.itemlist .reduce,.itemlist .add{
+  width: 40rpx;
+  height: 48rpx;
+  align-items: center;
+  justify-content: center;
+}
+.itemlist .reduce image,.itemlist .add image{
+  width: 20rpx;
+  height: 19rpx;
+}
+.itemlist .itemwrap .rightwrap .num .number{
+  width: 35rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.itemlist .itemwrap .rightwrap .num .number input{
+  width: 35rpx;
+  height: 48rpx;
+  text-align: center;
+}
+
+.bottom{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  background: #fff;
+  z-index: 9;
+}
+.bottom .selectall{
+  position: relative;
+  width: 100%;
+  height: 90rpx;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-flex: 8;
+  -webkit-flex: 8;
+  flex: 8;
+}
+.bottom .selectall image{
+  width: 26rpx;
+  height: 26rpx;
+}
+.bottom .selectall .textwrap{
+  margin-left: 10rpx;
+  font-size: 24rpx;
+  color: #6a6a6a;
+}
+.bottom .total{
+  position: relative;
+  width: 100%;
+  height: 90rpx;
+  font-size: 24rpx;
+  color: #303030;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-flex: 11;
+  -webkit-flex: 11;
+  flex: 11;
+}
+.bottom .total .red{
+  color: #c62626;
+}
+.bottom .btndel,.bottom .btnpay{
+  position: relative;
+  width: 100%;
+  height: 90rpx;
+  font-size: 24rpx;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-flex: 11;
+  -webkit-flex: 11;
+  flex: 11;
+}
+.bottom .btndel{
+  background: #bababa;
+}
+.bottom .btnpay{
+  background: #db3838;
+}

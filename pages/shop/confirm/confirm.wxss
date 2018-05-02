@@ -1,0 +1,214 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: scroll;
+}
+.address{
+  padding: 30rpx 0;
+  width: 100%;
+  height: 106rpx;
+  background: #fff;
+}
+.address .leftwrap{
+  position: relative;
+  margin-left: 40rpx;
+  width: 640rpx;
+  height: 106rpx;
+}
+.address .leftwrap .name{
+  font-size: 26rpx;
+  color: #303030;
+}
+.address .leftwrap .adrs{
+  width: 100%;
+  font-size: 24rpx;
+  color: #303030;
+  margin-top: 15rpx;
+}
+.address .rightwrap{
+  width: 50rpx;
+  height: 106rpx;
+  align-items: center;
+  justify-content: center;
+}
+.address .rightwrap image{
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.itemlist{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-top: 15rpx;
+}
+.itemlist .itemwrap{
+  position: relative;
+  width: 100%;
+  height: 170rpx;
+  padding: 30rpx 0;
+}
+.itemlist .itemwrap:not(:first-child){
+  border-top: 1rpx solid #d8d8d8;
+}
+.itemlist .itemwrap .itemimg{
+  width: 169rpx;
+  height: 169rpx;
+  margin-left: 52rpx;
+}
+.itemlist .itemwrap .rightwrap{
+  position: relative;
+  width: 470rpx;
+  height: 170rpx;
+  margin-left: 30rpx;
+}
+.itemlist .itemwrap .rightwrap .name{
+  width: 100%;
+  height: 70rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemlist .itemwrap .rightwrap .ver{
+  width: 100%;
+  font-size: 22rpx;
+  color: #bbbbbb;
+  margin-top: 10rpx;
+}
+.itemlist .itemwrap .rightwrap .price{
+  width: 100%;
+  font-size: 23rpx;
+  color: #c62626;
+  margin-top: 30rpx;
+}
+.itemlist .itemwrap .rightwrap .num{
+  position: absolute;
+  right: 10rpx;
+  bottom: 0;
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
+
+.sundry{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-top: 15rpx;
+  padding-bottom: 20rpx;
+}
+.sundry .msgwrap{
+  position: relative;
+  width: 100%;
+  height: 72rpx;
+  font-size: 24rpx;
+  border-bottom: 1rpx solid #d8d8d8;
+  align-items: center;
+}
+.sundry .msgwrap .lefttext{
+  margin-left: 40rpx;
+  color: #303030;
+}
+.sundry .msgwrap .righttext{
+  position: absolute;
+  right: 40rpx;
+  color: #6a6a6a;
+}
+.sundry .code{
+  position: relative;
+  width: 100%;
+  height: 70rpx;
+  font-size: 24rpx;
+  padding: 18rpx 0;
+  align-items: center;
+}
+.sundry .code .lefttext{
+  margin-left: 40rpx;
+  color: #303030;
+}
+.sundry .code .iptcode{
+  width: 440rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-left: 24rpx;
+  padding: 0 24rpx;
+  color: #6a6a6a;
+  border: 1rpx solid #d8d8d8;
+  box-sizing: border-box;
+}
+.sundry .tips{
+  position: relative;
+  margin-left: 40rpx;
+  font-size: 24rpx;
+  color: #db3838;
+  align-items: center;
+}
+
+.note{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-top: 15rpx;
+  padding-bottom: 20rpx;
+  margin-bottom: 90rpx;
+}
+.note .msgwrap{
+  position: relative;
+  width: 100%;
+  height: 72rpx;
+  font-size: 24rpx;
+  align-items: center;
+}
+.note .msgwrap text{
+  margin-left: 40rpx;
+  color: #303030;
+}
+.note .notewrap{
+  position: relative;
+  width: 100%;
+  font-size: 24rpx;
+  align-items: center;
+}
+.note .notewrap input{
+  width: 670rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-left: 24rpx;
+  padding: 0 24rpx;
+  color: #6a6a6a;
+  border: 1rpx solid #d8d8d8;
+  box-sizing: border-box;
+}
+
+.bottom{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  background: #6a6a6a;
+  z-index: 9;
+}
+.bottom .total{
+  position: relative;
+  width: 100%;
+  height: 90rpx;
+  font-size: 24rpx;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-flex: 16;
+  -webkit-flex: 16;
+  flex: 16;
+}
+.bottom .pay{
+  position: relative;
+  width: 100%;
+  height: 90rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: #db3838;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-flex: 9;
+  -webkit-flex: 9;
+  flex: 9;
+}

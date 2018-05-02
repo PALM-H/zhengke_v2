@@ -1,0 +1,264 @@
+
+page{
+  overflow: hidden;
+}
+.page{
+  background: #f2f2f2;
+  height:100vh;
+}
+
+.shopcart{
+  position: fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+  width: 84rpx;
+  height: 84rpx;
+  z-index: 3;
+}
+
+.searchwrap{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 22rpx 0;
+  z-index:2;
+}
+.searchwrap.blue{
+  background: #0080ff;
+}
+.searchwrap .search{
+  position: relative;
+  width: 700rpx;
+  height: 52rpx;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+.searchwrap .search .opacitywrap{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 26rpx;
+  background: #9e9d9d;
+  opacity: 0.5;
+}
+.searchwrap .search image{
+  width: 32rpx;
+  height: 32rpx;
+}
+.searchwrap .search text{
+  display: inline-block;
+  margin-left: 15rpx;
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.swiper-container{  
+  position: relative;  
+}  
+.swiper{
+  height: 276rpx;
+}
+.swiper image{
+  width:100%;
+  height:276rpx;
+}
+
+.dots{  
+  position: absolute;  
+  left: 0;  
+  right: 0;  
+  bottom: 18rpx;  
+  display: flex;  
+  justify-content: center;  
+}  
+.dots .dot{  
+  margin: 0 5rpx;  
+  width: 12rpx;  
+  height: 12rpx;  
+  background: #fff;  
+  border-radius: 8rpx;  
+  transition: all .6s;  
+  opacity: 0.3;
+}  
+.dots .dot.active{  
+  opacity: 1;
+}  
+
+.quickwrap{
+  width: 100%;
+  height: 330rpx;
+  background: #fff;
+  padding: 15rpx 0;
+}
+.subquickwrap{
+  width: 100%;
+  height: 165rpx;
+}
+.quickwrap .itemwrap{
+  position: relative;
+  width: 100%;
+  height: 165rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+}
+.quickwrap .itemwrap image{
+  display: inline-block;
+  width: 95rpx;
+  height: 95rpx;
+  margin-top:15rpx;
+}
+.quickwrap .itemwrap text{
+  display: block;
+  font-size: 21rpx;
+  color: #797979;
+}
+
+.recommend{
+  margin-top: 15rpx;
+  width: 100%;
+  height: 290rpx;
+  padding: 15rpx 0;
+  background: #fff;
+}
+.recommend .title{
+  width: 680rpx;
+  height: 38rpx;
+  margin: 0 auto;
+  align-items: center;
+}
+.recommend .title image{
+  width: 34rpx;
+  height: 36rpx;
+}
+.recommend .title text{
+  display: inline-block;
+  margin-left: 14rpx;
+  font-size: 23rpx;
+  color: #e63232;
+}
+.recommend .itemlist{
+  width: 100%;
+  height: 230rpx;
+  margin-top: 14rpx;
+}
+.recommend .itemlist .itemwrap{
+  position: relative;
+  width: 100%;
+  height: 230rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.recommend .itemlist .itemwrap .imgwrap{
+  position: relative;
+  width: 191rpx;
+  height: 191rpx;
+  margin: 0 auto;
+}
+.recommend .itemlist .itemwrap .imgwrap image{
+  width: 191rpx;
+  height: 191rpx;
+}
+.recommend .itemlist .itemwrap .imgwrap .blackwrap{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 34rpx;
+  background: #9a9a9a;
+  opacity: 0.3;
+}
+.recommend .itemlist .itemwrap .imgwrap text{
+  position: absolute;
+  left: 5rpx;
+  bottom: 4rpx;
+  font-size: 23rpx;
+  color: #fff;
+}
+.recommend .itemlist .itemwrap .textwrap{
+  width: 191rpx;
+  height: 30rpx;
+  margin: 15rpx auto 0;
+  font-size: 23rpx;
+  line-height: 23rpx;
+  color: #303030;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.floortitle{
+  position: relative;
+  margin-top: 15rpx;
+  width: 100%;
+  height: 65rpx;
+  line-height: 65rpx;
+  text-align: center;
+  background: #fff;
+  font-size: 23rpx;
+  color: #00a7ff;
+}
+.floortitle image{
+  vertical-align: middle;
+  width: 68rpx;
+  height: 1rpx;
+}
+.floortitle text{
+  display: inline-block;
+  margin: 0 15rpx;
+}
+
+.itemlist{
+  position: relative;
+}
+.itemlist .floatwrap{
+  position: relative;
+  width: 50%;
+  float: left;
+  padding: 5rpx;
+  box-sizing: border-box;
+}
+.itemlist .floatwrap .itemwrap{
+  position: relative;
+  width: 100%;
+  height: 440rpx;
+  background: #fff;
+}
+.itemlist .floatwrap .itemwrap .imgwrap{
+  width: 100%;
+  height: 293rpx;
+  text-align: center;
+  padding-top:15rpx;
+}
+.itemlist .floatwrap .itemwrap .imgwrap image{
+  width: 293rpx;
+  height: 293rpx;
+}
+.itemlist .floatwrap .itemwrap .namewrap{
+  width: 335rpx;
+  height: 78rpx;
+  font-size: 20rpx;
+  color: #303030;
+  margin: 8rpx auto 0;
+}
+.itemlist .floatwrap .itemwrap .itembottom{
+  position: relative;
+  width: 335rpx;
+  height: 26rpx;
+  font-size: 24rpx;
+  margin: 8rpx auto 0;
+}
+.itemlist .floatwrap .itemwrap .itembottom .lefttext{
+  color: #c62626;
+}
+.itemlist .floatwrap .itemwrap .itembottom .righttext{
+  position: absolute;
+  right: 0;
+  color: #bbbbbb;
+  font-size: 22rpx
+}

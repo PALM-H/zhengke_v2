@@ -1,0 +1,18 @@
+
+<view class="page">
+  <block wx:for="{{newsArr}}" wx:key="unique">
+    <view class="newswrap" bindtap="goArticle">
+      <view class="titlewrap flexwrap">
+        <text>{{item.title}}</text>
+        <text class="righttext">{{item.time}}</text>
+      </view>
+      <view class="contentwrap">
+        <text>{{item.content}}</text>
+      </view>
+      <view class="bottomwrap flexwrap">
+        <text>点击查看</text>
+        <image class="rightimg" src="../../../images/mine/right-arrow.png"></image>
+      </view>
+    </view>
+  </block>
+</view>

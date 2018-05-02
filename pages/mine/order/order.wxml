@@ -1,0 +1,91 @@
+
+<scroll-view scroll-y class="page">
+  <!-- 提示，接入后台后不要忘了滚动加载，可以使用scroll-view的scrolltolower实现 -->
+  <view class="navbar flexwrap" wx:if="{{activeIndex!=5}}">
+    <view id="0" class="navbar-item first-navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>待付款</text></view>
+    </view>
+    <view id="1" class="navbar-item {{activeIndex == 1 ? 'active' : ''}}" bindtap="{{activeIndex != 1 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>待发货</text></view>
+    </view>
+    <view id="2" class="navbar-item {{activeIndex == 2 ? 'active' : ''}}" bindtap="{{activeIndex != 2 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>待收货</text></view>
+    </view>
+    <view id="3" class="navbar-item {{activeIndex == 3 ? 'active' : ''}}" bindtap="{{activeIndex != 3 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>待评价</text></view>
+    </view>
+    <view id="4" class="navbar-item {{activeIndex == 4 ? 'active' : ''}}" bindtap="{{activeIndex != 4 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>已完成</text></view>
+    </view>
+  </view>
+  <view class="navbar flexwrap" wx:if="{{activeIndex==5}}">
+    <view class="navbar-item">
+      <view class="textwrap"><text>全部订单</text></view>
+    </view>
+  </view>
+  <view class="itemlist">
+    <block wx:for="{{orderArr}}" wx:key="unique" wx:for-index="oIdx" wx:for-item="oItem">
+    <view class="item" data-status="{{oItem.status}}" bindtap="goDetail" wx:if="{{oItem.status==activeIndex||activeIndex==5}}">
+      <view class="titlewrap flexwrap">
+        <text class="ordernum">订单号：{{oItem.orderNum}}</text>
+        <text class="status" wx:if="{{oItem.status==0}}">待付款</text>
+        <text class="status" wx:if="{{oItem.status==1}}">待发货</text>
+        <text class="status" wx:if="{{oItem.status==2}}">待收货</text>
+        <text class="status" wx:if="{{oItem.status==3}}">待评价</text>
+        <text class="status" wx:if="{{oItem.status==4}}">已完成</text>
+      </view>
+      <view>
+        <block wx:for="{{orderArr[oIdx].items}}" wx:key="unique" wx:for-index="iIdx" wx:for-item="iItem">
+        <view class="itemwrap">
+          <image class="itemimg" src="{{iItem.url}}"></image>
+          <view class="namewrap">
+            <text>{{iItem.name}}</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：{{iItem.ver}}</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥{{iItem.price}}</text>
+          </view>
+          <view class="countwrap">
+            <text>数量：{{iItem.num}}</text>
+          </view>
+        </view>
+        </block>
+      </view>
+      <view class="bottomtpl bottomtpl1 flexwrap" wx:if="{{oItem.status==0}}">
+        <text class="sum">商品数量：{{oItem.count}}</text>
+        <text class="total">订单金额：￥{{oItem.total}}</text>
+        <text class="action" catchtap="goPay">去支付</text>
+      </view>
+      <view class="bottomtpl bottomtpl2 flexwrap" wx:if="{{oItem.status==1}}">
+        <text class="sum">商品数量：{{oItem.count}}</text>
+        <text class="total">订单金额：￥{{oItem.total}}</text>
+      </view>
+      <view class="bottomtpl bottomtpl3 flexwrap" wx:if="{{oItem.status==2||oItem.status==3||oItem.status==4}}">
+        <text class="sum">商品数量：{{oItem.count}}</text>
+        <text class="total">订单金额：￥{{oItem.total}}</text>
+        <text class="express">{{oItem.express}}</text>
+        <text class="action" catchtap="confirm" wx:if="{{oItem.status==2}}">确认收货</text>
+        <text class="action" catchtap="goComment" wx:if="{{oItem.status==3}}">去评价</text>
+        <image class="car" src="../../../images/mine/express-car.png"></image>
+      </view>
+    </view>
+    </block>
+  </view>
+  <view class="confirm {{confirmHide == 1 ? 'hide' : ''}}">
+    <view class="black"></view>
+    <view class="dialog">
+      <text class="title">是否确认收货</text>
+      <text class="tips">（注：未收到货确认收货，与可能钱财与货物两失）</text>
+      <view class="btn flexwrap">
+        <view class="btnwtap" bindtap="cancel">
+          <text>否</text>
+        </view>
+        <view class="btnwtap">
+          <text>是</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

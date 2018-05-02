@@ -1,0 +1,167 @@
+
+.page{
+  background: #f2f2f2;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.itemlist{
+  position: relative;
+  width: 720rpx;
+  margin: 15rpx;
+  background: #fff;
+}
+
+.itemlist .titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 64rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx #eeeeee solid;
+  align-items: center;
+}
+.itemlist .titlewrap .title{
+  display: inline-block;
+  margin-left: 6rpx;
+  color: #6a6a6a;
+  font-size: 24rpx;
+}
+
+.itemlist .itemwrap{
+  position: relative;
+  width: 680rpx;
+  height: 170rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx #eeeeee solid;
+}
+.itemlist .itemwrap .itemimg{
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  width: 169rpx;
+  height: 169rpx;
+}
+.itemlist .itemwrap .namewrap{
+  position: absolute;
+  left: 200rpx;
+  top: 0;
+  width: 472rpx;
+  line-height: 36rpx;
+}
+.itemlist .itemwrap .namewrap text{
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemlist .itemwrap .versionwrap{
+  position: absolute;
+  left: 200rpx;
+  top: 90rpx;
+  width: 472rpx;
+  line-height:21rpx;
+}
+.itemlist .itemwrap .versionwrap text{
+  font-size: 21rpx;
+  color: #bbbbbb;
+}
+.itemlist .itemwrap .pricewrap{
+  position: absolute;
+  left: 200rpx;
+  bottom: 30rpx;
+  line-height:23rpx;
+}
+.itemlist .itemwrap .pricewrap text{
+  font-size: 23rpx;
+  color: #c62626;
+}
+
+.type{
+  position: relative;
+  width: 720rpx;
+  margin: 0 auto 15rpx;
+  background: #fff;
+  padding-bottom: 15rpx;
+}
+.type .titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #d8d8d8;
+  align-items: center;
+}
+.type .titlewrap text{
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.type .titlewrap .righttext{
+  position: absolute;
+  right: 26rpx;
+}
+.type .subtitlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 65rpx;
+  line-height: 65rpx;
+  margin: 0 auto;
+}
+.type .subtitlewrap text{
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.type .reasontext{
+  position: relative;
+  width: 650rpx;
+  line-height: 36rpx;
+  margin: 0 auto;
+}
+.type .reasontext text{
+  display: inline-block;
+  font-size: 24rpx;
+  color: #6a6a6a;
+}
+.type .imgwrap{
+  position: relative;
+  width: 650rpx;
+  margin: 20rpx auto 0;
+}
+.type .imgwrap image{
+  display: inline-block;
+  margin-right: 20rpx;
+  width: 169rpx;
+  height: 169rpx;
+}
+
+.message{
+  position: relative;
+  width: 720rpx;
+  margin: 0 auto 15rpx;
+  background: #fff;
+}
+.message .msgwrap{
+  position: relative;
+  width: 680rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  align-items: center;
+}
+.message .msgwrap:not(:first-child){
+  border-top: 1rpx solid #d8d8d8;
+}
+.message .msgwrap .lefttext{
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.message .msgwrap .righttext{
+  position: absolute;
+  left: 160rpx;
+  font-size: 24rpx;
+  color: #6a6a6a;
+}

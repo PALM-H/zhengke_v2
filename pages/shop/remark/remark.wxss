@@ -1,0 +1,160 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: scroll;
+}
+
+.shopcart{
+  position: fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+  width: 84rpx;
+  height: 84rpx;
+  z-index: 3;
+}
+
+.itemwrap{
+  position: relative;
+  width: 100%;
+  height: 170rpx;
+  background: #fff;
+  padding: 30rpx 0;
+}
+.itemwrap .itemimg{
+  width: 169rpx;
+  height: 169rpx;
+  margin-left: 52rpx;
+}
+.itemwrap .rightwrap{
+  position: relative;
+  width: 470rpx;
+  height: 170rpx;
+  margin-left: 30rpx;
+}
+.itemwrap .rightwrap .name{
+  width: 100%;
+  height: 70rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemwrap .rightwrap .ver{
+  width: 100%;
+  font-size: 22rpx;
+  color: #bbbbbb;
+  margin-top: 10rpx;
+}
+.itemwrap .rightwrap .price{
+  width: 100%;
+  font-size: 23rpx;
+  color: #c62626;
+  margin-top: 30rpx;
+}
+.itemwrap .rightwrap .num{
+  position: absolute;
+  right: 10rpx;
+  bottom: 0;
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
+
+.remark{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-top: 15rpx;
+}
+.remark .title{
+  position: relative;
+  width: 700rpx;
+  height: 70rpx;
+  margin: 0 auto;
+  background: #fff;
+  border-bottom: 1rpx solid #d8d8d8;
+  align-items: center;
+}
+.remark .title .lefttext{
+  position: relative;
+  margin-left: 6rpx;
+  font-size: 25rpx;
+  color: #303030;
+}
+.remark .title .righttext{
+  position: absolute;
+  right: 6rpx;
+  font-size: 22rpx;
+  color: #303030;
+}
+.remark .title .rightimg{
+  position: absolute;
+  right: 154rpx;
+  width: 19rpx;
+  height: 19rpx;
+}
+.remark .remarklist{
+  position: relative;
+  width: 700rpx;
+  margin: 0 auto;
+}
+.remark .remarklist .remarkwrap{
+  position: relative;
+  width: 100%;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+.remark .remarklist .remarkwrap .headwrap{
+  position: relative;
+  height: 57rpx;
+  margin-left: 6rpx;
+  align-items: center;
+}
+.remark .remarklist .remarkwrap .headwrap .headimg{
+  width: 57rpx;
+  height: 57rpx;
+  border-radius: 50%;
+}
+.remark .remarklist .remarkwrap .headwrap .headname{
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
+.remark .remarklist .remarkwrap .headwrap .mark{
+  position: absolute;
+  width: 26rpx;
+  height: 25rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark5{
+  right: 6rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark4{
+  right: 38rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark3{
+  right: 70rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark2{
+  right: 102rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark1{
+  right: 134rpx;
+}
+.remark .remarklist .remarkwrap .content{
+  width: 100%;
+  padding: 18rpx 0;
+  font-size: 23rpx;
+  color: #6a6a6a;
+  padding-left:6rpx;
+}
+.remark .remarklist .remarkwrap .botmsg{
+  position: relative;
+  width: 100%;
+  font-size: 23rpx;
+  color: #bbbbbb;
+}
+.remark .remarklist .remarkwrap .botmsg .lefttext{
+  margin-left: 6rpx;
+}
+.remark .remarklist .remarkwrap .botmsg .righttext{
+  position: absolute;
+  left: 190rpx;
+}

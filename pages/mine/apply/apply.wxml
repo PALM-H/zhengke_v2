@@ -1,0 +1,62 @@
+
+<view class="page">
+  <view class="itemlist">
+    <view class="item">
+      <view class="titlewrap flexwrap">
+        <text class="title">售后商品</text>
+      </view>
+      <view>
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp1.jpg"></image>
+          <view class="namewrap">
+            <text>小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：标准 黑色 4+46G</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥3589.00</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="type">
+    <view class="titlewrap">
+      <text>售后类型</text>
+    </view>
+    <view class="typelist flexwrap">
+      <view data-num="0" class="typewrap {{activeTab==0 ? 'active' : ''}}" bindtap="changeTab">
+        <view>保修</view>
+      </view>
+      <view data-num="1" class="typewrap {{activeTab==1 ? 'active' : ''}}" bindtap="changeTab">
+        <view>换货</view>
+      </view>
+      <view data-num="2" class="typewrap {{activeTab==2 ? 'active' : ''}}" bindtap="changeTab">
+        <view>保修</view>
+      </view>
+    </view>
+  </view>
+  <view class="message">
+    <view class="msgwrap flexwrap">
+      <text class="lefttext">姓名</text>
+      <text class="righttext">融融</text>
+    </view>
+    <view class="msgwrap flexwrap">
+      <text class="lefttext">联系电话</text>
+      <text class="righttext">17620895422</text>
+    </view>
+  </view>
+  <view class="write">
+    <view class="titlewrap flexwrap">
+      <view class="title">
+        <text>请输入申请原因</text>
+        <image class="rightimg" src="../../../images/mine/camere.png" bindtap="chooseImage"></image>
+      </view>
+    </view>
+    <input type="text" class="reason" placeholder="请输入申请原因"/>
+  </view>
+  <view class="bottom" bindtap="save">
+    <text>提交申请</text>
+  </view>
+</view>

@@ -1,0 +1,512 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: scroll;
+}
+
+.swiper-container{  
+  position: relative;  
+}  
+.swiper{
+  height: 405rpx;
+}
+.swiper image{
+  width:100%;
+  height:405rpx;
+}
+
+.dots{  
+  position: absolute;  
+  left: 0;  
+  right: 0;  
+  bottom: 18rpx;  
+  display: flex;  
+  justify-content: center;  
+}  
+.dots .dot{  
+  margin: 0 5rpx;  
+  width: 12rpx;  
+  height: 12rpx;  
+  background: #fff;  
+  border-radius: 8rpx;  
+  transition: all .6s;  
+  opacity: 0.3;
+}  
+.dots .dot.active{  
+  opacity: 1;
+}  
+
+.msgwrap{
+  width: 100%;
+  padding-top: 22rpx;
+  background: #fff;
+}
+.msgwrap .leftwrap{
+  display: inline-block;
+  margin-left: 30rpx;
+  width: 600rpx;
+  height: 140rpx;
+}
+.msgwrap .leftwrap .name{
+  font-size: 25rpx;
+  color: #303030;
+}
+.msgwrap .leftwrap .tips{
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #db3838;
+}
+.msgwrap .rightwrap{
+  display: inline-block;
+  margin-left: 5rpx;
+  border-left: 1rpx solid #d8d8d8;
+  width: 100rpx;
+  height: 94rpx;
+}
+.msgwrap .rightwrap .sharewrap{
+  position: relative;
+  width: 100rpx;
+  height: 94rpx;
+  background: #fff;
+  text-align: center;
+  padding: 0;
+}
+.msgwrap .rightwrap .sharewrap::after {
+  border: 0;
+} 
+.msgwrap .rightwrap .sharewrap .imgwrap{
+  width: 100rpx;
+  height: 36rpx;
+  text-align: center;
+}
+.msgwrap .rightwrap .sharewrap .imgwrap image{
+  width: 41rpx;
+  height: 36rpx;
+}
+.msgwrap .rightwrap .sharewrap .textwrap{
+  display: block;
+  width: 100rpx;
+  padding-top: 15rpx;
+  text-align: center;
+  font-size: 21rpx;
+  color: #00a7ff;
+}
+.msgwrap .botwrap{
+  position: relative;
+  width: 100%;
+  padding: 22rpx 0;
+  font-size: 24rpx;
+  align-items: center;
+}
+.msgwrap .botwrap .lefttext{
+  margin-left: 30rpx;
+  color: #00a7ff;
+}
+.msgwrap .botwrap .righttext{
+  position: absolute;
+  right: 48rpx;
+  color: #bbbbbb;
+}
+
+.verwrap{
+  position: relative;
+  width: 100%;
+  height: 66rpx;
+  background: #fff;
+  align-items: center;
+  margin-top: 15rpx;
+}
+.verwrap .lefttext{
+  margin-left: 30rpx;
+  font-size: 25rpx;
+  color: #303030;
+}
+.verwrap .rightimg{
+  position: absolute;
+  right: 24rpx;
+  width: 16rpx;
+  height: 26rpx;
+}
+
+.remark{
+  position: relative;
+  width: 100%;
+  background: #fff;
+  margin-top: 15rpx;
+}
+.remark .title{
+  position: relative;
+  width: 700rpx;
+  height: 70rpx;
+  margin: 0 auto;
+  background: #fff;
+  border-bottom: 1rpx solid #d8d8d8;
+  align-items: center;
+}
+.remark .title .lefttext{
+  position: relative;
+  margin-left: 6rpx;
+  font-size: 25rpx;
+  color: #303030;
+}
+.remark .title .righttext{
+  position: absolute;
+  right: 6rpx;
+  font-size: 22rpx;
+  color: #303030;
+}
+.remark .title .rightimg{
+  position: absolute;
+  right: 154rpx;
+  width: 19rpx;
+  height: 19rpx;
+}
+.remark .remarklist{
+  position: relative;
+  width: 700rpx;
+  margin: 0 auto;
+}
+.remark .remarklist .remarkwrap{
+  position: relative;
+  width: 100%;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+.remark .remarklist .remarkwrap .headwrap{
+  position: relative;
+  height: 57rpx;
+  margin-left: 6rpx;
+  align-items: center;
+}
+.remark .remarklist .remarkwrap .headwrap .headimg{
+  width: 57rpx;
+  height: 57rpx;
+  border-radius: 50%;
+}
+.remark .remarklist .remarkwrap .headwrap .headname{
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
+.remark .remarklist .remarkwrap .headwrap .mark{
+  position: absolute;
+  width: 26rpx;
+  height: 25rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark5{
+  right: 6rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark4{
+  right: 38rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark3{
+  right: 70rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark2{
+  right: 102rpx;
+}
+.remark .remarklist .remarkwrap .headwrap .mark.mark1{
+  right: 134rpx;
+}
+.remark .remarklist .remarkwrap .content{
+  width: 100%;
+  padding: 18rpx 0;
+  font-size: 23rpx;
+  color: #6a6a6a;
+  padding-left:6rpx;
+}
+.remark .remarklist .remarkwrap .botmsg{
+  position: relative;
+  width: 100%;
+  font-size: 23rpx;
+  color: #bbbbbb;
+}
+.remark .remarklist .remarkwrap .botmsg .lefttext{
+  margin-left: 6rpx;
+}
+.remark .remarklist .remarkwrap .botmsg .righttext{
+  position: absolute;
+  left: 190rpx;
+}
+.remark .moreremark{
+  position: relative;
+  width: 100%;
+  height: 70rpx;
+  color: #00a7ff;
+  font-size: 22rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail{
+  width: 100%;
+  background: #fff;
+  margin-bottom: 90rpx;
+  margin-top: 15rpx;
+}
+.detail .tab{
+  width: 700rpx;
+  height: 72rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #d8d8d8;
+  align-items: center;
+}
+.detail .tab .tabtext{
+  width: 100%;
+  height: 50rpx;
+  font-size: 25rpx;
+  color: #303030;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.detail .tab .tabtext:not(:first-child){
+  border-left: 1rpx solid #d8d8d8;
+}
+.detail .tab .tabtext.active text{
+  color: #00a7ff;
+}
+.detail .detl{
+  width: 100%;
+}
+.detail .detl image,.detail .parm image{
+  width: 100%;
+  vertical-align: top;
+}
+.detail .parm{
+  width: 700rpx;
+  margin: 0 auto;
+  padding: 15rpx 0;
+}
+
+.bottom{
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  background: #fff;
+  align-items: center;
+}
+.bottom .iconwrap{
+  display: inline-block;
+  width: 100rpx;
+  height: 90rpx;
+  text-align: center;
+  border-top: 1rpx solid #eeeeee;
+}
+.bottom .iconwrap .imgwrap{
+  width: 100%;
+  margin-top: 10rpx;
+}
+.bottom .iconwrap .imgwrap image{
+  width: 43rpx;
+  height: 41rpx;
+}
+.bottom .iconwrap .textwrap{
+  width: 100%;
+  font-size: 20rpx;
+  color: #797979;
+}
+.bottom .btnwrap{
+  width: 225rpx;
+  height: 100%;
+  font-size: 26rpx;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+}
+.bottom .btnwrap.blue{
+  background: #0099ff;
+}
+.bottom .btnwrap.red{
+  background: #db3838;
+}
+
+.selectver{
+  position: fixed;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+.selectver .blackcover{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  opacity: 0.5;
+}
+.selectver .mainwrap{
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+.selectver .mainwrap .topwrap{
+  position: relative;
+  width: 100%;
+}
+.selectver .mainwrap .topwrap .transparent{
+  position: relative;
+  width: 100%;
+  height: 56rpx;
+}
+.selectver .mainwrap .topwrap .whitewrap{
+  position: relative;
+  width: 100%;
+  height: 156rpx;
+  background: #fff;
+}
+.selectver .mainwrap .topwrap .whitewrap .price{
+  font-size: 26rpx;
+  color: #c62626;
+  margin-left: 230rpx;
+  padding-top: 30rpx;
+}
+.selectver .mainwrap .topwrap .whitewrap .explain{
+  font-size: 24rpx;
+  color: #303030;
+  margin-left: 230rpx;
+  margin-top: 15rpx;
+}
+.selectver .mainwrap .topwrap .whitewrap .close{
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.selectver .mainwrap .topwrap .itemimg{
+  position: absolute;
+  left: 30rpx;
+  top: 0;
+  width: 178rpx;
+  height: 178rpx;
+  background: #fff;
+  border: 1rpx solid #bbbbbb;
+  border-radius: 10rpx;
+  align-items: center;
+  justify-content: center;
+}
+.selectver .mainwrap .topwrap .itemimg image{
+  width: 168rpx;
+  height: 168rpx;
+  border-radius: 10rpx;
+}
+.selectver .tablists{
+  width: 100%;
+  background: #fff;
+}
+.selectver .tabwrap{
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 24rpx;
+}
+.selectver .tabwrap .titlewrap{
+  width: 690rpx;
+  margin: 0 auto;
+  font-size: 26rpx;
+  color: #303030;
+  padding-top: 24rpx;
+  border-top: 1rpx solid #bbbbbb;
+}
+.selectver .tabwrap .tablist{
+  position: relative;
+  width: 100%;
+}
+.selectver .tabwrap .tablist:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.selectver .tabwrap .tablist .itemwrap{
+  float: left;
+  margin: 30rpx 30rpx 0;
+  height: 54rpx;
+  padding: 0 22rpx;
+  border: 1rpx solid #bbbbbb;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  color: #2f2f2f;
+  align-items: center;
+}
+.selectver .tabwrap .tablist .itemwrap.active{
+  border: 1rpx solid #db3838;
+  color: #db3838;
+}
+.selectver .numwrap{
+  width: 100%;
+  height: 114rpx;
+  background: #fff;
+}
+.selectver .numwrap .flexwrap{
+  position: relative;
+  width: 690rpx;
+  height: 114rpx;
+  margin: 0 auto;
+  align-items: center;
+  border-top: 1rpx solid #bbbbbb;
+}
+.selectver .numwrap .flexwrap .titlewrap{
+  font-size: 26rpx;
+  color: #303030;
+}
+.selectver .numwrap .num{
+  position: absolute;
+  right: 24rpx;
+  width: 115rpx;
+  height: 48rpx;
+  border: 1rpx solid #b8b8b8;
+  border-radius: 4rpx;
+  font-size: 18rpx;
+  color: #2f2f2f;
+}
+.selectver .numwrap .num .reduce,.selectver .numwrap .num .add{
+  width: 40rpx;
+  height: 48rpx;
+  align-items: center;
+  justify-content: center;
+}
+.selectver .reduce image,.selectver .add image{
+  width: 20rpx;
+  height: 19rpx;
+}
+.selectver .numwrap .num .number{
+  width: 35rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+}
+.selectver .numwrap .num .number input{
+  width: 35rpx;
+  height: 48rpx;
+  text-align: center;
+}
+.selectver .verbottom{
+  width: 100%;
+  height: 90rpx;
+}
+.selectver .verbottom .btnwrap{
+  width: 100%;
+  height: 100%;
+  font-size: 26rpx;
+  color: #fff;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.selectver .verbottom .btnwrap.gray{
+  background: #bababa;
+}
+.selectver .verbottom .btnwrap.red{
+  background: #db3838;
+}

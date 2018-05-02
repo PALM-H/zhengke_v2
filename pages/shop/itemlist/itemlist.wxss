@@ -1,0 +1,189 @@
+
+.page{
+  background: #f2f2f2;
+  height:100vh;
+  overflow: scroll;
+}
+
+.searchwrap{
+  position: relative;
+  width: 100%;
+  padding: 23rpx 0;
+  background: #fff;
+  align-items: center;
+}
+.searchwrap .search{
+  position: relative;
+  width: 598rpx;
+  height: 48rpx;
+  margin-left: 40rpx;
+  border-radius: 24rpx;
+  border: 2rpx solid #d8d8d8;
+  background: #fff;
+  align-items: center;
+}
+.searchwrap .search text{
+  display: inline-block;
+  font-size: 20rpx;
+  color: #a5a5a5;
+  margin-left: 80rpx;
+}
+.searchwrap .search image{
+  position: absolute;
+  left: 29rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+.searchwrap .rightimg{
+  position: absolute;
+  right: 40rpx;
+  width: 40rpx;
+  height: 43rpx;
+}
+
+.navbar{
+  width: 100%;
+  height: 55rpx;
+  background: #fff;
+  border-top: 1rpx solid #d8d8d8;
+  padding-bottom: 22rpx;
+}
+.navbar .navbar-item{
+  position: relative;
+  width: 100%;
+  height: 55rpx;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+.navbar .navbar-item.active{
+  background: #b6b6b6;
+}
+.navbar .navbar-item .textwrap{
+  width: 100%;
+  height: 43rpx;
+  font-size: 26rpx;
+  color: #6a6a6a;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .navbar-item:not(:first-child) .textwrap{
+  border-left: 1rpx solid #d8d8d8;
+}
+
+.itemlist{
+  position: relative;
+  width: 740rpx;
+  margin: 5rpx auto 0;
+}
+.itemlist .itemwrap{
+  position: relative;
+  width: 100%;
+  height: 270rpx;
+  margin-bottom: 5rpx;
+  background: #fff;
+  padding: 15rpx 20rpx;
+  align-items: center;
+  box-sizing: border-box;
+}
+.itemlist .itemwrap image{
+  width: 240rpx;
+  height: 240rpx;
+}
+.itemlist .itemwrap .rightwrap{
+  position: relative;
+  margin-left: 26rpx;
+  width: 420rpx;
+  height: 240rpx;
+}
+.itemlist .itemwrap .rightwrap .itemname{
+  width: 100%;
+  height: 100rpx;
+  font-size: 25rpx;
+  padding-top: 22rpx;
+  color: #303030;
+}
+.itemlist .itemwrap .rightwrap .price{
+  width: 100%;
+  font-size: 28rpx;
+  margin-top: 26rpx;
+  color: #c62626;
+}
+.itemlist .itemwrap .rightwrap .sales{
+  width: 100%;
+  font-size: 22rpx;
+  margin-top: 16rpx;
+  color: #bbbbbb;
+}
+
+.filter{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 9;
+}
+.filter .title{
+  position: relative;
+  width: 710rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #ebebeb;
+}
+.filter .title text{
+  font-size: 25rpx;
+  color: #303030;
+  padding-left: 12rpx;
+}
+.filter .tablist{
+  position: relative;
+  width: 696rpx;
+  margin: 0 auto;
+}
+.filter .tablist .tabwrap{
+  position: relative;
+  width: 232rpx;
+  height: 100rpx;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+.filter .tablist .textwrap{
+  position: relative;
+  width: 180rpx;
+  height: 52rpx;
+  border: 1rpx solid #c4c4c4;
+  border-radius: 4rpx;
+  font-size: 23rpx;
+  color: #303030;
+  align-items: center;
+  justify-content: center;
+}
+.filter .bottom{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 25rpx;
+  color: #fff;
+  text-align: center;
+}
+.filter .bottom .btnreset{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  background: #bababa;
+}
+.filter .bottom .btnok{
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  background: #dc3839;
+}

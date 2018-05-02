@@ -1,0 +1,204 @@
+
+.page{
+  background: #f2f2f2;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.itemlist{
+  position: relative;
+  width: 720rpx;
+  margin: 15rpx;
+  background: #fff;
+}
+
+.itemlist .titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 64rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx #eeeeee solid;
+  align-items: center;
+}
+.itemlist .titlewrap .title{
+  display: inline-block;
+  margin-left: 6rpx;
+  color: #6a6a6a;
+  font-size: 24rpx;
+}
+
+.itemlist .itemwrap{
+  position: relative;
+  width: 680rpx;
+  height: 170rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx #eeeeee solid;
+}
+.itemlist .itemwrap .itemimg{
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  width: 169rpx;
+  height: 169rpx;
+}
+.itemlist .itemwrap .namewrap{
+  position: absolute;
+  left: 200rpx;
+  top: 0;
+  width: 472rpx;
+  line-height: 36rpx;
+}
+.itemlist .itemwrap .namewrap text{
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemlist .itemwrap .versionwrap{
+  position: absolute;
+  left: 200rpx;
+  top: 90rpx;
+  width: 472rpx;
+  line-height:21rpx;
+}
+.itemlist .itemwrap .versionwrap text{
+  font-size: 21rpx;
+  color: #bbbbbb;
+}
+.itemlist .itemwrap .pricewrap{
+  position: absolute;
+  left: 200rpx;
+  bottom: 30rpx;
+  line-height:23rpx;
+}
+.itemlist .itemwrap .pricewrap text{
+  font-size: 23rpx;
+  color: #c62626;
+}
+
+.type{
+  position: relative;
+  width: 720rpx;
+  margin: 0 auto 15rpx;
+  background: #fff;
+}
+.type .titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #d8d8d8;
+}
+.type .titlewrap text{
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.type .typelist{
+  width: 100%;
+  height: 108rpx;
+}
+.type .typelist .typewrap{
+  width: 100%;
+  height: 108rpx;
+  padding: 28rpx 66rpx;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+.type .typelist .typewrap view{
+  text-align: center;
+  border: 1rpx solid #6a6a6a;
+  color: #6a6a6a;
+  border-radius: 5rpx;
+  font-size: 24rpx;
+  line-height: 48rpx;
+}
+.type .typelist .typewrap.active view{
+  border: 1rpx solid #00a7ff;
+  color: #00a7ff;
+}
+
+.message{
+  position: relative;
+  width: 720rpx;
+  margin: 0 auto 15rpx;
+  background: #fff;
+}
+.message .msgwrap{
+  position: relative;
+  width: 680rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  align-items: center;
+}
+.message .msgwrap:not(:first-child){
+  border-top: 1rpx solid #d8d8d8;
+}
+.message .msgwrap .lefttext{
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.message .msgwrap .righttext{
+  position: absolute;
+  left: 160rpx;
+  font-size: 24rpx;
+  color: #6a6a6a;
+}
+
+.write{
+  position: relative;
+  width: 720rpx;
+  margin: 0 auto 15rpx;
+  background: #fff;
+  padding-bottom: 15rpx;
+}
+.write .titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 86rpx;
+  margin: 0 auto;
+  align-items: center;
+}
+.write .titlewrap .title{
+  display: inline-block;
+  margin-left: 6rpx;
+  font-size: 24rpx;
+  color: #303030;
+}
+.write .titlewrap .rightimg{
+  position: absolute;
+  right: 6rpx;
+  width: 55rpx;
+  height: 43rpx;
+}
+.write .reason{
+  display: block;
+  width: 680rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0 auto;
+  padding-left: 15rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  color: #6a6a6a;
+  border: 1rpx solid #d8d8d8;
+}
+
+.bottom{
+  position: fixed;
+  width: 100%;
+  height: 90rpx;
+  bottom: 0;
+  line-height: 90rpx;
+  background: #00a7ff;
+  color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+}

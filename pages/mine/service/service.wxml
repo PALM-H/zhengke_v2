@@ -1,0 +1,100 @@
+
+<scroll-view scroll-y class="page">
+  <!-- 提示，接入后台后不要忘了滚动加载，可以使用scroll-view的scrolltolower实现 -->
+  <view class="navbar flexwrap">
+    <view id="0" class="navbar-item first-navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>申请售后</text></view>
+    </view>
+    <view id="1" class="navbar-item {{activeIndex == 1 ? 'active' : ''}}" bindtap="{{activeIndex != 1 ? 'tabClick' : ''}}">
+      <view class="textwrap"><text>申请记录</text></view>
+    </view>
+  </view>
+  <view class="searchbar">
+    <view class="searchwrap">
+      <image class="icon" src="../../../images/mine/search.png"></image>
+      <input type="text" class="word" confirm-type="search" placeholder="输入商品名进行搜索" />
+      <text class="righttext">搜索</text>
+    </view>
+  </view>
+  <view class="itemlist">
+    <!-- 申请售后模板 -->
+    <view class="item">
+      <view class="titlewrap flexwrap">
+        <text class="ordernum">订单号：201805161315564589</text>
+      </view>
+      <view>
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp1.jpg"></image>
+          <view class="namewrap">
+            <text>小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：标准 黑色 4+46G</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥3589.00</text>
+          </view>
+          <view class="action" catchtap="goApply">
+            <text>申请售后</text>
+          </view>
+        </view>
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp2.jpg"></image>
+          <view class="namewrap">
+            <text>联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：游戏之王  16+1T+225 SSD</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥8589.00</text>
+          </view>
+          <view class="action" catchtap="goApply">
+            <text>申请售后</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 申请记录模板 -->
+    <view class="item" bindtap="goApplymsg">
+      <view class="titlewrap flexwrap">
+        <text class="ordernum">订单号：201805161315564589</text>
+        <text class="status">保修</text>
+      </view>
+      <view>
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp1.jpg"></image>
+          <view class="namewrap">
+            <text>小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：标准 黑色 4+46G</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥3589.00</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="item" bindtap="goApplymsg">
+      <view class="titlewrap flexwrap">
+        <text class="ordernum">订单号：201805161315564589</text>
+        <text class="status">退货</text>
+      </view>
+      <view>
+        <view class="itemwrap">
+          <image class="itemimg" src="../../../images/mine/itemexp2.jpg"></image>
+          <view class="namewrap">
+            <text>联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：游戏之王  16+1T+225 SSD</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥8589.00</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

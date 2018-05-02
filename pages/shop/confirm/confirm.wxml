@@ -1,0 +1,70 @@
+
+<view class="page">
+  <view class="address flexwrap" bindtap="goAddress">
+		<view class="leftwrap">
+			<view class="name">
+				<text>{{name}}　{{phone}}</text>
+			</view>
+			<view class="adrs">
+				<text>{{address}}</text>
+			</view>
+		</view>
+		<view class="rightwrap flexwrap">
+			<image src="../../../images/shop/icon31.png"></image>
+		</view>
+	</view>
+	<view class="itemlist">
+		<block wx:for="{{itemListArr}}" wx:key="unique">
+			<view class="itemwrap flexwrap">
+				<image class="itemimg" src="{{item.url}}"></image>
+				<view class="rightwrap">
+					<view class="name">
+						<text>{{item.name}}</text>
+					</view>
+					<view class="ver">
+						<text>版本：{{item.ver}}</text>
+					</view>
+					<view class="price">
+						<text>￥ {{item.price}}</text>
+					</view>
+					<view class="num">
+						<text>数量：{{item.num}}</text>
+					</view>
+				</view>
+			</view>
+		</block>
+	</view>
+	<view class="sundry">
+		<view class="msgwrap flexwrap">
+			<text class="lefttext">商品合计</text>
+			<text class="righttext">{{count}}</text>
+		</view>
+		<view class="msgwrap flexwrap">
+			<text class="lefttext">合计总额</text>
+			<text class="righttext">￥{{total}}</text>
+		</view>
+		<view class="code flexwrap">
+			<text class="lefttext">请输入优惠码</text>
+			<input type="text" class="iptcode" />
+		</view>
+		<view class="tips flexwrap">
+			<text>* 优惠码领取需要从商家处进行获取，暂不使用时请勿输入</text>
+		</view>
+	</view>
+	<view class="note">
+		<view class="msgwrap flexwrap">
+			<text>备注</text>
+		</view>
+		<view class="notewrap flexwrap">
+			<input type="text" placeholder="请输入备注" />
+		</view>
+	</view>
+	<view class="bottom flexwrap">
+		<view class="total flexwrap">
+			<text>需支付：￥{{total}}</text>
+		</view>
+		<view class="pay flexwrap" bindtap="goPay">
+			<text>确认并提交订单</text>
+		</view>
+	</view>
+</view>

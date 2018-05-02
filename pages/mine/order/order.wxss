@@ -1,0 +1,277 @@
+
+page{
+  overflow: hidden;
+}
+.page{
+  background: #f2f2f2;
+  height:100vh;
+}
+
+.navbar{
+  position: relative;
+  width: 720rpx;
+  height: 86rpx;
+  margin: 10rpx 15rpx 0;
+  background: #fff;
+}
+.navbar-item{
+  position: relative;
+  display: block;
+  height: 82rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+.navbar-item .textwrap{
+  margin: 10rpx auto 0;
+  width: 100%;
+  height: 66rpx;
+  line-height:66rpx;
+  text-align: center;
+}
+.navbar-item:not(.first-navbar-item) .textwrap{
+  border-left: 1rpx #eeeeee solid;
+}
+.navbar-item .textwrap text{
+  font-size: 26rpx;
+  color: #303030;
+}
+.navbar-item.active{
+  border-bottom: 6rpx #0099ff solid;
+}
+.navbar-item.active .textwrap text{
+  color: #0099ff;
+}
+
+.itemlist{
+  position: relative;
+  width: 720rpx;
+  margin: 15rpx 15rpx 0;
+}
+.itemlist .item{
+  width: 100%;
+  background: #fff;
+  margin-bottom: 15rpx;
+}
+
+.titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 60rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx #eeeeee solid;
+  align-items: center;
+}
+.titlewrap .ordernum{
+  display: inline-block;
+  margin-left: 6rpx;
+  color: #6a6a6a;
+  font-size: 24rpx;
+}
+.titlewrap .status{
+  position: absolute;
+  display: inline-block;
+  color: #00a7ff;
+  font-size: 24rpx;
+  right: 6rpx;
+}
+
+.itemwrap{
+  position: relative;
+  width: 680rpx;
+  height: 170rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1rpx #eeeeee solid;
+}
+.itemwrap .itemimg{
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  width: 169rpx;
+  height: 169rpx;
+}
+.itemwrap .namewrap{
+  position: absolute;
+  left: 200rpx;
+  top: 0;
+  width: 472rpx;
+  line-height: 36rpx;
+}
+.itemwrap .namewrap text{
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemwrap .versionwrap{
+  position: absolute;
+  left: 200rpx;
+  top: 90rpx;
+  width: 472rpx;
+  line-height:21rpx;
+}
+.itemwrap .versionwrap text{
+  font-size: 21rpx;
+  color: #bbbbbb;
+}
+.itemwrap .pricewrap{
+  position: absolute;
+  left: 200rpx;
+  bottom: 30rpx;
+  line-height:23rpx;
+}
+.itemwrap .pricewrap text{
+  font-size: 23rpx;
+  color: #c62626;
+}
+.itemwrap .countwrap{
+  position: absolute;
+  right: 6rpx;
+  bottom: 30rpx;
+  line-height:23rpx;
+}
+.itemwrap .countwrap text{
+  font-size: 23rpx;
+  color: #bbbbbb;
+}
+
+.bottomtpl{
+  position: relative;
+  width: 670rpx;
+  margin: 20rpx auto 0;
+  padding-bottom: 20rpx;
+}
+.bottomtpl .sum{
+  position: absolute;
+  font-size: 24rpx;
+  color: #6a6a6a;
+}
+.bottomtpl .total{
+  position: absolute;
+  font-size: 24rpx;
+  color: #6a6a6a;
+}
+.bottomtpl .action{
+  position: absolute;
+  font-size: 24rpx;
+  color: #db3838;
+}
+.bottomtpl .express{
+  position: absolute;
+  font-size: 24rpx;
+  color: #00a7ff;
+}
+.bottomtpl .car{
+  position: absolute;
+  width: 44rpx;
+  height: 29rpx;
+}
+.bottomtpl1{
+  height: 72rpx;
+}
+.bottomtpl1 .sum{
+  left: 0;
+  top: 0;
+}
+.bottomtpl1 .total{
+  left: 0;
+  bottom: 20rpx;
+}
+.bottomtpl1 .action{
+  right: 0;
+  top: 22rpx;
+}
+.bottomtpl2{
+  height: 24rpx;
+}
+.bottomtpl2 .sum{
+  left: 0;
+  top: 0;
+}
+.bottomtpl2 .total{
+  right: 0;
+  top: 0;
+}
+.bottomtpl3{
+  height: 76rpx;
+}
+.bottomtpl3 .sum{
+  left: 0;
+  top: 0;
+}
+.bottomtpl3 .total{
+  right: 0;
+  top: 0;
+}
+.bottomtpl3 .action{
+  right: 0;
+  bottom: 20rpx;
+}
+.bottomtpl3 .express{
+  left: 54rpx;
+  bottom: 20rpx;
+}
+.bottomtpl3 .car{
+  left: 0;
+  bottom: 20rpx;
+}
+
+.confirm{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 8;
+}
+.confirm .black{
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  opacity: 0.3;
+}
+.confirm .dialog{
+  position: absolute;
+  left: 150rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 450rpx;
+  height: 300rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  text-align: center;
+  z-index: 9;
+}
+.confirm .dialog .title{
+  display: block;
+  width: 450rpx;
+  font-size: 30rpx;
+  color: #303030;
+  margin-top: 58rpx;
+}
+.confirm .dialog .tips{
+  display: block;
+  width: 365rpx;
+  font-size: 20rpx;
+  color: #303030;
+  margin: 44rpx auto 0;
+}
+.confirm .dialog .btn{
+  width: 430rpx;
+  height: 70rpx;
+  margin: 20rpx auto 0;
+}
+.confirm .dialog .btn .btnwtap{
+  height: 38rpx;
+  line-height: 38rpx;
+  margin: 17rpx 13rpx;
+  border: 1rpx solid #d8d8d8;
+  border-radius: 3rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  font-size: 20rpx;
+}

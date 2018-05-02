@@ -1,0 +1,32 @@
+
+<view class="page">
+  <block wx:for="{{adrsArr}}" wx:key="unique">
+    <view class="personal">
+      <view class="msgwrap">
+        <view class="textwrap">
+          <text>{{item.name}}</text>　<text>{{item.phone}}</text>
+        </view>
+        <view class="textwrap address">
+          <text>{{item.address}}</text>
+        </view>
+      </view>
+      <view class="actionwrap">
+        <view class="select {{item.index==activeAdrs ? 'active' : ''}}" data-num="{{item.index}}" bindtap="changeAdrs">
+          <image src="../../../images/mine/select-{{item.index==activeAdrs ? 'on' : 'off'}}.png"></image>
+          <text>默认地址</text>
+        </view>
+        <view class="edit" bindtap="editAdrs">
+          <image src="../../../images/mine/edit.png"></image>
+          <text>编辑</text>
+        </view>
+        <view class="delete">
+          <image src="../../../images/mine/delete.png"></image>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </block> 
+  <view class="bottom" bindtap="addAdrs">
+    <text>添加地址</text>
+  </view>
+</view>

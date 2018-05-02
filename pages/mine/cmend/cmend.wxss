@@ -1,0 +1,164 @@
+
+.page{
+  width: 100%;
+  height: 100vh;
+  background: #f2f2f2;
+  overflow: scroll;
+}
+
+.primary{
+  position: relative;
+  width: 720rpx;
+  margin: 15rpx auto 0;
+  background: #fff;
+}
+.primary .msgwrap{
+  position: relative;
+  width: 680rpx;
+  height: 88rpx;
+  align-items: center;
+  margin: 0 auto;
+}
+.primary .msgwrap:not(:first-child){
+  border-top: 1rpx solid #d8d8d8;
+}
+.primary .msgwrap .title{
+  display: inline-block;
+  padding-left: 6rpx;
+  font-size: 26rpx;
+  color: #303030;
+}
+.primary .msgwrap:first-child .title{
+  color: #00a7ff;
+}
+.markwrap .mark{
+  position: absolute;
+  width: 32rpx;
+  height: 31rpx;
+}
+.markwrap .mark1{
+  right: 198rpx;
+}
+.markwrap .mark2{
+  right: 150rpx;
+}
+.markwrap .mark3{
+  right: 102rpx;
+}
+.markwrap .mark4{
+  right: 54rpx;
+}
+.markwrap .mark5{
+  right: 6rpx;
+}
+
+.item{
+  position: relative;
+  width: 720rpx;
+  background: #fff;
+  margin: 15rpx auto 0;
+}
+
+.titlewrap{
+  position: relative;
+  width: 680rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx #eeeeee solid;
+  align-items: center;
+}
+.titlewrap .title{
+  display: inline-block;
+  margin-left: 6rpx;
+  color: #00a7ff;
+  font-size: 24rpx;
+}
+
+.itemwrap{
+  position: relative;
+  width: 680rpx;
+  height: 170rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+.itemwrap .itemimg{
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  width: 169rpx;
+  height: 169rpx;
+}
+.itemwrap .namewrap{
+  position: absolute;
+  left: 200rpx;
+  top: 0;
+  width: 472rpx;
+  line-height: 36rpx;
+}
+.itemwrap .namewrap text{
+  font-size: 24rpx;
+  color: #303030;
+}
+.itemwrap .versionwrap{
+  position: absolute;
+  left: 200rpx;
+  top: 90rpx;
+  width: 472rpx;
+  line-height:21rpx;
+}
+.itemwrap .versionwrap text{
+  font-size: 21rpx;
+  color: #bbbbbb;
+}
+.itemwrap .pricewrap{
+  position: absolute;
+  left: 200rpx;
+  bottom: 30rpx;
+  line-height:23rpx;
+}
+.itemwrap .pricewrap text{
+  font-size: 23rpx;
+  color: #c62626;
+}
+.item .markwrap{
+  border-top: 1rpx #eeeeee solid;
+  position: relative;
+  width: 680rpx;
+  height: 80rpx;
+  align-items: center;
+  margin: 0 auto;
+}
+.item .markwrap .title{
+  display: inline-block;
+  padding-left: 6rpx;
+  font-size: 26rpx;
+  color: #303030;
+}
+
+.item .commentwrap{
+  position: relative;
+  width: 680rpx;
+  margin: 0 auto;
+  padding-bottom: 24rpx;
+}
+.item .commentwrap .title{
+  display: block;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-left: 6rpx;
+  font-size: 26rpx;
+  color: #303030;
+}
+.item .commentwrap .textwrap{
+  display: block;
+  width: 660rpx;
+  margin: 10rpx auto 0;
+  height: 50rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  color: #6a6a6a;
+  padding-bottom: 14rpx;
+}
+
+

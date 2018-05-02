@@ -1,0 +1,17 @@
+
+<view class="page">
+  <view class="main">
+    <view class="msgwrap flexwrap" bindtap="chooseImage">
+      <text class="title">头像</text>
+      <image class="righticon" src="../../../images/mine/right-arrow.png"></image>
+      <image class="rightimg" src="{{headImg}}"></image>
+    </view>
+    <view class="msgwrap flexwrap">
+      <text class="title">昵称</text>
+      <input type="text" class="name" placeholder="请输入姓名" value="{{name}}" />
+    </view>
+  </view>
+  <view class="bottom" bindtap="save">
+    <text>保存</text>
+  </view>
+</view>

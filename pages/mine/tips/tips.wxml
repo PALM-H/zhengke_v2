@@ -1,0 +1,12 @@
+
+<view class="page">
+  <view class="imgwrap">
+    <image src="../../../images/mine/success.png"></image>
+  </view>
+  <view class="tips">
+    <text>{{title}}</text>
+  </view>
+  <view class="btn" bindtap="goDetail">
+    <text>{{action}}</text>
+  </view>
+</view>
