@@ -6,13 +6,14 @@ Page({
     userInfo: null
   },
   onLoad: function () {
-    console.log(app.globalData.userInfo)
     if(!app.globalData.hasGetUserInfo){
-      this.setData({
-        userInfo: app.globalData.userInfo
-      });
+      app.checkSettingStatus();
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo
+        });
+      }
     }else{
-      app.login();
       this.setData({
         userInfo: app.globalData.userInfo
       });

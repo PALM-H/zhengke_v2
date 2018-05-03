@@ -1,14 +1,21 @@
+//获取应用实例
+const app = getApp()
+
+
 //article.js
 
 var WxParse = require('../../wxParse/wxParse.js');
 
 Page({
   data: {
+    //其它页面传参数进来
     id: null,
+    type:null,
+
     title: '',
     user: '',
     time: '',
-    // content: '',
+    content: '',//文章内容，可能是图片或者链接
     logo: '',
     name: '',
     phone: '',
@@ -22,10 +29,11 @@ Page({
       
     ],
   },
-  onLoad: function (options) {
-    var that = this;
+  onLoad(options) {
+    console.log(options,'options');
     this.setData({
-      id: options.id
+      id: options.id,
+      type:options.type
     });
     wx.showLoading({
       mask: true,
@@ -34,61 +42,65 @@ Page({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      url: 'https://www.znnkee.com/smallprogram/index.php/Home/NewsApi/info',
+      url: app.globalData.apiUrl+'con=contentapi&act=get_info',
       method: "POST",
       data: {
         id: options.id,
-        type: 1
+        type: this.data.type
       },
-      success: function(res) {
-        that.setData({
+      success:(res)=> {
+        console.log(res,333);
+        this.setData({
           title: res.data.info.title,
 					user: res.data.info.author,
 					time: res.data.info.add_time,
 					// content: res.data.info.content,
         });
-        WxParse.wxParse('article', 'html', res.data.info.content, that, 5);
+        if(res.data.info.type==="article"){
+          WxParse.wxParse('article', 'html', res.data.info.content, this, 5);
+        }
+       
         wx.hideLoading()
       },
-      fail: function(err){
+      fail: (err)=>{
         console.log(err);
       }
     })
     wx.request({
       url: 'https://www.znnkee.com/smallprogram/index.php/Home/NewsApi/article_store',
       method: "GET",
-      success: function(res) {
-        that.setData({
+      success: (res)=> {
+        this.setData({
           logo: res.data.info.logo,
           name: res.data.info.name,
           phone: res.data.info.phone,
           address: res.data.info.address,
         });
       },
-      fail: function(err){
+      fail: (err)=>{
         console.log(err);
       }
     })
     wx.request({
       url: 'https://www.znnkee.com/smallprogram/index.php/Home/NewsApi/article_banners',
       method: "GET",
-      success: function(res) {
-        that.setData({
+      success: (res)=> {
+        this.setData({
           imgUrls: res.data.info
         });
       },
-      fail: function(err){
+      fail: (err)=>{
         console.log(err);
       }
     })
   },
   //轮播切换相关
-  swiperChange: function(e){  
+  swiperChange: (e)=>{  
     this.setData({  
       swiperCurrent: e.detail.current  
     })  
 	},
-  onShareAppMessage: function () {
+  onShareAppMessage: ()=> {
     return {
       title: '挣客3C行业平台服务商',
       imageUrl: '/images/share.jpg',

@@ -17,3 +17,25 @@ page{
 .hide{
   display: none;
 }
+
+
+.swiper-container{  
+  position: relative;  
+}  
+.swiper{
+  height: 374rpx;
+}
+.swiper image{
+  width:100%;
+  height:374rpx;
+}
+.swiper .textwrap{
+  position: absolute;
+  width: 100%;
+  bottom: 46rpx;
+  text-align: center;
+}
+.swiper .textwrap text{
+  font-size: 34rpx;
+  color: #ffffff;
+}

@@ -14,6 +14,19 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const isEmptyObject=(e)=> {
+
+  var t;
+
+  for (t in e)
+
+      return !1;
+
+  return !0
+
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  isEmptyObject:isEmptyObject
 }

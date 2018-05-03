@@ -1,59 +1,74 @@
+//获取应用实例
+const app = getApp()
+
 //index.js
 
 Page({
   data: {
-    imgUrls: [
+    //swiper
+    indicatorDots: false,
+    autoplay: false,
+    interval: 5000,
+    duration: 1000,
 
-    ],
-    advert: '',
-    name: '',
-    phone: '',
-    address: '',
+    store_imgs: null,//门店照片
+    ad: null, //广告
+    store_name: '',//门店名称
+    logo_path:'',//门店logo
+    the_main:null,//门店标签
+    store_phone: '',
+    store_address: '',
     latitude: '',
     longitude: '',
   },
-  onLoad: function (options) {
-    var that = this;
-    wx.showLoading({
-      mask: true,
-    })
+  onLoad (options) {
+    // wx.showLoading({
+    //   mask: true,
+    // })
     wx.request({
-      url: 'https://www.znnkee.com/smallprogram/index.php/Home/StoreApi/store_info',
-      method: "GET",
-      success: function(res) {
-        that.setData({
-          imgUrls: res.data.info.imgs,
-          advert: res.data.info.store_banner,
-          name: res.data.info.name,
-          phone: res.data.info.phone,
-          address: res.data.info.address,
-          latitude: res.data.info.latitude,
-          longitude: res.data.info.longitude,
+      url: app.globalData.apiUrl+'con=contentapi&act=get_merchant_message',
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      data:{
+        m_id:app.globalData.merchant_id
+      },
+      success:(res)=> {
+        console.log(res,'111门店信息');
+        this.setData({
+          store_imgs: res.data.info.store_imgs,
+          ad: res.data.info.ad,
+          store_name: res.data.info.store_name,
+          logo_path: res.data.info.logo_path,
+          the_main: res.data.info.the_main,
+          store_phone: res.data.info.store_phone,
+          store_address: res.data.info.store_address,
+        //   latitude: res.data.info.latitude,
+        //   longitude: res.data.info.longitude,
         });
         wx.hideLoading()
       },
-      fail: function(err){
+      fail: (err)=>{
         console.log(err);
       }
     })
   },
-  callphone: function(e){
-    var that = this;
+  callphone(e){
     wx.makePhoneCall({  
-      phoneNumber: that.data.phone
+      phoneNumber: this.data.phone
     })  
   },
-  clickToMap: function(e){
-    var that = this;
+  clickToMap(e){
     wx.openLocation({
-      latitude: parseFloat(that.data.latitude),
-      longitude: parseFloat(that.data.longitude),
+      latitude: parseFloat(this.data.latitude),
+      longitude: parseFloat(this.data.longitude),
       scale: 28,
-      name: that.data.name,
-      address: that.data.address
+      name: this.data.name,
+      address: this.data.address
     })
   },
-  onShareAppMessage: function () {
+  onShareAppMessage () {
     return {
       title: '挣客3C行业平台服务商',
       imageUrl: '/images/share.jpg',

@@ -1,4 +1,5 @@
-
+//获取应用实例
+const app = getApp()
 Page({
   data: {
     searchFill: false,
@@ -39,6 +40,16 @@ Page({
       {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'35000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'},
       {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'35000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'}
     ]
+  },
+  onLoad(){
+    if (!app.globalData.hasGetUserInfo) {
+      app.checkSettingStatus();
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo
+        });
+      }
+    }
   },
   goSearch: function(e){  
     wx.navigateTo({

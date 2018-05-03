@@ -43,18 +43,36 @@
   font-size: 20rpx;
   vertical-align:middle;
 }
-.tips{
-  width: 100%;
-  height: 69rpx;
-  line-height: 69rpx;
-  text-align: center;
-  border-bottom: 1rpx solid #eeeeee;
+
+/*经营范围*/
+.management-section{
+  text-align:center;
+  border-bottom:1rpx solid #eeeeee;
+
 }
-.tips text{
-  font-size: 26rpx;
-  vertical-align:middle;
-  color: #0080FF;
+.management-section .t1{
+  font-size:34rpx;
+  color:#6a6a6a;
+  margin:20rpx 0;
 }
+.management-section .label-wrap{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:20rpx;
+}
+.management-section .label-wrap .label-text{
+  font-size:26rpx;
+  padding:4px 16px;
+  border:1px solid #bebebe;
+  border-radius:20rpx;
+  margin:0 10rpx;
+  letter-spacing:3px;
+}
+
+
+
+
 .itemwrap{
   width: 670rpx;
   height: 50rpx;
