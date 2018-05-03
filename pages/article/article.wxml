@@ -9,9 +9,19 @@
       <text>{{user}}　{{time}}</text>
     </view>
     <view class="container">
+    <block wx:if="{{contentType=='article'}}">
       <import src="../../wxParse/wxParse.wxml"/>
-
       <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </block>
+    <block wx:elif="{{contentType=='img'}}">
+        <image src="{{content}}"/>
+    </block>
+    <block wx:else>
+        <web-view src="{{h5Url}}"></web-view>
+    </block>
+    
+      
+      
     </view>
     <view class="msg">
       <image src="{{logo}}" />

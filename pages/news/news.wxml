@@ -16,7 +16,7 @@
     <swiper class="swiper" indicator-dots="{{indicatorDots}}"
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
       <block wx:for="{{imgUrls}}">
-        <swiper-item  bindtap="handleBannerClick" data-id="{{item.banner_id}}">
+        <swiper-item  bindtap="handleBannerClick" data-id="{{item.banner_id}}" data-type="2">
           <image src="{{item.cover_url}}" class="slide-image"/>
           <view class="textwrap">
             <text>{{item.title}}</text>

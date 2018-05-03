@@ -16,18 +16,22 @@ Page({
     user: '',
     time: '',
     content: '',//文章内容，可能是图片或者链接
+    h5Url:'',
+    contentType:'',
+
     logo: '',
     name: '',
     phone: '',
     address: '',
+
+    //swiper
     indicatorDots: false,
     autoplay: true,
     interval: 4000,
     duration: 500,
-		swiperCurrent: 0,
-    imgUrls: [
-      
-    ],
+    swiperCurrent: 0,
+    
+    imgUrls: [],
   },
   onLoad(options) {
     console.log(options,'options');
@@ -58,7 +62,22 @@ Page({
         });
         if(res.data.info.type==="article"){
           WxParse.wxParse('article', 'html', res.data.info.content, this, 5);
+          this.setData({
+            contentType:'article'
+          })
+          
+        }else if(res.data.info.type==="img"){
+          this.setData({
+            content:'http://service.ixingtu.com/ixtres/news/image/20180413/1523587100332024657.jpg',
+            contentType:'img'
+          })
+        }else if(res.data.info.type==="url"){
+          this.setData({
+            h5Url:'https://www.baidu.com',
+            contentType:'url'
+          })
         }
+        
        
         wx.hideLoading()
       },
@@ -95,12 +114,12 @@ Page({
     })
   },
   //轮播切换相关
-  swiperChange: (e)=>{  
+  swiperChange(e){  
     this.setData({  
       swiperCurrent: e.detail.current  
     })  
 	},
-  onShareAppMessage: ()=> {
+  onShareAppMessage(){
     return {
       title: '挣客3C行业平台服务商',
       imageUrl: '/images/share.jpg',

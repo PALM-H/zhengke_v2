@@ -99,7 +99,7 @@ Page({
   //轮播图点击
   handleBannerClick(e){
     wx.navigateTo({
-      url: `../article/article?id=${e.currentTarget.dataset.id}`
+      url: `../article/article?id=${e.currentTarget.dataset.id}&type=${e.currentTarget.dataset.type}`
     })
   },
 	//文章点击事件
