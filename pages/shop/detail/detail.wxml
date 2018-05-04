@@ -3,14 +3,14 @@
 	<view class="swiper-container">  
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="swiperChange">
-      <block wx:for="{{imgUrls}}" wx:key="unique">
+      <block wx:for="{{goodsInfo.imgs}}" wx:key="unique">
         <swiper-item>
-          <image src="{{item.url}}" class="slide-image"/>
+          <image src="{{item}}" mode="aspectFill" class="slide-image"/>
         </swiper-item>
       </block>
     </swiper>
     <view class="dots">  
-      <block wx:for="{{imgUrls}}" wx:key="unique">  
+      <block wx:for="{{goodsInfo.imgs}}" wx:key="unique">  
         <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view> 
       </block>  
 		</view> 
@@ -19,10 +19,10 @@
 		<view class="flexwrap">
 			<view class="leftwrap">
 				<view class="name">
-					<text>小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机</text>
+					<text>{{goodsInfo.name}}</text>
 				</view>
 				<view class="tips">
-					<text>3.15开学购机优惠，购买红米系列手机赠送内存卡、腾讯大王卡，流量花不完</text>
+					<text>{{goodsInfo.subtitle}}</text>
 				</view>
 			</view>
 			<view class="rightwrap">
@@ -38,19 +38,47 @@
 		</view>
 		<view class="botwrap flexwrap">
 			<view class="lefttext">
-				<text>￥599-1799</text>
+				<text>￥{{goodsInfo.sell_price}}</text>
 			</view>
 			<view class="righttext">
 				<text>销量：3000</text>
 			</view>
 		</view>
 	</view>
+
+
+
+
+
 	<view class="verwrap flexwrap" bindtap="showVer">
 		<view class="lefttext">
-			<text><block wx:for="{{verArr}}" wx:key="unique" wx:for-item="vItem"><block wx:for="{{verArr[index].ver}}" wx:key="unique" wx:for-item="tItem">{{vItem.activeNum==tItem.id?tItem.name+' ':''}}</block></block></text>
+				<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
+					<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-item="tItem">
+						<text>{{vItem.selectedId==tItem.id?tItem.name+' ':''}}</text>
+					</block>
+				</block>
 		</view>
 		<image class="rightimg" src="../../../images/shop/icon31.png"></image>
 	</view>
+	<!--
+	<view class="verwrap flexwrap" bindtap="showVer">
+		<view class="lefttext">
+			<text>
+				<block wx:for="{{verArr}}" wx:key="unique" wx:for-item="vItem">
+					<block wx:for="{{verArr[index].ver}}" wx:key="unique" wx:for-item="tItem">
+						{{vItem.activeNum==tItem.id?tItem.name+' ':''}}
+					</block>
+				</block>
+			</text>
+		</view>
+		<image class="rightimg" src="../../../images/shop/icon31.png"></image>
+	</view>
+	-->
+
+
+
+
+
 	<view class="remark">
 		<view class="title flexwrap">
 			<view class="lefttext">
@@ -89,6 +117,12 @@
 			<text>更多评价</text>
 		</view>
 	</view>
+
+
+
+
+
+
 	<view class="detail">
 		<view class="tab flexwrap">
 			<view class="tabtext flexwrap {{detailTabActive==0?'active':''}}" data-num="0" bindtap="changeDetail">
@@ -133,35 +167,50 @@
 				<text>购物车</text>
 			</view>
 		</view>
-		<view class="btnwrap flexwrap blue">
+		<view class="btnwrap flexwrap blue" bindtap="addShoppingCart">
 			<text>加入购物车</text>
 		</view>
 		<view class="btnwrap flexwrap red" bindtap="goConfirm">
 			<text>立即购买</text>
 		</view>
 	</view>
+
+
+
+
+
+
+
+	<!-- 商品规格  -->
 	<view class="selectver {{isVerHide?'hide':''}}">
 		<view class="mainwrap">
 			<view class="topwrap">
 				<view class="transparent"></view>
 				<view class="whitewrap">
-					<view class="price">￥5389.00</view>
-					<view class="explain">选择版本，颜色，内存</view>
+					<view class="price">￥{{goodsInfo.sell_price}}</view>
+					<view class="explain">
+						<text>选择</text>
+						<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
+							<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-item="tItem">
+								<text>{{vItem.selectedId==tItem.id?tItem.name+' ':''}}</text>
+							</block>
+						</block>
+					</view>
 					<image class="close" src="../../../images/shop/icon41.png" bindtap="hideVer"></image>
 				</view>
 				<view class="itemimg flexwrap">
-					<image src="../../../images/shop/exp-itemverimg.jpg"></image>
+					<image src="{{goodsInfo.img}}"></image>
 				</view>
 			</view>
 			<view class="tablists">
-				<block wx:for="{{verArr}}" wx:key="unique" wx:for-index="vIdx" wx:for-item="vItem">
+				<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-index="vIdx" wx:for-item="vItem">
 					<view class="tabwrap">
 						<view class="titlewrap">
-							<text>{{vItem.title}}</text>
+							<text>{{vItem.name}}</text>
 						</view>
 						<view class="tablist">
-							<block wx:for="{{vItem.ver}}" wx:key="unique" wx:for-index="tIdx" wx:for-item="tItem">
-								<view class="itemwrap flexwrap {{vItem.activeNum==tItem.id?'active':''}}" data-id="{{tItem.id}}" data-parentindex="{{vIdx}}" bindtap="changetab">
+							<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-index="tIdx" wx:for-item="tItem">
+								<view class="itemwrap flexwrap {{vItem.selectedId==tItem.id?'active':''}}" data-id="{{tItem.id}}" data-parentindex="{{vIdx}}" bindtap="changetab">
 									<text>{{tItem.name}}</text>
 								</view>
 							</block>
@@ -169,6 +218,7 @@
 					</view>
 				</block>
 			</view>
+			
 			<view class="numwrap">
 				<view class="flexwrap">
 					<view class="titlewrap">
@@ -179,7 +229,7 @@
 							<image src="../../../images/shop/icon34.png"></image>
 						</view>
 						<view class="number">
-							<input type="number" value="{{itemnum}}" bindblur="bindKeyInput" />
+							<input type="number" value="{{pro_num}}" bindblur="bindKeyInput" />
 						</view>
 						<view class="add flexwrap" bindtap="addNum">
 							<image src="../../../images/shop/icon35.png"></image>

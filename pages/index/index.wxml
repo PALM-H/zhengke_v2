@@ -19,7 +19,7 @@
   </block>
 </swiper>
 </view>
-  <view class="management-containers">
+  <view class="management-container">
     <view class="t1">经营范围</view>
     <view class="label-wrap">
     <view class="label-text"  wx:key="{{index}}" wx:for="{{the_main}}">{{item}}</view>

@@ -89,8 +89,10 @@ App({
                     showCancel: false
                   });
                 } else {
+                  
                   this.globalData.uid = res.data.userInfo.uid;
                   this.globalData.hasGetUserInfo = true;
+                  console.log(this.globalData.uid,'用户id，uid');
                   wx.showToast({
                     title: '登录成功',
                     icon: 'success',

@@ -87,7 +87,7 @@ Page({
       url:`${app.globalData.apiUrl}con=mallapi&act=goods_list&merchant_id=${app.globalData.merchant_id}&type=${type}`,
       method: "GET",
       success: (res)=> {
-        console.log(res,'3获取推荐商品列表')
+        console.log(res,'3获取最新商品列表')
         if(res.statusCode==200){
             this.setData({
               newGoodsList:res.data.product_list.data
