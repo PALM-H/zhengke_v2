@@ -1,3 +1,5 @@
+//获取应用实例
+const app = getApp()
 
 Page({
   data: {
@@ -26,6 +28,33 @@ Page({
       {title:'内存',activeNum:'12',defaultNum:'12',ver:[{id:'10',name:'3+32G'},{id:'11',name:'4+64G'},{id:'12',name:'6+128G'}]}
     ],
     itemnum: 1
+  },
+  onLoad(options){
+    console.log(options,3);
+  },
+  getGoodsInfo(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.request({
+      url: `${app.globalData.apiUrl}con=mallapi&act=goods_info`,
+      method: "GET",
+      
+      success: (res)=> {
+        console.log(res,'3-1-1获取所有商品列表')
+        if(res.statusCode==200){
+            this.setData({
+              goodsList:res.data.cat_list.data
+            })
+            wx.hideLoading()
+        }
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
   },
   //轮播切换相关
   swiperChange: function(e){  
@@ -112,7 +141,7 @@ Page({
       itemnum: originalNum+1
     });
   },
-  onShareAppMessage: function () {
+  onShareAppMessage() {
     return {
       title: '挣客3C行业平台服务商',
       imageUrl: '/images/share.jpg',

@@ -1,21 +1,21 @@
 
 <view class="page flexwrap">
 	<scroll-view class="leftsv" scroll-y>
-		<block wx:for="{{classArr}}" wx:key="unique">
-			<view class="classwrap {{item.num==activeClass? 'active':''}}" data-num="{{item.num}}" bindtap="changeClass">
+		<block wx:for="{{categoryList}}" wx:key="unique">
+			<view class="classwrap {{item.id==activeClass? 'active':''}}" data-id="{{item.id}}" bindtap="changeClassList">
 				<view class="flexwrap">
-					<image src="{{item.url}}"></image>
+					<image src="{{item.pic}}"></image>
 					<text>{{item.name}}</text>
 				</view>
 			</view>
 		</block>  
 	</scroll-view>
 	<scroll-view class="rightsv" scroll-y>
-		<block wx:for="{{subClassArr}}" wx:key="unique">
+		<block wx:for="{{goodsList}}" wx:key="unique">
 			<view class="classwrap flexwrap" bindtap="goItemList">
-				<image class="leftimg" src="{{item.url}}"></image>
+				<image class="leftimg" src="{{item.pic}}"></image>
 				<text>{{item.name}}</text>
-				<image class="rightimg" src="../../../images/shop/icon31.png"></image>
+				<image class="rightimg" src="/images/shop/icon31.png"></image>
 			</view>
 		</block>  
 	</scroll-view>

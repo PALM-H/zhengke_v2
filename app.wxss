@@ -7,11 +7,12 @@ page{
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
 
+/** 公用flex **/
 .flexwrap{
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+  align-items:center;
 }
 
 .hide{
@@ -19,6 +20,8 @@ page{
 }
 
 
+
+/** swiper **/
 .swiper-container{  
   position: relative;  
 }  

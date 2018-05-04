@@ -45,23 +45,23 @@
 }
 
 /*经营范围*/
-.management-section{
+.management-container{
   text-align:center;
   border-bottom:1rpx solid #eeeeee;
 
 }
-.management-section .t1{
+.management-container .t1{
   font-size:34rpx;
   color:#6a6a6a;
   margin:20rpx 0;
 }
-.management-section .label-wrap{
+.management-container .label-wrap{
   display:flex;
   justify-content: center;
   align-items: center;
   margin-bottom:20rpx;
 }
-.management-section .label-wrap .label-text{
+.management-container .label-wrap .label-text{
   font-size:26rpx;
   padding:4px 16px;
   border:1px solid #bebebe;

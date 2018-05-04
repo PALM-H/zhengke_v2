@@ -24,11 +24,12 @@
 }
 .leftsv .flexwrap{
   position: relative;
+  justify-content:flex-start;
+
   width: 92%;
   height:96rpx;
   border-bottom: 1rpx solid #d8d8d8;
   margin: 0 auto;
-  align-items: center;
 }
 .leftsv .classwrap image{
   display: inline-block;

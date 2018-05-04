@@ -25,21 +25,18 @@
 	</view> 
 	<view class="quickwrap">
 		<view class="subquickwrap flexwrap">
-			<block wx:for="{{quickArr}}" wx:for-index="index" wx:key="unique">
-				<view wx:if="{{index<4}}" class="itemwrap" data-status="{{item.status}}" bindtap="goClass">
-					<image src="{{item.url}}"></image>
-					<text>{{item.text}}</text>
+			<block wx:for="{{categoryList}}" wx:for-index="index" wx:key="unique">
+				<view class="itemwrap" data-id="{{item.id}}" bindtap="goClassPage">
+					<image src="{{item.pic}}"></image>
+					<text>{{item.name}}</text>
 				</view>
 			</block>
+			<view wx:if="{{categoryList.length>=7}}" class="itemwrap" data-id="{{categoryList[0].id}}" bindtap="goClassPage">
+				<image src="/images/shop/icon8.png"></image>
+				<text>更多</text>
+			</view>
 		</view>
-		<view class="subquickwrap flexwrap">
-			<block wx:for="{{quickArr}}" wx:for-index="index" wx:key="unique">
-				<view wx:if="{{index>=4}}" class="itemwrap" data-status="{{item.status}}" bindtap="goClass">
-					<image src="{{item.url}}"></image>
-					<text>{{item.text}}</text>
-				</view>
-			</block>
-		</view>
+		
 	</view>
 	<view class="recommend">
 		<view class="title flexwrap">
@@ -47,12 +44,12 @@
 			<text>推荐商品</text>
 		</view>
 		<view class="itemlist flexwrap">
-			<block wx:for="{{recommendArr}}" wx:key="unique">
-				<view class="itemwrap" bindtap="goDetail">
+			<block wx:for="{{recommendGoodsList}}" wx:key="unique">
+				<view class="itemwrap" data-id="{{item.id}}" bindtap="goDetailPage">
 					<view class="imgwrap">
-						<image src="{{item.url}}"></image>
+						<image src="{{item.img}}"></image>
 						<view class="blackwrap"></view>
-						<text>￥ {{item.price}}</text>
+						<text>￥ {{item.sell_price}}</text>
 					</view>
 					<view class="textwrap">
 						<text>{{item.name}}</text>
@@ -67,18 +64,18 @@
 		<image src="../../../images/shop/strip.jpg"></image>
 	</view>
 	<view class="itemlist">
-		<block wx:for="{{itemArr}}" wx:key="unique">
-			<view class="floatwrap" bindtap="goDetail">
+		<block wx:for="{{newGoodsList}}" wx:key="unique">
+			<view class="floatwrap" data-id="{{item.id}}" bindtap="goDetailPage">
 				<view class="itemwrap">
 					<view class="imgwrap">
-						<image src="{{item.url}}"></image>
+						<image src="{{item.img}}"></image>
 					</view>
 					<view class="namewrap">
 						<text>{{item.name}}</text>
 					</view>
 					<view class="itembottom">
-						<text class="lefttext">￥ {{item.price}}</text>
-						<text class="righttext">销售：{{item.sales}}</text>
+						<text class="lefttext">￥ {{item.sell_price}}</text>
+						<text class="righttext">销售：{{item.sell_num}}</text>
 					</view>
 				</view>
 			</view>

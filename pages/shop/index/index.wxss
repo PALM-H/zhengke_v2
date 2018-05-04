@@ -89,21 +89,20 @@ page{
 
 .quickwrap{
   width: 100%;
-  height: 330rpx;
   background: #fff;
   padding: 15rpx 0;
 }
 .subquickwrap{
   width: 100%;
   height: 165rpx;
+  justify-content:flex-start;
 }
 .quickwrap .itemwrap{
   position: relative;
-  width: 100%;
+  width: 25%;
   height: 165rpx;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
+  
+
   -webkit-tap-highlight-color: transparent;
   text-align: center;
 }
@@ -112,6 +111,7 @@ page{
   width: 95rpx;
   height: 95rpx;
   margin-top:15rpx;
+  border-radius:50%;
 }
 .quickwrap .itemwrap text{
   display: block;
@@ -130,7 +130,8 @@ page{
   width: 680rpx;
   height: 38rpx;
   margin: 0 auto;
-  align-items: center;
+  justify-content:space-between;
+  
 }
 .recommend .title image{
   width: 34rpx;
@@ -146,14 +147,13 @@ page{
   width: 100%;
   height: 230rpx;
   margin-top: 14rpx;
+  justify-content:flex-start;
 }
 .recommend .itemlist .itemwrap{
   position: relative;
-  width: 100%;
+  width:33%;
   height: 230rpx;
-  -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
+  
 }
 .recommend .itemlist .itemwrap .imgwrap{
   position: relative;
