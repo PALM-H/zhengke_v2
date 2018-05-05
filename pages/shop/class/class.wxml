@@ -11,8 +11,8 @@
 		</block>  
 	</scroll-view>
 	<scroll-view class="rightsv" scroll-y>
-		<block wx:for="{{goodsList}}" wx:key="unique">
-			<view class="classwrap flexwrap" bindtap="goItemList">
+		<block wx:for="{{subCategoryList}}" wx:key="unique">
+			<view class="classwrap flexwrap" data-id="{{item.id}}" bindtap="goItemListPage">
 				<image class="leftimg" src="{{item.pic}}"></image>
 				<text>{{item.name}}</text>
 				<image class="rightimg" src="/images/shop/icon31.png"></image>

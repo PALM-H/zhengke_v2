@@ -41,7 +41,7 @@
 				<text>￥{{goodsInfo.sell_price}}</text>
 			</view>
 			<view class="righttext">
-				<text>销量：3000</text>
+				<text>销量：{{goodsInfo.sell_sum}}</text>
 			</view>
 		</view>
 	</view>
@@ -84,10 +84,13 @@
 			<view class="lefttext">
 				<text>商品评价</text>
 			</view>
+			<!--
 			<view class="righttext">
  				<text>只看所选属性</text>
 			</view>
+			
 			<image class="rightimg" src="../../../images/shop/icon37.png"></image>
+			-->
 		</view>
 		<view class="remarklist">
 			<block wx:for="{{remarkListArr}}" wx:key="unique">
@@ -143,9 +146,9 @@
 		</view>
 	</view>
 	<view class="bottom flexwrap">
-		<view class="iconwrap">
+		<view class="iconwrap" bindtap="starGoods">
 			<view class="imgwrap">
-				<image src="../../../images/shop/icon38.png"></image>
+				<image src="/images/shop/{{goodsInfo.user.is_collect!==0?'love-active.png':'love.png'}}"></image>
 			</view>
 			<view class="textwrap">
 				<text>收藏</text>
@@ -159,7 +162,7 @@
 				<text>客服</text>
 			</view>
 		</view>
-		<view class="iconwrap" bindtap="goCart">
+		<view class="iconwrap" bindtap="seeCart">
 			<view class="imgwrap">
 				<image src="../../../images/shop/icon40.png"></image>
 			</view>

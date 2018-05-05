@@ -4,23 +4,20 @@ const app = getApp()
 Page({
   data: {
     gid:'',//从地址栏商品id,
+
     goodsInfo:[],//商品详情信息
     selectSpec:[],//已选的规格
-    selectedSpec:[],//选中的规格
     pro_num:1,//对应规格要购买的数量
-    imgUrls: [
-      {url:'../../../images/shop/exp-banner-mid.jpg'},
-      {url:'../../../images/shop/exp-banner-mid.jpg'},
-      {url:'../../../images/shop/exp-banner-mid.jpg'},
-      {url:'../../../images/shop/exp-banner-mid.jpg'},
-      {url:'../../../images/shop/exp-banner-mid.jpg'}
-    ],
+    pro_id:'',//商品规格id
+  
+    //swiper
     indicatorDots: false,
     autoplay: true,
     interval: 4000,
     duration: 500,
     circular: true,
     swiperCurrent: 0,
+
     remarkListArr: [
       {url:'../../../images/shop/exp-headimg.jpg',name:'火星人的地球',content:'很流畅、不卡、很好，下次还会再买，也会推荐其他朋友进行购买',mark:'4',time:'2018.02.22',ver:'3 + 32 G  黑色'},
       {url:'../../../images/shop/exp-headimg.jpg',name:'火星人的地球',content:'很流畅、不卡、很好，下次还会再买，也会推荐其他朋友进行购买 很流畅、不卡、很好，下次还会再买，也会推荐其他朋友进行购买',mark:'5',time:'2018.02.22',ver:'3 + 32 G  黑色'}
@@ -41,8 +38,97 @@ Page({
 
     this.getGoodsInfo();
   },
+  //添加收藏
+  starGoods(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+		wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=mallapi&act=add_attention',
+      method: "POST",
+      data: {
+        user_id: app.globalData.uid,
+        goods_id:this.data.gid,
+      },
+      success: (res)=> {
+        wx.hideLoading()
+        console.log('添加到购物车:',res)
+        if(res.data.code==1000){
+          wx.showToast({
+            title: res.data.msg,
+            icon:'success',
+            duration: 2000
+          })
+        }else if(res.data.code==1002){
+          wx.showToast({
+            title: res.data.msg,
+            icon:'success',
+            duration: 2000
+          })
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon:'none',
+            image:'/images/error.png',
+            duration: 2000
+          })
+        }
+        
+        
+        // this.getGoodsInfo();
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+	},
+  //添加到购物车
+  setGoodsToShoppingMart(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+		wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=mallapi&act=cart_add',
+      method: "POST",
+      data: {
+        user_id: app.globalData.uid,
+        gid:this.data.gid,
+        pro_id:this.data.pro_id,
+        pro_num: this.data.pro_num
+      },
+      success: (res)=> {
+        console.log('添加到购物车:',res)
+        if(res.data.code==1000){
+          wx.showToast({
+            title: res.data.msg,
+            icon:'success',
+            duration: 2000
+          })
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon:'none',
+            image:'/images/error.png',
+            duration: 2000
+          })
+        }
+        
+        wx.hideLoading()
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+	},
   addShoppingCart(){
-    // console.log(this.data.selectSpec);
     let selectSpec=this.data.selectSpec;
     let selectLabel=[];
     selectSpec.forEach(ele=>{
@@ -51,23 +137,36 @@ Page({
     selectLabel.join(',');
     // console.log(selectLabel,77777);
     
+    let isNull=false;
     let buy_info=this.data.goodsInfo.buy_info;
-    buy_info.forEach(ele=>{
+    buy_info.map(ele=>{
       if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
-        wx.showToast({
-          title: '库存为0',
-          icon:'none',
-          duration: 2000
-        })
+        if(ele.split(',#,')[1].indexOf(',0,')!=-1){
+          wx.showToast({
+            title: '库存为0',
+            icon:'none',
+            image:'/images/error.png',
+            duration: 2000
+          })
+          isNull=true;
+        }
+        
       }
     })
-    let pro_id='';//标签id
-    buy_info.forEach(ele=>{
-      if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
-        pro_id=ele.split(',#,')[1].slice(ele.split(',#,')[1].lastIndexOf(',')+1)
-      }
-    })
-    console.log(pro_id,6666);
+    
+    if(!isNull){
+      let pro_id='';//标签id
+      buy_info.map(ele=>{
+        if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
+          pro_id=ele.split(',#,')[1].slice(ele.split(',#,')[1].lastIndexOf(',')+1)
+        }
+      })
+      this.setData({
+        pro_id:pro_id
+      })
+      console.log(this.data.pro_id,6666);
+      this.setGoodsToShoppingMart();
+    }
   },
   getGoodsInfo(){
     wx.showLoading({
@@ -119,7 +218,8 @@ Page({
 			detailTabActive: e.currentTarget.dataset.num
 		});
   },
-  goCart: function(e){  
+  //查看购物车
+  seeCart: function(e){  
     wx.navigateTo({
       url: '../cart/cart'
     })

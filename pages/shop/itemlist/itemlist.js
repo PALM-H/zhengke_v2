@@ -1,6 +1,12 @@
+//获取应用实例
+const app = getApp()
 
 Page({
   data: {
+    cid:'',
+
+    goodsList:[],
+
     activeNav: 0,
     filterHide: true,
     itemListArr: [
@@ -26,6 +32,30 @@ Page({
       {name:'魅族'},
       {name:'中兴'}
     ]
+  },
+  onLoad: function (options) {
+    this.setData({
+      cid:this.options.id
+    })
+    console.log(this.data.cid,666);
+    this.getGoodsList();
+  },
+  getGoodsList() {
+    wx.showLoading({
+      title: "加载中...",
+      mask: true
+    });
+    wx.request({
+      url:`${app.globalData.apiUrl}con=mallapi&act=goods_list&merchant_id=${app.globalData.merchant_id}&cid=${this.data.cid}`,
+      method: "GET",
+      success: res => {
+        console.log(res,9999);
+        wx.hideLoading();
+      },
+      fail: err => {
+        console.log(err);
+      }
+    });
   },
   changeNav: function(e) {
     this.setData({

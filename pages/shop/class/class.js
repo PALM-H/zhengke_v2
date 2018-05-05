@@ -4,7 +4,7 @@ const app = getApp()
 Page({
   data: {
     categoryList:null,
-    goodsList:null,
+    subCategoryList:null,
     activeClass: 0,
     classArr: [
       {url:'../../../images/shop/icon11.png',name:'安卓手机',num:'1'},
@@ -49,7 +49,7 @@ Page({
     this.getCategoryList();
     
   },
-  getGoodsList(){
+  getSubCategoryList(){
     wx.showLoading({
       title:'加载中...',
       mask: true,
@@ -68,10 +68,10 @@ Page({
         
       },
       success: (res)=> {
-        console.log(res,'3-1-1获取所有商品列表')
+        console.log(res,'获取所有商品二级分类')
         if(res.statusCode==200){
             this.setData({
-              goodsList:res.data.cat_list.data
+              subCategoryList:res.data.cat_list.data
             })
             wx.hideLoading()
         }
@@ -101,12 +101,12 @@ Page({
         
       },
       success: (res)=> {
-        console.log(res,'3-1获取所有商品分类')
+        console.log(res,'获取所有商品一级分类')
         if(res.statusCode==200){
             this.setData({
               categoryList:res.data.cat_list.data
             })
-            this.getGoodsList();
+            this.getSubCategoryList();
             wx.hideLoading()
         }
        
@@ -120,11 +120,11 @@ Page({
     this.setData({
 			activeClass: e.currentTarget.dataset.id
     });
-    this.getGoodsList();
+    this.getSubCategoryList();
   },
-  goItemList: function(e) {
+  goItemListPage: function(e) {
     wx.navigateTo({
-      url: '../itemlist/itemlist'
+      url: `../itemlist/itemlist?id=${e.currentTarget.dataset.id}`
     })
   },
   onShareAppMessage() {
