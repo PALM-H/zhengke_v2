@@ -64,7 +64,7 @@ Page({
         merchant_id: app.globalData.merchant_id,
         cid:this.data.activeClass,
         p:1,
-        page_size:1000
+        page_size:10000
         
       },
       success: (res)=> {
@@ -97,17 +97,18 @@ Page({
       data: {
         merchant_id: app.globalData.merchant_id,
         p:1,
-        page_size:100
+        page_size:10000
         
       },
       success: (res)=> {
         console.log(res,'获取所有商品一级分类')
-        if(res.statusCode==200){
+        if(res.data.code==1000){
             this.setData({
               categoryList:res.data.cat_list.data
             })
-            this.getSubCategoryList();
             wx.hideLoading()
+            this.getSubCategoryList();
+            
         }
        
       },

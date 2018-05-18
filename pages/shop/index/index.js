@@ -52,10 +52,42 @@ Page({
     this.getNewGoodsList(2);
    
   },
-
+  //获取商品分类
+  getCategoryList(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true
+    })
+    
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=mallapi&act=category_list',
+      method: "POST",
+      data: {
+        merchant_id: app.globalData.merchant_id
+        
+      },
+      success: (res)=> {
+        console.log(res,'3获取商品分类')
+        if(res.data.code==1000){
+            this.setData({
+              categoryList:res.data.cat_list.data.slice(0,7) //最多只显示7个
+            })
+            wx.hideLoading()
+        }
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
   //获取推荐商品列表
   getRecommendGoodsList(type){
     wx.showLoading({
+      title:'加载中...',
       mask: true,
     })
     
@@ -64,7 +96,7 @@ Page({
       method: "GET",
       success: (res)=> {
         console.log(res,'3获取推荐商品列表')
-        if(res.statusCode==200){
+        if(res.data.code==1000){
             this.setData({
               recommendGoodsList:res.data.product_list.data.slice(0,1)
             })
@@ -80,6 +112,7 @@ Page({
   //获取最新商品列表
   getNewGoodsList(type){
     wx.showLoading({
+      title:'加载中...',
       mask: true,
     })
     
@@ -88,7 +121,7 @@ Page({
       method: "GET",
       success: (res)=> {
         console.log(res,'3获取最新商品列表')
-        if(res.statusCode==200){
+        if(res.data.code==1000){
             this.setData({
               newGoodsList:res.data.product_list.data
             })
@@ -102,37 +135,7 @@ Page({
     })
   },
 
-  //获取商品分类
-  getCategoryList(){
-    wx.showLoading({
-      mask: true,
-    })
-    
-    wx.request({
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      url: app.globalData.apiUrl+'con=mallapi&act=category_list',
-      method: "POST",
-      data: {
-        merchant_id: app.globalData.merchant_id
-        
-      },
-      success: (res)=> {
-        console.log(res,'3获取商品分类')
-        if(res.statusCode==200){
-            this.setData({
-              categoryList:res.data.cat_list.data.slice(0,7)
-            })
-            wx.hideLoading()
-        }
-       
-      },
-      fail: (err)=>{
-        console.log(err);
-      }
-    })
-  },
+
   goSearch: function(e){  
     wx.navigateTo({
       url: '../search/search'
@@ -162,7 +165,7 @@ Page({
       url: '../cart/cart'
     })
 	},
-  //点击分类进入分类页
+  //点击进入分类页面进入分类页
   goClassPage(e){
     wx.navigateTo({
       url: '../class/class?id='+e.currentTarget.dataset.id

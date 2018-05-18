@@ -87,17 +87,19 @@ page{
   opacity: 1;
 }  
 
-.quickwrap{
+
+/*商品分类*/
+.goodsClass-section{
   width: 100%;
   background: #fff;
   padding: 15rpx 0;
 }
-.subquickwrap{
+.goodsClass-section .subquickwrap{
   width: 100%;
   height: 165rpx;
   justify-content:flex-start;
 }
-.quickwrap .itemwrap{
+.goodsClass-section .itemwrap{
   position: relative;
   width: 25%;
   height: 165rpx;
@@ -106,66 +108,69 @@ page{
   -webkit-tap-highlight-color: transparent;
   text-align: center;
 }
-.quickwrap .itemwrap image{
+.goodsClass-section .itemwrap image{
   display: inline-block;
   width: 95rpx;
   height: 95rpx;
   margin-top:15rpx;
   border-radius:50%;
 }
-.quickwrap .itemwrap text{
+.goodsClass-section .itemwrap text{
   display: block;
   font-size: 21rpx;
   color: #797979;
 }
 
-.recommend{
+
+
+/*推荐商品*/
+.recommend-section{
   margin-top: 15rpx;
   width: 100%;
   height: 290rpx;
   padding: 15rpx 0;
   background: #fff;
 }
-.recommend .title{
-  width: 680rpx;
+.recommend-section .title{
+  padding:0 35rpx;
   height: 38rpx;
-  margin: 0 auto;
+ 
   justify-content:space-between;
   
 }
-.recommend .title image{
+.recommend-section .title image{
   width: 34rpx;
   height: 36rpx;
 }
-.recommend .title text{
+.recommend-section .title text{
   display: inline-block;
   margin-left: 14rpx;
   font-size: 23rpx;
   color: #e63232;
 }
-.recommend .itemlist{
+.recommend-section .itemlist{
   width: 100%;
   height: 230rpx;
   margin-top: 14rpx;
   justify-content:flex-start;
 }
-.recommend .itemlist .itemwrap{
+.recommend-section .itemlist .itemwrap{
   position: relative;
   width:33%;
   height: 230rpx;
   
 }
-.recommend .itemlist .itemwrap .imgwrap{
+.recommend-section .itemlist .itemwrap .imgwrap{
   position: relative;
   width: 191rpx;
   height: 191rpx;
   margin: 0 auto;
 }
-.recommend .itemlist .itemwrap .imgwrap image{
+.recommend-section .itemlist .itemwrap .imgwrap image{
   width: 191rpx;
   height: 191rpx;
 }
-.recommend .itemlist .itemwrap .imgwrap .blackwrap{
+.recommend-section .itemlist .itemwrap .imgwrap .blackwrap{
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -173,14 +178,14 @@ page{
   background: #9a9a9a;
   opacity: 0.3;
 }
-.recommend .itemlist .itemwrap .imgwrap text{
+.recommend-section .itemlist .itemwrap .imgwrap text{
   position: absolute;
   left: 5rpx;
   bottom: 4rpx;
   font-size: 23rpx;
   color: #fff;
 }
-.recommend .itemlist .itemwrap .textwrap{
+.recommend-section .itemlist .itemwrap .textwrap{
   width: 191rpx;
   height: 30rpx;
   margin: 15rpx auto 0;

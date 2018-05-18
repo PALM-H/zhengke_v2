@@ -8,6 +8,8 @@
 			<text>输入关键词搜索商品</text>
 		</view>
 	</view>
+
+	<!--轮播图 -->
 	<view class="swiper-container">  
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="swiperChange">
@@ -23,9 +25,11 @@
       </block>  
 		</view> 
 	</view> 
-	<view class="quickwrap">
+
+	<!--商品分类 -->
+	<view class="goodsClass-section">
 		<view class="subquickwrap flexwrap">
-			<block wx:for="{{categoryList}}" wx:for-index="index" wx:key="unique">
+			<block wx:for="{{categoryList}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
 				<view class="itemwrap" data-id="{{item.id}}" bindtap="goClassPage">
 					<image src="{{item.pic}}"></image>
 					<text>{{item.name}}</text>
@@ -38,7 +42,10 @@
 		</view>
 		
 	</view>
-	<view class="recommend">
+
+
+<!--推荐商品-->
+	<view class="recommend-section">
 		<view class="title flexwrap">
 			<image src="../../../images/shop/icon9.png"></image>
 			<text>推荐商品</text>
@@ -58,6 +65,9 @@
 			</block>
 		</view>
 	</view>
+
+
+	<!--新品上线-->
 	<view class="floortitle">
 		<image src="../../../images/shop/strip.jpg"></image>
 		<text>新品上架</text>
