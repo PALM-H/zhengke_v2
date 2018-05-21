@@ -1,0 +1,22 @@
+<view class="filter-section">
+		<view class="title">
+			<text>型号筛选</text>
+		</view>
+		<view class="tablist">
+			<block wx:for="{{tabArr}}" wx:key="unique">
+				<view class="tabwrap flexwrap">
+					<view class="textwrap">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+			</block> 
+		</view>
+		<view class="bottom flexwrap">
+			<view class="btnreset">
+				<text>重置</text>
+			</view>
+			<view class="btnok" bindtap="backPage">
+				<text>确定</text>
+			</view>
+		</view>
+	</view>

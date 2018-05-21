@@ -109,7 +109,7 @@
   color: #bbbbbb;
 }
 
-.verwrap{
+.spec-section{
   position: relative;
   width: 100%;
   height: 66rpx;
@@ -117,12 +117,12 @@
   align-items: center;
   margin-top: 15rpx;
 }
-.verwrap .lefttext{
+.spec-section .lefttext{
   margin-left: 30rpx;
   font-size: 25rpx;
   color: #303030;
 }
-.verwrap .rightimg{
+.spec-section .rightimg{
   position: absolute;
   right: 24rpx;
   width: 16rpx;

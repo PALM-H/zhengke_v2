@@ -22,15 +22,6 @@ Page({
     recommendGoodsList:[],//推荐商品列表
     newGoodsList:[],//最新商品列表
    
-    itemArr: [
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'35000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机 全新出品'},
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'300',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'},
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'3500',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'},
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'5000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机 全新出品'},
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'35000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'},
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'35000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'},
-      {url: '../../../images/shop/exp-item-big.jpg',price:'5899.00',sales:'35000',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机'}
-    ]
   },
   onLoad(){
     //验证有没有微信授权
@@ -70,7 +61,7 @@ Page({
         
       },
       success: (res)=> {
-        console.log(res,'3获取商品分类')
+        console.log(res,'获取商品分类')
         if(res.data.code==1000){
             this.setData({
               categoryList:res.data.cat_list.data.slice(0,7) //最多只显示7个
@@ -165,7 +156,7 @@ Page({
       url: '../cart/cart'
     })
 	},
-  //点击进入分类页面进入分类页
+  //点击进入分类页面
   goClassPage(e){
     wx.navigateTo({
       url: '../class/class?id='+e.currentTarget.dataset.id

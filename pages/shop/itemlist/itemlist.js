@@ -4,52 +4,93 @@ const app = getApp()
 Page({
   data: {
     cid:'',
-
+    aaa:'',
     goodsList:[],
-
+    p:1,
+    page_size:1,
+    totalPage:0,
     activeNav: 0,
-    filterHide: true,
-    itemListArr: [
-      {url:'../../../images/shop/exp-item-mid.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',price:'3589.00',sales:'5479'},
-      {url:'../../../images/shop/exp-item-mid.jpg',name:'红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',price:'3589.00',sales:'5479'},
-      {url:'../../../images/shop/exp-item-mid.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',price:'3589.00',sales:'5479'},
-      {url:'../../../images/shop/exp-item-mid.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',price:'3589.00',sales:'5479'},
-      {url:'../../../images/shop/exp-item-mid.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',price:'3589.00',sales:'5479'},
-      {url:'../../../images/shop/exp-item-mid.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',price:'3589.00',sales:'5479'},
-    ],
-    tabArr: [
-      {name:'全部'},
-      {name:'红米 5A'},
-      {name:'红米 5plus'},
-      {name:'小米MIX'},
-      {name:'小米MIX2'},
-      {name:'小米6'},
-      {name:'OPPO'},
-      {name:'VIVO'},
-      {name:'华为'},
-      {name:'苹果'},
-      {name:'三星'},
-      {name:'魅族'},
-      {name:'中兴'}
-    ]
+    filterHide: true 
+    
+    
   },
   onLoad: function (options) {
     this.setData({
       cid:this.options.id
     })
-    console.log(this.data.cid,666);
-    this.getGoodsList();
+    this.getGoodsList(true);
   },
-  getGoodsList() {
+  onShow:function(){
+      console.log(this.data.aaa,667);
+  },
+  //获取商品列表
+  //用的是搜索商品接口
+  getGoodsList(init) {
+    //init 表示p从第一页开始
+    if(init){
+      this.setData({
+        p:1,
+        goodsList:[]
+      })
+    }else{
+      if(this.data.p>=this.data.totalPage){
+        console.log('已经到总页面数');
+        return;
+      }
+      this.setData({
+        p:this.data.p+1
+      })
+      console.log(this.data.p,2323232);
+    }
+    let sort=0;
+    if(this.data.activeNav==0){
+
+    }else if(this.data.activeNav==1){
+      sort=1;//以销售量降序排列
+     
+    }else if(this.data.activeNav==2){
+      sort=4;//以销售价格正序排列
+    }
+    let params={
+      merchant_id: app.globalData.merchant_id,
+      keyword:'',
+      p:this.data.p,
+      page_size:this.data.page_size
+    }
+    if(sort){
+      params.sort=sort;
+    }
+
+    
     wx.showLoading({
       title: "加载中...",
       mask: true
     });
     wx.request({
-      url:`${app.globalData.apiUrl}con=mallapi&act=goods_list&merchant_id=${app.globalData.merchant_id}&cid=${this.data.cid}`,
-      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url:`${app.globalData.apiUrl}con=mallapi&act=search`,
+      method: "POST",
+      data: params,
       success: res => {
-        console.log(res,9999);
+        if(res.data.code==1000){
+         if(this.data.goodsList.length){
+          this.setData({
+            goodsList:this.data.goodsList.concat(res.data.goods_list.data)
+          })
+         }else{
+          this.setData({
+            goodsList:res.data.goods_list.data
+          })
+         }
+         this.setData({
+          totalPage:res.data.goods_list.page.totalPage
+         })
+         
+        }
+        console.log(res,777);
+        console.log(this.data.goodsList,'获取商品列表');
         wx.hideLoading();
       },
       fail: err => {
@@ -57,31 +98,32 @@ Page({
       }
     });
   },
+
+  scrollToLower:function(){
+    this.getGoodsList();
+  },
+
   changeNav: function(e) {
     this.setData({
 			activeNav: e.currentTarget.dataset.num
-		});
+    });
+    this.getGoodsList(true);
   },
   goSearch: function(e){  
     wx.navigateTo({
       url: '../search/search'
     })
   },
-  //产品筛选显示
-  btnShowFilter: function(e){  
-    this.setData({
-			filterHide: false
-		});
-  },
-  //产品筛选隐藏
-  btnHideFilter: function(e){  
-    this.setData({
-			filterHide: true
-		});
-  },
-  goDetail: function(e){  
+  //跳转到筛选
+  goToFilterPage: function(e){  
     wx.navigateTo({
-      url: '../detail/detail'
+      url: '../filter/filter'
+    })
+  },
+
+  goDetailPage: function(e){  
+    wx.navigateTo({
+      url: '../detail/detail?id='+e.currentTarget.dataset.id
     })
   },
   onShareAppMessage: function () {

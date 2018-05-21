@@ -1,5 +1,6 @@
 
 <view class="page">
+	<!--swiper-->
 	<view class="swiper-container">  
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="swiperChange">
@@ -50,7 +51,7 @@
 
 
 
-	<view class="verwrap flexwrap" bindtap="showVer">
+	<view class="spec-section flexwrap" bindtap="showSpecModal">
 		<view class="lefttext">
 				<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
 					<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-item="tItem">
@@ -60,20 +61,7 @@
 		</view>
 		<image class="rightimg" src="../../../images/shop/icon31.png"></image>
 	</view>
-	<!--
-	<view class="verwrap flexwrap" bindtap="showVer">
-		<view class="lefttext">
-			<text>
-				<block wx:for="{{verArr}}" wx:key="unique" wx:for-item="vItem">
-					<block wx:for="{{verArr[index].ver}}" wx:key="unique" wx:for-item="tItem">
-						{{vItem.activeNum==tItem.id?tItem.name+' ':''}}
-					</block>
-				</block>
-			</text>
-		</view>
-		<image class="rightimg" src="../../../images/shop/icon31.png"></image>
-	</view>
-	-->
+
 
 
 
@@ -205,6 +193,8 @@
 					<image src="{{goodsInfo.img}}"></image>
 				</view>
 			</view>
+
+			<!--遍历参数-->
 			<view class="tablists">
 				<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-index="vIdx" wx:for-item="vItem">
 					<view class="tabwrap">
@@ -213,7 +203,7 @@
 						</view>
 						<view class="tablist">
 							<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-index="tIdx" wx:for-item="tItem">
-								<view class="itemwrap flexwrap {{vItem.selectedId==tItem.id?'active':''}}" data-id="{{tItem.id}}" data-parentindex="{{vIdx}}" bindtap="changetab">
+								<view class="itemwrap flexwrap {{vItem.selectedId==tItem.id?'active':''}}" data-id="{{tItem.id}}" data-parentindex="{{vIdx}}" bindtap="changeSpec">
 									<text>{{tItem.name}}</text>
 								</view>
 							</block>
@@ -241,7 +231,7 @@
 				</view>
 			</view>
 			<view class="verbottom flexwrap">
-				<view class="btnwrap flexwrap gray" bindtap="reset">
+				<view class="btnwrap flexwrap gray" bindtap="resetSpec">
 					<text>重置</text>
 				</view>
 				<view class="btnwrap flexwrap red" bindtap="hideVer">

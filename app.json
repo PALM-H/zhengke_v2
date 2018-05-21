@@ -1,11 +1,13 @@
 {
   "pages":[
+    "pages/shop/itemlist/itemlist",
     "pages/index/index",
     "pages/news/news",
     "pages/article/article",
     "pages/shop/index/index",
     "pages/shop/class/class",
-    "pages/shop/itemlist/itemlist",
+    
+    "pages/shop/filter/filter",
     "pages/shop/search/search",
     "pages/shop/cart/cart",
     "pages/shop/confirm/confirm",

@@ -31,12 +31,13 @@ Page({
     ]
   },
   onLoad(options){
-    console.log(options,3);
+    console.log(options);
     this.setData({
       gid:options.id
     })
-
+    //获取商品详情
     this.getGoodsInfo();
+    this.getGoodsEvaluateInfo();
   },
   //添加收藏
   starGoods(){
@@ -127,7 +128,9 @@ Page({
         console.log(err);
       }
     })
-	},
+  },
+
+  //加入到购物车
   addShoppingCart(){
     let selectSpec=this.data.selectSpec;
     let selectLabel=[];
@@ -135,9 +138,9 @@ Page({
       selectLabel.push(ele.selectedId);
     })
     selectLabel.join(',');
-    // console.log(selectLabel,77777);
-    
-    let isNull=false;
+    console.log(selectLabel,77777);
+    let isNull=false;//判断库存是否为零
+    let pro_id='';//标签id
     let buy_info=this.data.goodsInfo.buy_info;
     buy_info.map(ele=>{
       if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
@@ -149,18 +152,14 @@ Page({
             duration: 2000
           })
           isNull=true;
+        }else{
+          pro_id=ele.split(',#,')[1].slice(ele.split(',#,')[1].lastIndexOf(',')+1)
         }
         
       }
     })
     
     if(!isNull){
-      let pro_id='';//标签id
-      buy_info.map(ele=>{
-        if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
-          pro_id=ele.split(',#,')[1].slice(ele.split(',#,')[1].lastIndexOf(',')+1)
-        }
-      })
       this.setData({
         pro_id:pro_id
       })
@@ -168,22 +167,33 @@ Page({
       this.setGoodsToShoppingMart();
     }
   },
+
+  //获取商品详情
   getGoodsInfo(){
     wx.showLoading({
       title:'加载中...',
       mask: true,
     })
     wx.request({
-      url: `${app.globalData.apiUrl}con=mallapi&act=goods_info&gid=${this.data.gid}&uid=${app.globalData.uid}`,
-      method: "GET",
-      
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: `${app.globalData.apiUrl}con=mallapi&act=goods_info`,
+      method: "POST",
+      data:{
+          gid:this.data.gid,
+          uid:app.globalData.uid
+      },
       success: (res)=> {
-        if(res.statusCode==200){
+        if(res.data.code==1000){
           console.log(res,'获取商品详情');
           
             this.setData({
               goodsInfo:res.data.goods_info
             })
+
+
+            //商品规格
             let fakeSpec=res.data.goods_info.specs;
             fakeSpec.forEach(ele => {
               ele.selectedId=ele.value[0].id
@@ -201,6 +211,37 @@ Page({
       }
     })
   },
+  //获取商品评价内容
+  getGoodsEvaluateInfo(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: `${app.globalData.apiUrl}con=mallapi&act=goods_evaluate_info`,
+      method: "POST",
+      data:{
+          gid:this.data.gid,
+          uid:app.globalData.uid
+      },
+      success: (res)=> {
+        if(res.data.code==1000){
+          console.log(res,'获取商品评价内容');
+          
+                        
+            wx.hideLoading()
+        }
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
+
   //轮播切换相关
   swiperChange: function(e){  
     this.setData({  
@@ -230,22 +271,13 @@ Page({
     })
   },
   //显示/隐藏版本选择
-  showVer: function(e){  
+  showSpecModal: function(e){ 
     this.setData({  
       isVerHide: false 
     })  
   },
-  reset: function(){
-    // var that = this;
-    // var len = this.data.verArr.length;
-    // var changeObj = {};
-    // for(var i = 0; i < len; i++) {
-    //   var changeData = "verArr["+i+"].activeNum";
-    //   changeObj[changeData]=that.data.verArr[i].defaultNum;
-    // }
-    // this.setData(changeObj)
-
-
+  //重置规格
+  resetSpec: function(){
     let fakeSpec=this.data.selectSpec;
     fakeSpec.forEach(ele => {
       ele.selectedId=ele.value[0].id
@@ -254,8 +286,6 @@ Page({
       selectSpec:fakeSpec,
       pro_num:1
     })
-
-
   },
   hideVer: function(e){  
     this.setData({  
@@ -263,7 +293,7 @@ Page({
     })  
   },
   //版本切换点击
-  changetab: function(e) {
+  changeSpec: function(e) {
     let index = e.currentTarget.dataset.parentindex;
     let id = e.currentTarget.dataset.id;
     let selectSpec = `selectSpec[${index}].selectedId`;

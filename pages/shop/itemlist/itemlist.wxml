@@ -5,7 +5,7 @@
 			<text>输入关键词搜索商品</text>
 			<image src="../../../images/shop/icon32.png"></image>
 		</view>
-		<image class="rightimg" src="../../../images/shop/icon33.png" bindtap="btnShowFilter"></image>
+		<image class="rightimg" src="../../../images/shop/icon33.png" bindtap="goToFilterPage"></image>
 	</view>
 	<view class="navbar flexwrap">
 		<view data-num="0" class="navbar-item flexwrap {{activeNav==0? 'active':''}}" bindtap="changeNav">
@@ -18,44 +18,24 @@
 			<view class="textwrap flexwrap">价格</view>
 		</view>
 	</view>
-	<view class="itemlist">
-		<block wx:for="{{itemListArr}}" wx:key="unique">
-			<view class="itemwrap flexwrap" bindtap="goDetail">
-				<image src="{{item.url}}"></image>
+
+	<scroll-view scroll-y style="height: 510rpx;" bindscrolltolower="scrollToLower" class="itemlist">
+		<block wx:for="{{goodsList}}" wx:key="unique">
+			<view class="itemwrap flexwrap" data-id="{{item.id}}" bindtap="goDetailPage">
+				<image src="{{item.img}}"></image>
 				<view class="rightwrap">
 					<view class="itemname">
 						{{item.name}}
 					</view>
 					<view class="price">
-						￥{{item.price}}
+						￥{{item.sell_price}}
 					</view>
 					<view class="sales">
-						销量：{{item.sales}}
+						销量：{{item.sell_num}}
 					</view>
 				</view>
 			</view>
 		</block>  
-	</view>
-	<view class="filter {{filterHide? 'hide':''}}">
-		<view class="title">
-			<text>型号筛选</text>
-		</view>
-		<view class="tablist">
-			<block wx:for="{{tabArr}}" wx:key="unique">
-				<view class="tabwrap flexwrap">
-					<view class="textwrap flexwrap">
-						<text>{{item.name}}</text>
-					</view>
-				</view>
-			</block> 
-		</view>
-		<view class="bottom flexwrap">
-			<view class="btnreset">
-				<text>重置</text>
-			</view>
-			<view class="btnok" bindtap="btnHideFilter">
-				<text>确定</text>
-			</view>
-		</view>
-	</view>
+	</scroll-view>
+	
 </view>
