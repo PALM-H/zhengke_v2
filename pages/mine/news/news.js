@@ -1,3 +1,5 @@
+//获取应用实例
+const app = getApp()
 
 Page({
   data: {
@@ -11,7 +13,32 @@ Page({
     ]
   },
   onLoad: function () {
-    
+    this.getNewsList()
+  },
+  //系统消息列表
+  getNewsList(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=zkapi&act=message_list',
+      method: "POST",
+      data: {
+        // user_id:app.globalData.uid
+        
+      },
+      success: (res)=> {
+        console.log(res,'系统消息列表')
+        wx.hideLoading()
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
   },
   goArticle:function(){
     wx.navigateTo({
