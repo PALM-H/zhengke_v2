@@ -66,7 +66,7 @@
     </view>
   </view>
   <view class="quick-content">
-    <view class="quick quick-list flexwrap" bindtap="goAddress">
+    <view class="quick quick-list flexwrap" bindtap="goAddressPage">
       <view class="quick-item flexwrap">
         <view class="imagewrap">
           <image src="../../../images/mine/icon7.png"></image>

@@ -14,21 +14,21 @@
 		</view>
 	</view>
 	<view class="itemlist">
-		<block wx:for="{{itemListArr}}" wx:key="unique">
+		<block wx:for="{{cartList}}" wx:key="unique">
 			<view class="itemwrap flexwrap">
-				<image class="itemimg" src="{{item.url}}"></image>
+				<image class="itemimg" src="{{item.goods_pic}}"></image>
 				<view class="rightwrap">
 					<view class="name">
-						<text>{{item.name}}</text>
+						<text>{{item.goods_name}}</text>
 					</view>
 					<view class="ver">
-						<text>版本：{{item.ver}}</text>
+						<text>版本：{{item.spec}}</text>
 					</view>
 					<view class="price">
-						<text>￥ {{item.price}}</text>
+						<text>￥ {{item.sell_price}}</text>
 					</view>
 					<view class="num">
-						<text>数量：{{item.num}}</text>
+						<text>数量：{{item.pro_num}}</text>
 					</view>
 				</view>
 			</view>
@@ -37,7 +37,7 @@
 	<view class="sundry">
 		<view class="msgwrap flexwrap">
 			<text class="lefttext">商品合计</text>
-			<text class="righttext">{{count}}</text>
+			<text class="righttext">{{cartList.length}}</text>
 		</view>
 		<view class="msgwrap flexwrap">
 			<text class="lefttext">合计总额</text>
@@ -45,10 +45,11 @@
 		</view>
 		<view class="code flexwrap">
 			<text class="lefttext">请输入优惠码</text>
-			<input type="text" class="iptcode" />
+			<input type="text" class="iptcode" value="{{coupon_code}}" bindinput="handlebindinput" />
+			<button type="primary" style="display:inline-block; font-size:30rpx;width:120rpx;" bindtap="checkCode">检测</button>
 		</view>
 		<view class="tips flexwrap">
-			<text>* 优惠码领取需要从商家处进行获取，暂不使用时请勿输入</text>
+			<text>{{codeTips}}</text>
 		</view>
 	</view>
 	<view class="note">

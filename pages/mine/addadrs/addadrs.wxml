@@ -15,8 +15,9 @@
         <view class="form-item">
             <view class="form-item-hd">地区：</view>
             <view class="form-item-bd" bindtap="showDistpicker">
-                <view class="input">
-                    <block>{{province[provinceSelIndex].name}} {{city[citySelIndex].name}} {{district[districtSelIndex].name}}</block>
+                <view class="input {{init ? 'input-placeholder' : ''}}">
+                    <block wx:if="{{!init}}">{{province[provinceSelIndex].name}} {{city[citySelIndex].name}} {{district[districtSelIndex].name}}</block>
+                    <block wx:else>请选择所在地区</block>
                 </view>
                 <input type="text" name="province" value="{{province[provinceSelIndex].name}}" class="hidden"/>
                 <input type="text" name="city" value="{{city[citySelIndex].name}}" class="hidden"/>
@@ -48,15 +49,15 @@
     <picker-view indicator-style="height: 40px;" class="distpicker-content" value="{{value}}" bindchange="changeArea">
         <!-- 省 -->
         <picker-view-column>
-            <view wx:for="{{province}}" wx:key="unique" class="area-item">{{item.name}}</view>
+            <view wx:for="{{province}}" wx:key="province" class="area-item">{{item.name}}</view>
         </picker-view-column>
         <!-- 市 -->
         <picker-view-column>
-            <view wx:for="{{city}}" wx:key="unique" class="area-item">{{item.name}}</view>
+            <view wx:for="{{city}}" wx:key="city" class="area-item">{{item.name}}</view>
         </picker-view-column>
         <!-- 区 -->
         <picker-view-column>
-            <view wx:for="{{district}}" wx:key="unique" class="area-item">{{item.name}}</view>
+            <view wx:for="{{district}}" wx:key="district" class="area-item">{{item.name}}</view>
         </picker-view-column>
     </picker-view>
 </view>

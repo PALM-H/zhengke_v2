@@ -181,6 +181,9 @@ App({
     userInfo: null, //用户信息
     hasGetUserInfo: false,
     merchant_id:670, //商人ID
-    apiUrl: "https://www.znnkee.com/smallprogram_mall/zk3c/index.php?"
+    apiUrl: "https://www.znnkee.com/smallprogram_mall/zk3c/index.php?",
+    userName:'',
+    userPhone:'',
+    userAddress:''
   }
 });

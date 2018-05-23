@@ -37,7 +37,7 @@ Page({
     ]
   },
   onLoad(options) {
-    this.seeShoppingCart();
+    this.getShoppingCartGoods();
   },
   removeCart(id) {
     wx.showLoading({
@@ -51,7 +51,7 @@ Page({
       url: app.globalData.apiUrl + "con=mallapi&act=cart_del",
       method: "POST",
       data: {
-        user_id: app.globalData.uid,
+        user_id: app.globalData.uid,user_id: app.globalData.uid,
         id: id
       },
       success: res => {
@@ -63,7 +63,7 @@ Page({
             icon: "success",
             duration: 2000
           });
-          this.seeShoppingCart();
+          this.getShoppingCartGoods();
         } else {
           wx.showToast({
             title: "移除失败",
@@ -78,37 +78,64 @@ Page({
       }
     });
   },
-  seeShoppingCart() {
+
+  //获取购物车的商品
+  getShoppingCartGoods() {
     wx.showLoading({
       title: "加载中...",
       mask: true
     });
     wx.request({
-      url: `${app.globalData.apiUrl}con=mallapi&act=cart_list&user_id=${
-        app.globalData.uid
-      }`,
-      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: `${app.globalData.apiUrl}con=mallapi&act=cart_list`,
+      method: "POST",
+      data:{
+        user_id:app.globalData.uid
+      },
       success: res => {
+        wx.hideLoading();
+       if(res.data.code==1000){
         let cart_list = res.data.cart_list;
         cart_list.forEach(ele => {
-          ele.isSelect = 0;
-          ele.price = 666;
+          ele.isSelect = 0;//给每个商品加一个是否选中状态
         });
         this.setData({
           cartList: cart_list
         });
-        console.log(this.data.cartList, 2312321312);
-        wx.hideLoading();
+        console.log(this.data.cartList, '获取购物车商品');
+       }else{
+         console.log('获取失败');
+       }
+        
       },
       fail: err => {
+        this.setData({
+          cartList: []
+        });
         console.log(err);
       }
     });
   },
-  goConfirm: function() {
-    wx.navigateTo({
-      url: "../confirm/confirm"
-    });
+  //去确认订单页面
+  goConfirmPage: function() {
+    let isSelect=this.data.cartList.some((ele)=>{
+      return ele.isSelect==1;
+    })
+    if(isSelect){
+      wx.navigateTo({
+        url: "../confirm/confirm"
+      });
+    }else{
+      wx.showModal({
+        title: '提示',
+        showCancel:false,
+        content: '请先选择商品'
+      
+      })
+    }
+    
   },
   //单选
   selectThis: function(e) {
@@ -204,7 +231,7 @@ Page({
     let total = 0;
     cartList.forEach(ele => {
       if (ele.isSelect === 1) {
-        total += parseFloat(ele.price) * parseInt(ele.pro_num);
+        total += parseFloat(ele.sell_price) * parseInt(ele.pro_num);
       }
     });
     this.setData({

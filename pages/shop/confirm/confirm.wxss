@@ -126,7 +126,7 @@
   color: #303030;
 }
 .sundry .code .iptcode{
-  width: 440rpx;
+  width: 400rpx;
   height: 70rpx;
   line-height: 70rpx;
   margin-left: 24rpx;
@@ -140,7 +140,7 @@
   margin-left: 40rpx;
   font-size: 24rpx;
   color: #db3838;
-  align-items: center;
+  justify-content:center;
 }
 
 .note{

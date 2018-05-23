@@ -1,32 +1,39 @@
 
 <view class="page">
-  <block wx:for="{{adrsArr}}" wx:key="unique">
+  <block wx:if="{{addressList.length!=0}}">
+    <block wx:for="{{addressList}}" wx:key="unique">
     <view class="personal">
       <view class="msgwrap">
         <view class="textwrap">
-          <text>{{item.name}}</text>　<text>{{item.phone}}</text>
+          <text>{{item.accept_name}}</text>　<text>{{item.mobile}}</text>
         </view>
         <view class="textwrap address">
-          <text>{{item.address}}</text>
+          <text>{{item.province_name}} {{item.city_name}} {{item.county_name}} {{item.addr}}</text>
         </view>
       </view>
       <view class="actionwrap">
-        <view class="select {{item.index==activeAdrs ? 'active' : ''}}" data-num="{{item.index}}" bindtap="changeAdrs">
-          <image src="../../../images/mine/select-{{item.index==activeAdrs ? 'on' : 'off'}}.png"></image>
+        <view class="select {{item.is_default==1? 'active' : ''}}" data-is_default="{{item.is_default}}" data-id="{{item.id}}" bindtap="changeAdrs">
+          <image src="../../../images/mine/select-{{item.is_default==1 ? 'on' : 'off'}}.png"></image>
           <text>默认地址</text>
         </view>
-        <view class="edit" bindtap="editAdrs">
+        <view class="edit" data-id="{{item.id}}" data-is_default="{{item.is_default}}" bindtap="editAdrs">
           <image src="../../../images/mine/edit.png"></image>
           <text>编辑</text>
         </view>
-        <view class="delete">
+        <view class="delete" bindtap="delAdrs" data-is_default="{{item.is_default}}" data-id="{{item.id}}">
           <image src="../../../images/mine/delete.png"></image>
           <text>删除</text>
         </view>
       </view>
     </view>
   </block> 
+  </block>
+  <block wx:else>
+    <text>你还没有添加收货地址</text>
+  </block>
   <view class="bottom" bindtap="addAdrs">
     <text>添加地址</text>
   </view>
 </view>
+
+

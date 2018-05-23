@@ -48,7 +48,7 @@ Page({
     //   url: '../service/service'
     // })
   },
-  goAddress: function(e) {
+  goAddressPage: function(e) {
     wx.navigateTo({
       url: '../address/address?status=0'
     })

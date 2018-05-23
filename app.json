@@ -1,25 +1,29 @@
 {
   "pages":[
-    "pages/shop/itemlist/itemlist",
+    
+    "pages/mine/index/index",
     "pages/index/index",
     "pages/news/news",
     "pages/article/article",
     "pages/shop/index/index",
     "pages/shop/class/class",
-    
+    "pages/shop/itemlist/itemlist",
     "pages/shop/filter/filter",
     "pages/shop/search/search",
     "pages/shop/cart/cart",
     "pages/shop/confirm/confirm",
     "pages/shop/detail/detail",
     "pages/shop/remark/remark",
-    "pages/mine/index/index",
+    
     "pages/mine/collection/collection",
     "pages/mine/news/news",
     "pages/mine/article/article",
     "pages/mine/msg/msg",
     "pages/mine/address/address",
+    "pages/mine/editadrs3/editadrs3",
     "pages/mine/editadrs/editadrs",
+    "pages/mine/addadrs/addadrs",
+    
     "pages/mine/order/order",
     "pages/mine/detail/detail",
     "pages/mine/remark/remark",
