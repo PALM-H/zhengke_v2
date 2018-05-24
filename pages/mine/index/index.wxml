@@ -1,12 +1,15 @@
 
 <view class="page">
+  <view wx:if="{{!hasUserInfo}}" class="login-modal flexwrap">
+    <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 请先微信授权 </button>
+  </view>
   <view class="top-content">
     <image class="topimg" src="../../../images/mine-top.png"></image>
     <view class="headimg" bindtap="goMsg">
-      <image src="{{userInfo.avatarUrl}}"></image>
+      <image src="{{avatarUrl}}"></image>
     </view>
     <view class="nickName" bindtap="goMsg">
-        <text>{{userInfo.nickName}}</text>
+        <text>{{nickName}}</text>
     </view>
     <view class="menuwrap flexwrap">
       <view class="item firstitem" data-type="0" bindtap="btnToOrder">

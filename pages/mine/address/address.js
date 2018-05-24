@@ -113,10 +113,9 @@ Page({
     })
   },
   changeAdrs: function(e) {
-    let id=e.currentTarget.dataset.id;
-    let is_default=e.currentTarget.dataset.is_default;
-    console.log(is_default,122212121);
-    if(is_default==1){
+    let item=e.currentTarget.dataset.item;
+    
+    if(item.is_default==1){
       wx.showModal({
         title: '提示',
         showCancel:false,
@@ -137,12 +136,18 @@ Page({
       method: "POST",
       data: {
         user_id: app.globalData.uid,
-        id:id
+        id:item.id
       },
       success: (res)=> {
         wx.hideLoading()
         console.log(res,'更改默认地址')
         if(res.data.code==1000){
+
+          //把默认地址设置到全局里面
+          app.globalData.userName=item.accept_name;
+          app.globalData.userPhone=item.mobile;
+          app.globalData.address=`${item.province_name}${item.city_name}${item.county_name} ${item.addr}`
+          console.log(app.globalData,111)
           this.getAddressList();
         }else{
           wx.showModal({

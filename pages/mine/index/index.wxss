@@ -4,6 +4,20 @@
   background: #f2f2f2;
   height:100vh;
 }
+
+.login-modal{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:#fff;
+  z-index:1;
+  justify-content:center;
+}
+
+
+
 .top-content{
   background: #fff;
   width: 100%;

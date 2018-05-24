@@ -1,13 +1,13 @@
 
 <view class="page">
-  <block wx:for="{{newsArr}}" wx:key="unique">
-    <view class="newswrap" bindtap="goArticle">
+  <block wx:for="{{newsList}}" wx:key="unique">
+    <view class="newswrap" data-id="{{item.id}}" bindtap="goArticlePage">
       <view class="titlewrap flexwrap">
         <text>{{item.title}}</text>
-        <text class="righttext">{{item.time}}</text>
+        <text class="righttext">{{item.add_time}}</text>
       </view>
       <view class="contentwrap">
-        <text>{{item.content}}</text>
+        <text>{{item.des}}</text>
       </view>
       <view class="bottomwrap flexwrap">
         <text>点击查看</text>

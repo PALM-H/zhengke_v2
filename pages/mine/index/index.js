@@ -3,21 +3,105 @@ const app = getApp()
 
 Page({
   data: {
-    userInfo: null
+    hasUserInfo:false,
+    userInfo: null,
+    avatarUrl:'',
+    nickName:''
   },
   onLoad: function () {
-    if(!app.globalData.hasGetUserInfo){
-      app.checkSettingStatus();
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo
-        });
-      }
-    }else{
+    if(app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo
-      });
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+      this.getUserAvatar();
+    }else{
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = () => {
+        this.setData({
+          userInfo: app.globalData.userInfo,
+          hasUserInfo: true
+        })
+        this.getUserAvatar();
+      }
     }
+  },
+  onShow(){
+    this.getUserAvatar();
+  },
+  getUserAvatar(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=zkapi&act=get_user',
+      method: "POST",
+      data: {
+        user_id:app.globalData.uid
+        
+      },
+      success: (res)=> {
+        console.log(res,'获取用户信息（头像、昵称）')
+        if(res.data.code==1000){
+          this.setData({
+            avatarUrl:res.data.user.avatarUrl,
+            nickName:res.data.user.nickName
+          })
+        }
+        wx.hideLoading()
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
+  getUserInfo(e){
+    console.log(e.detail.userInfo);
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.getSetting({
+      success: res => {
+        wx.hideLoading();
+        if (res.authSetting["scope.userInfo"]) {
+          console.log("授权成功");
+          app.globalData.userInfo=e.detail.userInfo;
+          this.setData({
+            userInfo: app.globalData.userInfo,
+            hasUserInfo: true
+          })
+        } else {
+          console.log("授权失败");
+          wx.showModal({
+            title: "用户未授权",
+            content:
+              "如需正常使用功能，请按确定并在授权管理中选中“用户信息”，然后点按确定。",
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                console.log("用户点击确定");
+                wx.openSetting({
+                  success: res => {
+                    console.log("openSetting success", res.authSetting);
+                    if(res.authSetting['scope.userInfo']){
+                      app.login();
+                    }
+                  },
+                  fail: err => {
+                  }
+                });
+              }
+            }
+          });
+        }
+      }
+    });
   },
   goMsg: function(e) {
     wx.navigateTo({

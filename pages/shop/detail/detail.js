@@ -10,6 +10,7 @@ Page({
     pro_num:1,//对应规格要购买的数量
     pro_id:'',//商品规格id
   
+    remarkList:[],//商品评价
     //swiper
     indicatorDots: false,
     autoplay: true,
@@ -18,10 +19,7 @@ Page({
     circular: true,
     swiperCurrent: 0,
 
-    remarkListArr: [
-      {url:'../../../images/shop/exp-headimg.jpg',name:'火星人的地球',content:'很流畅、不卡、很好，下次还会再买，也会推荐其他朋友进行购买',mark:'4',time:'2018.02.22',ver:'3 + 32 G  黑色'},
-      {url:'../../../images/shop/exp-headimg.jpg',name:'火星人的地球',content:'很流畅、不卡、很好，下次还会再买，也会推荐其他朋友进行购买 很流畅、不卡、很好，下次还会再买，也会推荐其他朋友进行购买',mark:'5',time:'2018.02.22',ver:'3 + 32 G  黑色'}
-    ],
+   
     detailTabActive : 0,
     isVerHide: true,//是否隐藏产品规格选择窗口
     verArr: [
@@ -55,7 +53,7 @@ Page({
         user_id: app.globalData.uid,
         goods_id:this.data.gid,
       },
-      success: (res)=> {
+      success: (res)=> {//添加收藏
         wx.hideLoading()
         console.log('添加到购物车:',res)
         if(res.data.code==1000){
@@ -64,12 +62,14 @@ Page({
             icon:'success',
             duration: 2000
           })
-        }else if(res.data.code==1002){
+          this.getGoodsInfo();
+        }else if(res.data.code==1002){//取消收藏
           wx.showToast({
             title: res.data.msg,
             icon:'success',
             duration: 2000
           })
+          this.getGoodsInfo();
         }else{
           wx.showToast({
             title: res.data.msg,
@@ -182,9 +182,10 @@ Page({
       method: "POST",
       data:{
           gid:this.data.gid,
-          uid:app.globalData.uid
+          user_id:app.globalData.uid
       },
       success: (res)=> {
+        wx.hideLoading()
         if(res.data.code==1000){
           console.log(res,'获取商品详情');
           
@@ -202,7 +203,7 @@ Page({
               selectSpec:fakeSpec
             })
                         
-            wx.hideLoading()
+           
         }
        
       },
@@ -230,7 +231,9 @@ Page({
       success: (res)=> {
         if(res.data.code==1000){
           console.log(res,'获取商品评价内容');
-          
+          this.setData({
+            remarkList:res.data.evaluate_list
+          })
                         
             wx.hideLoading()
         }
@@ -248,7 +251,7 @@ Page({
       swiperCurrent: e.detail.current  
     })  
   },
-  goMoreREmark: function(e){  
+  goMoreREmarkPage: function(e){  
     wx.navigateTo({
       url: '../remark/remark'
     })

@@ -90,7 +90,7 @@ switch {
     font-size: 32rpx;
     text-align: center;
     line-height: 80rpx;
-    background-color: #2EA9DF;
+    background:#00a7ff;
     border-radius: 6rpx;
     color: #fff;
 }

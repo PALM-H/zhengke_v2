@@ -2,23 +2,30 @@
 <view class="page">
   <view class="item">
     <view class="itemlist">
-      <block wx:for="{{itemArr}}" wx:key="unique">
-        <view class="itemwrap">
-          <image class="itemimg" src="{{item.url}}"></image>
+      <block wx:if="{{collectionList.length>0}}">
+        <block wx:for="{{collectionList}}" wx:key="unique">
+        <view class="itemwrap" data-goods_id="{{item.goods_id}}" bindtap="goDetailPage">
+          <image class="itemimg" src="{{item.img}}"></image>
           <view class="namewrap">
-            <text>{{item.name}}</text>
+            <text>{{item.goods_name}}</text>
           </view>
           <view class="versionwrap">
-            <text>版本：{{item.ver}}</text>
+            <text>版本：{{item.spec}}</text>
           </view>
           <view class="pricewrap">
-            <text>￥{{item.price}}</text>
+            <text>￥{{item.sell_price}}</text>
           </view>
-          <view class="countwrap">
+          <view class="countwrap" data-goods_id="{{item.goods_id}}" catchtap="cancelStar">
             <text>取消收藏</text>
           </view>
-          <image class="heart" src="../../../images/mine/heart-empty.png"></image>
+          <view class="heartwrap">
+            <image class="heart" src="../../../images/mine/heart-empty.png"></image>
+          </view>
         </view>
+      </block>
+      </block>
+      <block wx:else>
+          <text>暂无收藏</text>
       </block>
     </view>
   </view>

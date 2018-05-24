@@ -73,10 +73,15 @@
   font-size: 23rpx;
   color: #db3838;
 }
-.itemwrap .heart{
-  position: absolute;
-  right: 112rpx;
-  bottom: 32rpx;
+.itemwrap .heartwrap{
+  position:absolute;
+  right:94rpx;
+  bottom:23rpx;
+  width:37rpx;
+  height:36rpx;
+
+}
+.itemwrap .heartwrap .heart{
   width: 25rpx;
   height: 22rpx;
 }

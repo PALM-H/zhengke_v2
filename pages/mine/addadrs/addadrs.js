@@ -168,10 +168,14 @@ Page({
         return;
       }
     }
-    
+
+    if(this.data.is_default==1){
       app.globalData.userName=data.name;
       app.globalData.userPhone=data.tel;
       app.globalData.address=`${this.data.province[this.data.provinceSelIndex].name}${this.data.city[this.data.citySelIndex].name}${this.data.district[this.data.districtSelIndex].name} ${data.address}`;
+      console.log(app.globalData,'globalData');
+    }
+    
       
 
     wx.showLoading({

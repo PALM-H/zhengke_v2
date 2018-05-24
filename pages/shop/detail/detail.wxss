@@ -224,6 +224,8 @@
 }
 .remark .remarklist .remarkwrap .botmsg .lefttext{
   margin-left: 6rpx;
+  position:relative;
+  top:4rpx;
 }
 .remark .remarklist .remarkwrap .botmsg .righttext{
   position: absolute;

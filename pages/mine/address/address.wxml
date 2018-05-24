@@ -12,7 +12,7 @@
         </view>
       </view>
       <view class="actionwrap">
-        <view class="select {{item.is_default==1? 'active' : ''}}" data-is_default="{{item.is_default}}" data-id="{{item.id}}" bindtap="changeAdrs">
+        <view class="select {{item.is_default==1? 'active' : ''}}" data-item="{{item}}" bindtap="changeAdrs">
           <image src="../../../images/mine/select-{{item.is_default==1 ? 'on' : 'off'}}.png"></image>
           <text>默认地址</text>
         </view>

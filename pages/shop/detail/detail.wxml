@@ -81,30 +81,35 @@
 			-->
 		</view>
 		<view class="remarklist">
-			<block wx:for="{{remarkListArr}}" wx:key="unique">
+			<block wx:if="{{remarkList.length>0}}">
+				<block wx:for="{{remarkList}}" wx:key="unique">
 				<view class="remarkwrap">
 					<view class="headwrap flexwrap">
-						<image class="headimg" src="{{item.url}}"></image>
+						<image class="headimg" src="{{item.avatarUrl}}"></image>
 						<view class="headname">
-							<text>{{item.name}}</text>
+							<text>{{item.nickName}}</text>
 						</view>
-						<image class="mark mark1" src="../../../images/mine/star-{{item.mark>0?'full':'empty'}}.png"></image>
-						<image class="mark mark2" src="../../../images/mine/star-{{item.mark>1?'full':'empty'}}.png"></image>
-						<image class="mark mark3" src="../../../images/mine/star-{{item.mark>2?'full':'empty'}}.png"></image>
-						<image class="mark mark4" src="../../../images/mine/star-{{item.mark>3?'full':'empty'}}.png"></image>
-						<image class="mark mark5" src="../../../images/mine/star-{{item.mark>4?'full':'empty'}}.png"></image>
+						<image class="mark mark1" src="../../../images/mine/star-{{item.score>0?'full':'empty'}}.png"></image>
+						<image class="mark mark2" src="../../../images/mine/star-{{item.score>1?'full':'empty'}}.png"></image>
+						<image class="mark mark3" src="../../../images/mine/star-{{item.score>2?'full':'empty'}}.png"></image>
+						<image class="mark mark4" src="../../../images/mine/star-{{item.score>3?'full':'empty'}}.png"></image>
+						<image class="mark mark5" src="../../../images/mine/star-{{item.score>4?'full':'empty'}}.png"></image>
 					</view>
 					<view class="content">
 						<text>{{item.content}}</text>
 					</view>
 					<view class="botmsg">
-						<text class="lefttext">{{item.time}}</text>
-						<text class="righttext">所购属性：{{item.ver}}</text>
+						<text class="lefttext">{{item.evaluates_ime}}</text>
+						<text class="righttext">所购属性：{{item.spec}}</text>
 					</view>
 				</view>
+				</block>
+			</block>
+			<block wx:else>
+				<text>暂无评论</text>
 			</block>
 		</view>
-		<view class="moreremark flexwrap" bindtap="goMoreREmark">
+		<view class="moreremark flexwrap" bindtap="goMoreREmarkPage" wx:if="{{remarkList.length>0}}">
 			<text>更多评价</text>
 		</view>
 	</view>

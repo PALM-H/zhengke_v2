@@ -1,3 +1,14 @@
+.login-modal{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background:#fff;
+  z-index:666;
+  justify-content:center;
+}
+
 
 page{
   overflow: hidden;

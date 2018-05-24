@@ -3,16 +3,12 @@ const app = getApp()
 
 Page({
   data: {
-    newsArr: [
-      {title:'挣客3C门店2.0明天上线',time:'13:12',content:'挣客3C门店项目2.0版本明天正式上线，欢迎您继续使用，有任何意见欢迎提出，我们来改进'},
-      {title:'挣客3C门店2.0明天上线',time:'昨天 13:12',content:'挣客3C门店项目2.0版本明天正式上线，欢迎您继续使用，有任何意见欢迎提出，我们来改进。挣客3C门店项目2.0版本明天正式上线，欢迎您继续使用，有任何意见欢迎提出，我们来改进。'},
-      {title:'挣客3C门店2.0明天上线',time:'2016-03-12  13：12',content:'挣客3C门店项目2.0版本明天正式上线。'},
-      {title:'挣客3C门店2.0明天上线',time:'2016-03-12  13：12',content:'挣客3C门店项目2.0版本明天正式上线。'},
-      {title:'挣客3C门店2.0明天上线',time:'2016-03-12  13：12',content:'挣客3C门店项目2.0版本明天正式上线。'},
-      {title:'挣客3C门店2.0明天上线',time:'2016-03-12  13：12',content:'挣客3C门店项目2.0版本明天正式上线。'}
-    ]
+    newsList:[]
   },
-  onLoad: function () {
+  onLoad() {
+    
+  },
+  onShow(){
     this.getNewsList()
   },
   //系统消息列表
@@ -34,15 +30,22 @@ Page({
       success: (res)=> {
         console.log(res,'系统消息列表')
         wx.hideLoading()
+        if(res.data.code==1000){
+          this.setData({
+            newsList:res.data.msg_list
+          })
+          console.log(this.data.newsList)
+        }
       },
       fail: (err)=>{
         console.log(err);
       }
     })
   },
-  goArticle:function(){
+  goArticlePage:function(e){
+    let id=e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../article/article'
+      url: `../article/article?id=${id}`
     })
   },
   onShareAppMessage: function () {

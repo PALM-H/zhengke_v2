@@ -2,6 +2,9 @@
 const app = getApp()
 Page({
   data: {
+    hasUserInfo:false,
+    userInfo: null,
+
     searchFill: false,
     imgUrls: [
       {url:'../../../images/shop/exp-banner.jpg'},
@@ -24,15 +27,24 @@ Page({
    
   },
   onLoad(){
-    //验证有没有微信授权
-    if (!app.globalData.hasGetUserInfo) {
-      app.checkSettingStatus();
-      app.userInfoReadyCallback = res => {
+   if(app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    }else{
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = () => {
         this.setData({
-          userInfo: res.userInfo
-        });
+          userInfo: app.globalData.userInfo,
+          hasUserInfo: true
+        })
       }
     }
+
+    
+
 
     //获取商品分类
     this.getCategoryList();
@@ -43,6 +55,52 @@ Page({
     this.getNewGoodsList(2);
    
   },
+
+
+  getUserInfo(e){
+    console.log(e.detail.userInfo);
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.getSetting({
+      success: res => {
+        wx.hideLoading();
+        if (res.authSetting["scope.userInfo"]) {
+          console.log("授权成功");
+          app.globalData.userInfo=e.detail.userInfo;
+          this.setData({
+            userInfo: app.globalData.userInfo,
+            hasUserInfo: true
+          })
+        } else {
+          console.log("授权失败");
+          wx.showModal({
+            title: "用户未授权",
+            content:
+              "如需正常使用功能，请按确定并在授权管理中选中“用户信息”，然后点按确定。",
+            showCancel: false,
+            success: res => {
+              if (res.confirm) {
+                console.log("用户点击确定");
+                wx.openSetting({
+                  success: res => {
+                    console.log("openSetting success", res.authSetting);
+                    if(res.authSetting['scope.userInfo']){
+                      app.login();
+                    }
+                  },
+                  fail: err => {
+                  }
+                });
+              }
+            }
+          });
+        }
+      }
+    });
+  },
+
   //获取商品分类
   getCategoryList(){
     wx.showLoading({
