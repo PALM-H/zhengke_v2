@@ -1,16 +1,25 @@
 //获取应用实例
 const app = getApp()
 
+//article.js
+var WxParse = require('../../../wxParse/wxParse.js');
+
 Page({
   data: {
     gid:'',//从地址栏商品id,
 
     goodsInfo:[],//商品详情信息
     selectSpec:[],//已选的规格
+    selectSpecStr:'',
     pro_num:1,//对应规格要购买的数量
     pro_id:'',//商品规格id
   
     remarkList:[],//商品评价
+    goodsParams:[],//商品参数
+    detailTabActive : 0,
+    cartList: [],//立即购买
+    
+
     //swiper
     indicatorDots: false,
     autoplay: true,
@@ -20,7 +29,7 @@ Page({
     swiperCurrent: 0,
 
    
-    detailTabActive : 0,
+    
     isVerHide: true,//是否隐藏产品规格选择窗口
     verArr: [
       {title:'版本',activeNum:'1',defaultNum:'1',ver:[{id:'1',name:'低配'},{id:'2',name:'标准'},{id:'3',name:'高贵'},{id:'4',name:'尊享'}]},
@@ -36,6 +45,23 @@ Page({
     //获取商品详情
     this.getGoodsInfo();
     this.getGoodsEvaluateInfo();
+    this.getGoodsParams();
+  },
+//设置商品规格字符串
+  setSelectSpecStr(){
+     //商品规格字符串
+     let selectSpecStr='';
+     this.data.selectSpec.forEach(ele1 => {
+       ele1.value.forEach(ele2=>{
+         if(ele1.selectedId==ele2.id){
+           selectSpecStr+=ele2.name+' '
+             }
+       })
+    
+     });
+     this.setData({
+       selectSpecStr:selectSpecStr
+     })
   },
   //添加收藏
   starGoods(){
@@ -142,7 +168,7 @@ Page({
     let isNull=false;//判断库存是否为零
     let pro_id='';//标签id
     let buy_info=this.data.goodsInfo.buy_info;
-    buy_info.map(ele=>{
+    buy_info.forEach(ele=>{
       if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
         if(ele.split(',#,')[1].indexOf(',0,')!=-1){
           wx.showToast({
@@ -153,6 +179,7 @@ Page({
           })
           isNull=true;
         }else{
+          //获取最后一个数字
           pro_id=ele.split(',#,')[1].slice(ele.split(',#,')[1].lastIndexOf(',')+1)
         }
         
@@ -163,7 +190,7 @@ Page({
       this.setData({
         pro_id:pro_id
       })
-      console.log(this.data.pro_id,6666);
+      console.log(this.data.pro_id,'商品规格id');
       this.setGoodsToShoppingMart();
     }
   },
@@ -195,13 +222,17 @@ Page({
 
 
             //商品规格
-            let fakeSpec=res.data.goods_info.specs;
-            fakeSpec.forEach(ele => {
+            let selectSpec=res.data.goods_info.specs;
+            selectSpec.forEach(ele => {
               ele.selectedId=ele.value[0].id
             });
             this.setData({
-              selectSpec:fakeSpec
+              selectSpec:selectSpec
             })
+
+           this.setSelectSpecStr()
+
+            
                         
            
         }
@@ -244,6 +275,41 @@ Page({
       }
     })
   },
+  //获取商品图文详情、清单及参数
+  getGoodsParams(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: `${app.globalData.apiUrl}con=mallapi&act=goods_info_view`,
+      method: "POST",
+      data:{
+          gid:this.data.gid,
+          type:this.data.detailTabActive
+      },
+      success: (res)=> {
+        wx.hideLoading()        
+        if(res.data.code==1000){
+          console.log(res,'获取商品图文详情、清单及参数');
+
+          if(this.data.detailTabActive==0){
+            WxParse.wxParse('article', 'html', res.data.info,this,5)
+          }else{
+            WxParse.wxParse('article2', 'html', res.data.info,this,5)
+          }
+                        
+        }
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
 
   //轮播切换相关
   swiperChange: function(e){  
@@ -252,23 +318,62 @@ Page({
     })  
   },
   goMoreREmarkPage: function(e){  
+   
     wx.navigateTo({
-      url: '../remark/remark'
+      url: `../remark/remark`
     })
   },
   //详情部分切换事件
   changeDetail: function(e) {
     this.setData({
 			detailTabActive: e.currentTarget.dataset.num
-		});
+    });
+    this.getGoodsParams();
   },
   //查看购物车
-  seeCart: function(e){  
+  seeCartPage: function(e){  
     wx.navigateTo({
       url: '../cart/cart'
     })
   },
-  goConfirm: function() {
+
+  //立即购买
+  goConfirmPage: function() {
+    let selectSpec=this.data.selectSpec;
+    let selectLabel=[];
+    selectSpec.forEach(ele=>{
+      selectLabel.push(ele.selectedId);
+    })
+    selectLabel.join(',');
+    let pro_id='';//标签id
+    let buy_info=this.data.goodsInfo.buy_info;
+    buy_info.forEach(ele=>{
+      if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
+        if(ele.split(',#,')[1].indexOf(',0,')==-1){
+          //获取最后一个数字
+          pro_id=ele.split(',#,')[1].slice(ele.split(',#,')[1].lastIndexOf(',')+1)
+        }
+        
+      }
+    })
+    this.setData({
+      pro_id:pro_id
+    })
+
+
+    let cartList=[{
+      isSelect:1,
+      pro_id:this.data.pro_id,
+      pro_num:this.data.pro_num,
+      spec:this.data.selectSpecStr,
+      goods_pic:this.data.goodsInfo.img,
+      goods_name:this.data.goodsInfo.name,
+      sell_price:this.data.goodsInfo.sell_price,
+    }]
+    this.setData({
+      cartList:cartList
+    })
+    console.log(this.data.cartList);
     wx.navigateTo({
       url: '../confirm/confirm'
     })
@@ -289,6 +394,9 @@ Page({
       selectSpec:fakeSpec,
       pro_num:1
     })
+
+
+    this.setSelectSpecStr()
   },
   hideVer: function(e){  
     this.setData({  
@@ -303,6 +411,8 @@ Page({
     this.setData({
       [selectSpec]: id
     });
+
+  this.setSelectSpecStr();
   },
   //数量输入框离开焦点
   bindKeyInput: function(e) {

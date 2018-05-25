@@ -1,17 +1,17 @@
 
 <view class="page">
-	<image class="shopcart" src="../../../images/shop/icon0.png" bindtap="goCart"></image>
+	<image class="shopcart" src="../../../images/shop/icon0.png" bindtap="goCartPage"></image>
 	<view class="itemwrap flexwrap">
-		<image class="itemimg" src="{{url}}"></image>
+		<image class="itemimg" src="{{img}}"></image>
 		<view class="rightwrap">
 			<view class="name">
 				<text>{{name}}</text>
 			</view>
 			<view class="ver">
-				<text>版本：{{ver}}</text>
+				<text>版本：{{selectSpecStr}}</text>
 			</view>
 			<view class="price">
-				<text>￥ {{price}}</text>
+				<text>￥ {{sell_price}}</text>
 			</view>
 		</view>
 	</view>
@@ -20,31 +20,31 @@
 			<view class="lefttext">
 				<text>商品评价</text>
 			</view>
-			<view class="righttext">
+			<!-- <view class="righttext">
  				<text>只看所选属性</text>
-			</view>
-			<image class="rightimg" src="../../../images/shop/icon37.png"></image>
+			</view> -->
+			<!-- <image class="rightimg" src="../../../images/shop/icon37.png"></image> -->
 		</view>
 		<view class="remarklist">
-			<block wx:for="{{remarkListArr}}" wx:key="unique">
+			<block wx:for="{{remarkList}}" wx:key="unique">
 				<view class="remarkwrap">
 					<view class="headwrap flexwrap">
-						<image class="headimg" src="{{item.url}}"></image>
+						<image class="headimg" src="{{item.avatarUrl}}"></image>
 						<view class="headname">
-							<text>{{item.name}}</text>
+							<text>{{item.nickName}}</text>
 						</view>
-						<image class="mark mark1" src="../../../images/mine/star-{{item.mark>0?'full':'empty'}}.png"></image>
-						<image class="mark mark2" src="../../../images/mine/star-{{item.mark>1?'full':'empty'}}.png"></image>
-						<image class="mark mark3" src="../../../images/mine/star-{{item.mark>2?'full':'empty'}}.png"></image>
-						<image class="mark mark4" src="../../../images/mine/star-{{item.mark>3?'full':'empty'}}.png"></image>
-						<image class="mark mark5" src="../../../images/mine/star-{{item.mark>4?'full':'empty'}}.png"></image>
+						<image class="mark mark1" src="../../../images/mine/star-{{item.score>0?'full':'empty'}}.png"></image>
+						<image class="mark mark2" src="../../../images/mine/star-{{item.score>1?'full':'empty'}}.png"></image>
+						<image class="mark mark3" src="../../../images/mine/star-{{item.score>2?'full':'empty'}}.png"></image>
+						<image class="mark mark4" src="../../../images/mine/star-{{item.score>3?'full':'empty'}}.png"></image>
+						<image class="mark mark5" src="../../../images/mine/star-{{item.score>4?'full':'empty'}}.png"></image>
 					</view>
 					<view class="content">
 						<text>{{item.content}}</text>
 					</view>
 					<view class="botmsg">
-						<text class="lefttext">{{item.time}}</text>
-						<text class="righttext">所购属性：{{item.ver}}</text>
+						<text class="lefttext">{{item.evaluates_ime}}</text>
+						<text class="righttext">所购属性：{{item.spec}}</text>
 					</view>
 				</view>
 			</block>

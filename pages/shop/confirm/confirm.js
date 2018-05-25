@@ -5,12 +5,16 @@ Page({
     cartList:[],
     total: 0,
     pro_ids:[],
+    product_info:[],
     coupon_code:'',//优惠码
     isCheck:false,//优惠码是否被检测过
     codeTips:'* 优惠码领取需要从商家处进行获取，暂不使用时请勿输入',
-    name: '融融',
-    phone: '176****5422',
-    address: '广东省广州市天河区  广州市天河区奥体南路东澳创意小镇D2 103',
+
+    name: '',
+    phone: '',
+    address: '',
+    addressid:'',
+    desc:'',
     
     itemListArr: [
       {url:'../../../images/mine/itemexp1.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',ver:'标准  黑色  4+46G',price:'3589.00',num:1},
@@ -20,6 +24,14 @@ Page({
   onLoad(options){
    this.getCartListForCartPage();
   },
+  onShow(){
+    this.setData({
+      name:app.globalData.userName,
+      phone:app.globalData.userPhone,
+      address:app.globalData.address,
+      addressid:app.globalData.addressid
+    })
+  },
   //从购物车页面获取购物车商品数据
   getCartListForCartPage(){
     let pages = getCurrentPages();
@@ -27,16 +39,22 @@ Page({
     let prevPage = pages[pages.length - 2];  //上一个页面
     let cartList=[];
     let pro_ids=[];
+    let product_info=[];
     prevPage.data.cartList.forEach(ele => {
       if(ele.isSelect===1){
         cartList.push(ele)
         pro_ids.push(ele.pro_id);
+        product_info.push({
+          product_id:ele.pro_id,
+          buy_num:ele.pro_num
+        })
       }
       
     });
     this.setData({
       cartList:cartList,
-      pro_ids:pro_ids
+      pro_ids:pro_ids,
+      product_info:product_info
     })
     let total=0;
     cartList.forEach(ele=>{
@@ -111,6 +129,12 @@ Page({
       url: '../../mine/address/address?status=1'
     })
   },
+  bindinputdesc(e){
+    let desc=e.detail.value;
+    this.setData({
+      desc:desc
+    })
+  },
   goPay: function(e) {
    if(this.data.coupon_code.trim()!=''){
     if(!this.data.isCheck){
@@ -128,10 +152,42 @@ Page({
     let params={
       merchant_id: app.globalData.merchant_id,
       user_id: app.globalData.uid,
-      address_id:'aaa',
-      product_info:this.data.pro_ids
+      address_id:app.globalData.addressid,
+      product_info:this.data.product_info,
+      md5_sign:`${app.globalData.merchant_id}${app.globalData.uid}***zk3c***order#*`,
+      user_remark:this.data.desc
     }
-    
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    //添加订单
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=mallapi&act=add_order',
+      method: "POST",
+      data:params,
+      success: (res)=> {
+        wx.hideLoading()
+        console.log(res,'添加订单')
+        // if(res.data.code==1000){
+        //   this.getAddressList(); 
+        // }else{
+        //   wx.showModal({
+        //     title: '提示',
+        //     showCancel:false,
+        //     content: '删除失败'
+        //   })
+         
+        // }
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
     // wx.redirectTo({
     //   url: '../../mine/tips/tips?type=1'
     // })

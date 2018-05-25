@@ -14,10 +14,7 @@ Page({
     ]
   },
   onLoad: function (options) {
-    // this.setData({
-    //   status: options.status
-    // });
-      // this.getAddressList();
+    
   },
   onShow(){
     this.getAddressList();
@@ -95,6 +92,14 @@ Page({
           let addressList=this.data.addressList;
           addressList.forEach(ele => {
             ele.activeAdrs=ele.is_default
+            if(ele.is_default==1){
+              console.log('把默认地址设置到全局里面');
+          //把默认地址设置到全局里面
+          app.globalData.userName=ele.accept_name;
+          app.globalData.userPhone=ele.mobile;
+          app.globalData.address=`${ele.province_name}${ele.city_name}${ele.county_name} ${ele.addr}`
+          app.globalData.addressid=ele.id;
+            }
           });
           this.setData({
             addressList:addressList
@@ -147,6 +152,7 @@ Page({
           app.globalData.userName=item.accept_name;
           app.globalData.userPhone=item.mobile;
           app.globalData.address=`${item.province_name}${item.city_name}${item.county_name} ${item.addr}`
+          app.globalData.addressid=item.id;
           console.log(app.globalData,111)
           this.getAddressList();
         }else{

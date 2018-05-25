@@ -57,7 +57,7 @@
 			<text>备注</text>
 		</view>
 		<view class="notewrap flexwrap">
-			<input type="text" placeholder="请输入备注" />
+			<input type="text" placeholder="请输入备注" value="{{desc}}" bindinput="bindinputdesc" />
 		</view>
 	</view>
 	<view class="bottom flexwrap">

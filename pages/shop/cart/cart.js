@@ -5,36 +5,8 @@ Page({
   data: {
     cartList: [],
     isSelectAll: false,
-    total: 0,
-    itemListArr: [
-      {
-        url: "../../../images/mine/itemexp1.jpg",
-        name:
-          "小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机",
-        ver: "标准  黑色  4+46G",
-        price: "3589.00",
-        num: 1,
-        isselect: "0"
-      },
-      {
-        url: "../../../images/mine/itemexp2.jpg",
-        name:
-          "联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置",
-        ver: "版本：游戏之王  16+1T+225 SSD",
-        price: "8589.00",
-        num: 3,
-        isselect: "0"
-      },
-      {
-        url: "../../../images/mine/itemexp1.jpg",
-        name:
-          "小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机",
-        ver: "标准  黑色  4+46G",
-        price: "3589.00",
-        num: 1,
-        isselect: "0"
-      }
-    ]
+    total: 0
+    
   },
   onLoad(options) {
     this.getShoppingCartGoods();
@@ -145,6 +117,8 @@ Page({
     this.setData({
       [changeData]: curSelect === 0 ? 1 : 0
     });
+
+    
     let isSelectAll;
     this.data.cartList.some(ele => {
       if (ele.isSelect === 0) {

@@ -93,7 +93,8 @@ App({
     //用户选中的信息
     userName: "",
     userPhone: "",
-    userAddress: ""
+    address: "",
+    addressid:""
 
   }
 });

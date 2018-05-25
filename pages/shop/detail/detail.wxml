@@ -53,11 +53,13 @@
 
 	<view class="spec-section flexwrap" bindtap="showSpecModal">
 		<view class="lefttext">
-				<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
+				<!-- <block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
 					<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-item="tItem">
 						<text>{{vItem.selectedId==tItem.id?tItem.name+' ':''}}</text>
 					</block>
-				</block>
+				</block> -->
+				<text>{{selectSpecStr}}</text>
+
 		</view>
 		<image class="rightimg" src="../../../images/shop/icon31.png"></image>
 	</view>
@@ -130,12 +132,13 @@
 		</view>
 		<!-- 注意：detl为商品详情，parm为商品参数，接入后台后请自行替换里面的内容, 商品详情内容务必调用wxparse插件处理，具体可参考之前新闻文章页，示例内容是用图片替代（此内容到时是后台传过来的html转换内容，跟目前格式不搭，故现在写了也是白写），样式已经作了相应限制 -->
 		<view class="detl {{detailTabActive!=0?'hide':''}}">
-			<image mode="widthFix" src="../../../images/shop/exp-detailimg0.jpg"></image>
-			<image mode="widthFix" src="../../../images/shop/exp-detailimg1.jpg"></image>
-			<image mode="widthFix" src="../../../images/shop/exp-detailimg2.jpg"></image>
+			<import src="../../../wxParse/wxParse.wxml"/>
+      		<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+
 		</view>
 		<view class="parm {{detailTabActive!=1?'hide':''}}">
-			<image mode="widthFix" src="../../../images/shop/exp-parm.jpg"></image>
+		<import src="../../../wxParse/wxParse.wxml"/>
+		<template is="wxParse" data="{{wxParseData:article2.nodes}}"/>
 		</view>
 	</view>
 	<view class="bottom flexwrap">
@@ -155,7 +158,7 @@
 				<text>客服</text>
 			</view>
 		</view>
-		<view class="iconwrap" bindtap="seeCart">
+		<view class="iconwrap" bindtap="seeCartPage">
 			<view class="imgwrap">
 				<image src="../../../images/shop/icon40.png"></image>
 			</view>
@@ -166,7 +169,7 @@
 		<view class="btnwrap flexwrap blue" bindtap="addShoppingCart">
 			<text>加入购物车</text>
 		</view>
-		<view class="btnwrap flexwrap red" bindtap="goConfirm">
+		<view class="btnwrap flexwrap red" bindtap="goConfirmPage">
 			<text>立即购买</text>
 		</view>
 	</view>
@@ -185,12 +188,13 @@
 				<view class="whitewrap">
 					<view class="price">￥{{goodsInfo.sell_price}}</view>
 					<view class="explain">
-						<text>选择</text>
-						<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
+						<text>选择 {{selectSpecStr}}</text>
+
+						<!-- <block wx:for="{{selectSpec}}" wx:key="unique" wx:for-item="vItem">
 							<block wx:for="{{vItem.value}}" wx:key="unique" wx:for-item="tItem">
 								<text>{{vItem.selectedId==tItem.id?tItem.name+' ':''}}</text>
 							</block>
-						</block>
+						</block> -->
 					</view>
 					<image class="close" src="../../../images/shop/icon41.png" bindtap="hideVer"></image>
 				</view>
