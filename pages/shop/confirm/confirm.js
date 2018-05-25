@@ -1,5 +1,8 @@
 //获取应用实例
 const app = getApp()
+
+var util = require('../../../utils/md5.js')  
+
 Page({
   data: {
     cartList:[],
@@ -154,7 +157,8 @@ Page({
       user_id: app.globalData.uid,
       address_id:app.globalData.addressid,
       product_info:this.data.product_info,
-      md5_sign:`${app.globalData.merchant_id}${app.globalData.uid}***zk3c***order#*`,
+      // util.hexMD5(password)
+      md5_sign:util.hexMD5(`${app.globalData.merchant_id}${app.globalData.uid}***zk3c***order#*`),
       user_remark:this.data.desc
     }
     wx.showLoading({
