@@ -1,11 +1,11 @@
 
 <view class="page">
 	<view class="searchwrap flexwrap">
-		<view class="search flexwrap" bindtap="goSearch">
+		<view class="search flexwrap" bindtap="goSearchPage">
 			<text>输入关键词搜索商品</text>
 			<image src="../../../images/shop/icon32.png"></image>
 		</view>
-		<image class="rightimg" src="../../../images/shop/icon33.png" bindtap="goToFilterPage"></image>
+		<!-- <image class="rightimg" src="../../../images/shop/icon33.png" bindtap="goToFilterPage"></image> -->
 	</view>
 	<view class="navbar flexwrap">
 		<view data-num="0" class="navbar-item flexwrap {{activeNav==0? 'active':''}}" bindtap="changeNav">
@@ -19,7 +19,7 @@
 		</view>
 	</view>
 
-	<scroll-view scroll-y style="height: 510rpx;" bindscrolltolower="scrollToLower" class="itemlist">
+	<scroll-view scroll-y style="height: calc(100vh-171rpx);" bindscrolltolower="scrollToLower" class="itemlist">
 		<block wx:for="{{goodsList}}" wx:key="unique">
 			<view class="itemwrap flexwrap" data-id="{{item.id}}" bindtap="goDetailPage">
 				<image src="{{item.img}}"></image>

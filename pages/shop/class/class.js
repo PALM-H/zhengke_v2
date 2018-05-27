@@ -34,11 +34,12 @@ Page({
       },
       success: (res)=> {
         console.log(res,'获取所有商品二级分类')
-        if(res.statusCode==200){
+        wx.hideLoading()
+        if(res.data.code==1000){
             this.setData({
               subCategoryList:res.data.cat_list.data
             })
-            wx.hideLoading()
+           
         }
        
       },
@@ -47,6 +48,7 @@ Page({
       }
     })
   },
+  //获取商品分类 一级分类
   getCategoryList(){
     wx.showLoading({
       title:'加载中...',
@@ -67,11 +69,12 @@ Page({
       },
       success: (res)=> {
         console.log(res,'获取所有商品一级分类')
+        wx.hideLoading()
         if(res.data.code==1000){
             this.setData({
               categoryList:res.data.cat_list.data
             })
-            wx.hideLoading()
+            
             this.getSubCategoryList();
             
         }

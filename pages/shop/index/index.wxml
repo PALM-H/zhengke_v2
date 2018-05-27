@@ -39,7 +39,7 @@
 					<text>{{item.name}}</text>
 				</view>
 			</block>
-			<view wx:if="{{categoryList.length>=7}}" class="itemwrap" data-id="{{categoryList[0].id}}" bindtap="goClassPage">
+			<view wx:if="{{categoryList.length>7}}" class="itemwrap" data-id="{{categoryList[0].id}}" bindtap="goClassPage">
 				<image src="/images/shop/icon8.png"></image>
 				<text>更多</text>
 			</view>

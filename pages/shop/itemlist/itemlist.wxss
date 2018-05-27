@@ -10,17 +10,16 @@
   width: 100%;
   padding: 23rpx 0;
   background: #fff;
-  align-items: center;
+  justify-content:center;  
 }
 .searchwrap .search{
   position: relative;
   width: 598rpx;
   height: 48rpx;
-  margin-left: 40rpx;
   border-radius: 24rpx;
   border: 2rpx solid #d8d8d8;
   background: #fff;
-  align-items: center;
+  
 }
 .searchwrap .search text{
   display: inline-block;

@@ -3,12 +3,12 @@ const app = getApp()
 
 Page({
   data: {
-    cid:'',
-    aaa:'',
+    cid:'',//二级分类分类id
+
     goodsList:[],
-    p:1,
-    page_size:1,
-    totalPage:0,
+    p:1,//页码，默认第一页
+    page_size:15,//每一页的数量
+    totalPage:0,//总页码数
     activeNav: 0,
     filterHide: true 
     
@@ -20,9 +20,7 @@ Page({
     })
     this.getGoodsList(true);
   },
-  onShow:function(){
-      console.log(this.data.aaa,667);
-  },
+ 
   //获取商品列表
   //用的是搜索商品接口
   getGoodsList(init) {
@@ -30,6 +28,7 @@ Page({
     if(init){
       this.setData({
         p:1,
+        totalPage:0,
         goodsList:[]
       })
     }else{
@@ -40,11 +39,10 @@ Page({
       this.setData({
         p:this.data.p+1
       })
-      console.log(this.data.p,2323232);
     }
     let sort=0;
     if(this.data.activeNav==0){
-
+      sort=0;
     }else if(this.data.activeNav==1){
       sort=1;//以销售量降序排列
      
@@ -74,8 +72,9 @@ Page({
       method: "POST",
       data: params,
       success: res => {
+        wx.hideLoading();
         if(res.data.code==1000){
-         if(this.data.goodsList.length){
+         if(this.data.goodsList.length>0){
           this.setData({
             goodsList:this.data.goodsList.concat(res.data.goods_list.data)
           })
@@ -87,11 +86,10 @@ Page({
          this.setData({
           totalPage:res.data.goods_list.page.totalPage
          })
-         
         }
         console.log(res,777);
         console.log(this.data.goodsList,'获取商品列表');
-        wx.hideLoading();
+        
       },
       fail: err => {
         console.log(err);
@@ -109,7 +107,7 @@ Page({
     });
     this.getGoodsList(true);
   },
-  goSearch: function(e){  
+  goSearchPage: function(e){  
     wx.navigateTo({
       url: '../search/search'
     })

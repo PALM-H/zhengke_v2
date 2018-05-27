@@ -79,6 +79,7 @@
   width: 100rpx;
   height: 36rpx;
   text-align: center;
+  overflow:visible;
 }
 .msgwrap .rightwrap .sharewrap .imgwrap image{
   width: 41rpx;

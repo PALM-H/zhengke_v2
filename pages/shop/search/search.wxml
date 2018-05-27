@@ -3,7 +3,7 @@
   <view class="searchbar">
     <view class="searchwrap">
       <image class="icon" src="../../../images/shop/icon32.png"></image>
-      <input type="text" class="word" confirm-type="search" placeholder="输入商品名进行搜索" />
+      <input type="text" class="word" confirm-type="search" value="{{keyword}}" bindinput="bindinput" placeholder="输入商品名进行搜索" />
       <text class="righttext">搜索</text>
     </view>
   </view>
