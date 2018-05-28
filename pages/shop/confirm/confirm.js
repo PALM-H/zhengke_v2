@@ -13,18 +13,18 @@ Page({
     isCheck:false,//优惠码是否被检测过
     codeTips:'* 优惠码领取需要从商家处进行获取，暂不使用时请勿输入',
 
-    name: '',
-    phone: '',
-    address: '',
-    addressid:'',
-    desc:'',
+    addressList:[],//收货地址列表
+    name: '',//收货人名称
+    phone: '',//收货手机
+    address: '',//收货地址
+    addressid:'',//收货地址id
+    desc:''
     
-    itemListArr: [
-      {url:'../../../images/mine/itemexp1.jpg',name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',ver:'标准  黑色  4+46G',price:'3589.00',num:1},
-      {url:'../../../images/mine/itemexp2.jpg',name:'联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置',ver:'版本：游戏之王  16+1T+225 SSD',price:'8589.00',num:1}
-    ]
   },
   onLoad(options){
+    //获取默认地址
+    this.getAddressList();
+    
    this.getCartListForCartPage();
   },
   onShow(){
@@ -138,29 +138,90 @@ Page({
       desc:desc
     })
   },
+
+  //获取所有的收货地址
+  getAddressList(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=zkapi&act=address_list',
+      method: "POST",
+      data: {
+        user_id: app.globalData.uid
+      },
+      success: (res)=> {
+        wx.hideLoading()
+        console.log(res,'获取收货地址')
+        if(res.data.code==1000){
+          this.setData({
+            addressList:res.data.address
+          })
+        
+          let addressList=this.data.addressList;
+          addressList.forEach(ele => {
+            if(ele.is_default==1){
+              console.log('把默认地址设置到全局里面');
+          //把默认地址设置到全局里面
+          app.globalData.userName=ele.accept_name;
+          app.globalData.userPhone=ele.mobile;
+          app.globalData.address=`${ele.province_name}${ele.city_name}${ele.county_name} ${ele.addr}`
+          app.globalData.addressid=ele.id;
+          this.setData({
+            name:app.globalData.userName,
+            phone:app.globalData.userPhone,
+            address:app.globalData.address,
+            addressid:app.globalData.addressid
+          })
+            }
+          });
+       
+        }
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
   goPay: function(e) {
-   if(this.data.coupon_code.trim()!=''){
-    if(!this.data.isCheck){
+    if(this.data.addressList.length==0){
       wx.showModal({
         title: '提示',
         showCancel:false,
-        content: '请先检测你的优惠码',
-        success: function(res) {
-         
-        }
+        content: '请添加你的默认地址'
       })
       return;
     }
-   }
+  
     let params={
       merchant_id: app.globalData.merchant_id,
       user_id: app.globalData.uid,
       address_id:app.globalData.addressid,
-      product_info:this.data.product_info,
+      product_info:JSON.stringify(this.data.product_info),
       // util.hexMD5(password)
       md5_sign:util.hexMD5(`${app.globalData.merchant_id}${app.globalData.uid}***zk3c***order#*`),
       user_remark:this.data.desc
     }
+    if(this.data.coupon_code.trim()!=''){
+      if(!this.data.isCheck){
+        wx.showModal({
+          title: '提示',
+          showCancel:false,
+          content: '请先检测你的优惠码'
+        })
+        return;
+      }else{
+        params.coupon_code=this.data.coupon_code;
+      }
+     }
+    console.log(params,33333333333);
+    console.log(typeof this.data.product_info);
     wx.showLoading({
       title:'加载中...',
       mask: true,

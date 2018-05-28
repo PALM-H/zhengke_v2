@@ -1,13 +1,18 @@
 
 <view class="page">
   <view class="address flexwrap" bindtap="goAddress">
-		<view class="leftwrap">
-			<view class="name">
+		<view class="leftwrap flexwrap">
+			<block wx:if="{{addressList.length!=0}}">
+				<view class="name">
 				<text>{{name}}　{{phone}}</text>
 			</view>
 			<view class="adrs">
 				<text>{{address}}</text>
 			</view>
+			</block>
+			<block wx:else>
+				<button type="primary" style="display:inline-block; font-size:30rpx;width:120rpx;">点击添加收货地址</button>
+			</block>
 		</view>
 		<view class="rightwrap flexwrap">
 			<image src="../../../images/shop/icon31.png"></image>

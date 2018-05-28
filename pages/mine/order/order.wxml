@@ -1,31 +1,90 @@
 
+
+
+
+
 <scroll-view scroll-y class="page">
   <!-- 提示，接入后台后不要忘了滚动加载，可以使用scroll-view的scrolltolower实现 -->
-  <view class="navbar flexwrap" wx:if="{{activeIndex!=5}}">
-    <view id="0" class="navbar-item first-navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
+  <view class="navbar flexwrap" wx:if="{{activeIndex!=0}}">
+    <view data-id="1" class="navbar-item first-navbar-item {{activeIndex == 1 ? 'active' : ''}}" bindtap="{{activeIndex != 1 ? 'tabClick' : ''}}">
       <view class="textwrap"><text>待付款</text></view>
     </view>
-    <view id="1" class="navbar-item {{activeIndex == 1 ? 'active' : ''}}" bindtap="{{activeIndex != 1 ? 'tabClick' : ''}}">
+    <view data-id="2" class="navbar-item {{activeIndex == 2 ? 'active' : ''}}" bindtap="{{activeIndex != 2 ? 'tabClick' : ''}}">
       <view class="textwrap"><text>待发货</text></view>
     </view>
-    <view id="2" class="navbar-item {{activeIndex == 2 ? 'active' : ''}}" bindtap="{{activeIndex != 2 ? 'tabClick' : ''}}">
+    <view data-id="3" class="navbar-item {{activeIndex == 3 ? 'active' : ''}}" bindtap="{{activeIndex != 3 ? 'tabClick' : ''}}">
       <view class="textwrap"><text>待收货</text></view>
     </view>
-    <view id="3" class="navbar-item {{activeIndex == 3 ? 'active' : ''}}" bindtap="{{activeIndex != 3 ? 'tabClick' : ''}}">
+    <view data-id="4" class="navbar-item {{activeIndex == 4 ? 'active' : ''}}" bindtap="{{activeIndex != 4 ? 'tabClick' : ''}}">
       <view class="textwrap"><text>待评价</text></view>
     </view>
-    <view id="4" class="navbar-item {{activeIndex == 4 ? 'active' : ''}}" bindtap="{{activeIndex != 4 ? 'tabClick' : ''}}">
+    <view data-id="5" class="navbar-item {{activeIndex == 5 ? 'active' : ''}}" bindtap="{{activeIndex != 5 ? 'tabClick' : ''}}">
       <view class="textwrap"><text>已完成</text></view>
     </view>
   </view>
-  <view class="navbar flexwrap" wx:if="{{activeIndex==5}}">
+  <view class="navbar flexwrap" wx:if="{{activeIndex==0}}">
     <view class="navbar-item">
       <view class="textwrap"><text>全部订单</text></view>
     </view>
   </view>
+
+
+
+
+
   <view class="itemlist">
+    <block wx:for="{{orders}}" wx:key="unique" wx:for-index="oIdx" wx:for-item="oItem">
+    <view class="item">
+      <view class="titlewrap flexwrap">
+        <text class="ordernum">订单号：{{oItem.order_info.order_no}}</text>
+        <text class="status" wx:if="{{oItem.order_info.order_status==1}}" data-order_status="{{oItem.order_info.order_status}}" data-order_id="{{oItem.order_info.order_id}}" bindtap="goDetailPage">待付款</text>
+        <text class="status" wx:if="{{oItem.order_info.order_status==2}}" data-order_status="{{oItem.order_info.order_status}}" data-order_id="{{oItem.order_info.order_id}}" bindtap="goDetailPage">待发货</text>
+        <text class="status" wx:if="{{oItem.order_info.order_status==3}}" data-order_status="{{oItem.order_info.order_status}}" data-order_id="{{oItem.order_info.order_id}}" bindtap="goDetailPage">待收货</text>
+        <text class="status" wx:if="{{oItem.order_info.order_status==4}}" data-order_status="{{oItem.order_info.order_status}}" data-order_id="{{oItem.order_info.order_id}}" bindtap="goDetailPage">待评价</text>
+        <text class="status" wx:if="{{oItem.order_info.order_status==5}}" data-order_status="{{oItem.order_info.order_status}}" data-order_id="{{oItem.order_info.order_id}}" bindtap="goDetailPage">已完成</text>
+      </view>
+      <view>
+        <block wx:for="{{orders[oIdx].goods_info}}" wx:key="unique" wx:for-index="iIdx" wx:for-item="iItem">
+        <view class="itemwrap">
+          <image class="itemimg" src="{{iItem.img}}"></image>
+          <view class="namewrap">
+            <text>{{iItem.name}}</text>
+          </view>
+          <view class="versionwrap">
+            <text>版本：{{iItem.spec}}</text>
+          </view>
+          <view class="pricewrap">
+            <text>￥{{iItem.sell_price}}</text>
+          </view>
+          <view class="countwrap">
+            <text>数量：{{iItem.goods_nums}}</text>
+          </view>
+        </view>
+        </block>
+      </view>
+      <view class="bottomtpl bottomtpl1 flexwrap" wx:if="{{oItem.order_info.order_status==1}}">
+        <text class="sum">商品数量：{{oItem.order_info.goods_sum}}</text>
+        <text class="total">订单金额：￥{{oItem.order_info.goods_sum_price}}</text>
+        <text class="action" catchtap="goPay">去支付</text>
+      </view>
+      <view class="bottomtpl bottomtpl2 flexwrap" wx:if="{{oItem.order_info.order_status==2}}">
+        <text class="sum">商品数量：{{oItem.order_info.goods_sum}}</text>
+        <text class="total">订单金额：￥{{oItem.order_info.goods_sum_price}}</text>
+      </view>
+      <view class="bottomtpl bottomtpl3 flexwrap" wx:if="{{oItem.order_info.order_status==3||oItem.order_info.order_status==4||oItem.order_info.order_status==5}}">
+        <text class="sum">商品数量：{{oItem.order_info.goods_sum}}</text>
+        <text class="total">订单金额：￥{{oItem.order_info.goods_sum_price}}</text>
+        <!-- <text class="express">{{oItem.express}}</text> -->
+        <text class="action" data-order_no="{{oItem.order_info.order_no}}" catchtap="showConfirm" wx:if="{{oItem.order_info.order_status==3}}">确认收货</text>
+        <text class="action" catchtap="goComment"  data-order_id="{{oItem.order_info.order_id}}" wx:if="{{oItem.order_info.order_status==4}}">去评价</text>
+        <!-- <image class="car" src="../../../images/mine/express-car.png"></image> -->
+      </view>
+    </view>
+    </block>
+  </view>
+  <!-- <view class="itemlist">
     <block wx:for="{{orderArr}}" wx:key="unique" wx:for-index="oIdx" wx:for-item="oItem">
-    <view class="item" data-status="{{oItem.status}}" bindtap="goDetail" wx:if="{{oItem.status==activeIndex||activeIndex==5}}">
+    <view class="item" data-status="{{oItem.status}}" bindtap="goDetail" wx:if="{{oItem.status==activeIndex||activeIndex==0}}">
       <view class="titlewrap flexwrap">
         <text class="ordernum">订单号：{{oItem.orderNum}}</text>
         <text class="status" wx:if="{{oItem.status==0}}">待付款</text>
@@ -53,16 +112,16 @@
         </view>
         </block>
       </view>
-      <view class="bottomtpl bottomtpl1 flexwrap" wx:if="{{oItem.status==0}}">
+      <view class="bottomtpl bottomtpl1 flexwrap" wx:if="{{oItem.status==1}}">
         <text class="sum">商品数量：{{oItem.count}}</text>
         <text class="total">订单金额：￥{{oItem.total}}</text>
         <text class="action" catchtap="goPay">去支付</text>
       </view>
-      <view class="bottomtpl bottomtpl2 flexwrap" wx:if="{{oItem.status==1}}">
+      <view class="bottomtpl bottomtpl2 flexwrap" wx:if="{{oItem.status==2}}">
         <text class="sum">商品数量：{{oItem.count}}</text>
         <text class="total">订单金额：￥{{oItem.total}}</text>
       </view>
-      <view class="bottomtpl bottomtpl3 flexwrap" wx:if="{{oItem.status==2||oItem.status==3||oItem.status==4}}">
+      <view class="bottomtpl bottomtpl3 flexwrap" wx:if="{{oItem.status==3||oItem.status==4||oItem.status==5}}">
         <text class="sum">商品数量：{{oItem.count}}</text>
         <text class="total">订单金额：￥{{oItem.total}}</text>
         <text class="express">{{oItem.express}}</text>
@@ -72,7 +131,14 @@
       </view>
     </view>
     </block>
-  </view>
+  </view> -->
+
+
+
+
+
+
+
   <view class="confirm {{confirmHide == 1 ? 'hide' : ''}}">
     <view class="black"></view>
     <view class="dialog">

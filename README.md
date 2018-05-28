@@ -1,7 +1,6 @@
 # 目录说明
 
 - shop 商城
-
     - index 商城首页
     - class 商品分类页面
     - itemlist 商品列表页面
@@ -16,3 +15,6 @@
     - address 收货地址列表
     - news 系统消息
     - article 系统消息详情
+    - order 订单列表
+    - detail 订单列表详情
+    - remark 评价页面

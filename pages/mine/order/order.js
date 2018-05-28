@@ -1,140 +1,93 @@
+//获取应用实例
+const app = getApp()
+
+var util = require('../../../utils/md5.js')  
 
 Page({
   data: {
+   orders:[],
     activeIndex: 0,
     confirmHide: 1,
-    orderArr :[
-      {
-        status:0,
-        orderNum:'201805161315564585',
-        count:2,
-        total:'12178.00',
-        items:[
-          {
-            name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',
-            url:'../../../images/mine/itemexp1.jpg',
-            ver:'标准 黑色 4+46G',
-            price:'3589.00',
-            num:'1'
-          },{
-            name:'联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置',
-            url:'../../../images/mine/itemexp2.jpg',
-            ver:'游戏之王  16+1T+225 SSD',
-            price:'8589.00',
-            num:'1'
-          }
-        ]
-      },{
-        status:1,
-        orderNum:'201805161315564586',
-        count:2,
-        total:'12178.00',
-        items:[
-          {
-            name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',
-            url:'../../../images/mine/itemexp1.jpg',
-            ver:'标准 黑色 4+46G',
-            price:'3589.00',
-            num:'1'
-          },{
-            name:'联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置',
-            url:'../../../images/mine/itemexp2.jpg',
-            ver:'游戏之王  16+1T+225 SSD',
-            price:'8589.00',
-            num:'1'
-          }
-        ]
-      },{
-        status:2,
-        orderNum:'201805161315564587',
-        count:2,
-        total:'12178.00',
-        express:'已到达顺丰黄村网点',
-        items:[
-          {
-            name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',
-            url:'../../../images/mine/itemexp1.jpg',
-            ver:'标准 黑色 4+46G',
-            price:'3589.00',
-            num:'1'
-          },{
-            name:'联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置',
-            url:'../../../images/mine/itemexp2.jpg',
-            ver:'游戏之王  16+1T+225 SSD',
-            price:'8589.00',
-            num:'1'
-          }
-        ]
-      },{
-        status:3,
-        orderNum:'201805161315564588',
-        count:2,
-        total:'12178.00',
-        express:'已签收',
-        items:[
-          {
-            name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',
-            url:'../../../images/mine/itemexp1.jpg',
-            ver:'标准 黑色 4+46G',
-            price:'3589.00',
-            num:'1'
-          },{
-            name:'联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置',
-            url:'../../../images/mine/itemexp2.jpg',
-            ver:'游戏之王  16+1T+225 SSD',
-            price:'8589.00',
-            num:'1'
-          }
-        ]
-      },{
-        status:4,
-        orderNum:'201805161315564589',
-        count:2,
-        total:'12178.00',
-        express:'已签收',
-        items:[
-          {
-            name:'小米 红米手机5A 全网通 3+64G 全金属机身 移动、联通、电信4G全网通手机',
-            url:'../../../images/mine/itemexp1.jpg',
-            ver:'标准 黑色 4+46G',
-            price:'3589.00',
-            num:'1'
-          },{
-            name:'联想梦想系列、游戏之王台式机，可自行升级CPU、内存、显卡等硬件配置',
-            url:'../../../images/mine/itemexp2.jpg',
-            ver:'游戏之王  16+1T+225 SSD',
-            price:'8589.00',
-            num:'1'
-          }
-        ]
-      }
-    ]
+    order_no:''
+    
   },
   onLoad: function (options) {
-    var that = this;
-    // activeIndex 0-待付款 1-待发货 2-待收货 3-待评价 4-已完成 可酌情调整
-    if(options.index!=5){
+    
+    // activeIndex 1-待付款 2-待发货 3-待收货 4-待评价 5-已完成 0-所有 可酌情调整
       this.setData({
         activeIndex: options.index
       });
-    }else{
-      //注意：此处个人中心传过来的index若为5时，说明用户点击了个人中心的 订单中心 按钮，请跟据后台判断决定显示哪种状态的订单并给activeIndex赋对应值
-      this.setData({
-        activeIndex: 5
-      });
-    }
+     
   },
+  onShow(){
+    this.getOrders(this.data.activeIndex);
+  },
+
+   //订单列表
+   getOrders(status){
+     
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    let params={
+      user_id: app.globalData.uid,
+      md5_sign:util.hexMD5(`${app.globalData.uid}***zk3c***order#*`),
+      p:1,
+      page_size:15
+    }
+    if(status){
+      params.status=status
+    }
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=mallapi&act=orders',
+      method: "POST",
+      data: params,
+      success: (res)=> {
+        console.log(res,'获取订单列表')
+        if(res.data.code==1000){
+          this.setData({
+            orders:res.data.orders,
+          })
+        }
+        wx.hideLoading()
+        
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //navbar点击事件
   tabClick: function(e) {
-		var that = this;
     this.setData({
-			activeIndex: e.currentTarget.id
-		});
+			activeIndex: e.currentTarget.dataset.id
+    });
+    this.getOrders(this.data.activeIndex)
   },
-  goDetail: function(e) {
+  goDetailPage: function(e) {
     // 注意：此处仅仅为了演示需要，才把订单状态传到订单详情页，整合后台后应传递订单号，详情页中后台根据订单号返回状态
     wx.navigateTo({
-      url: '../detail/detail?status='+e.currentTarget.dataset.status
+      url: '../detail/detail?order_id='+e.currentTarget.dataset.order_id+'&order_status='+e.currentTarget.dataset.order_status
     })
   },
   goPay:function(){
@@ -147,15 +100,58 @@ Page({
       url: '../remark/remark'
     })
   },
-  confirm:function(){
+  showConfirm:function(e){
+    let order_no=e.currentTarget.dataset.order_no;
     this.setData({
-			confirmHide: 0
+      confirmHide: 0,
+      order_no:order_no
 		});
   },
   cancel:function(){
     this.setData({
 			confirmHide: 1
 		});
+  },
+  comfirm(){
+    this.changeOrderStatus()
+  },
+   //修改订单状态
+   changeOrderStatus(){
+    //修改订单状态
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=mallapi&act=up_order_status',
+      method: "POST",
+      data: {
+        user_id: app.globalData.uid,
+        order_no: this.data.order_no,
+        status:4,//确认收货
+        md5_sign:util.hexMD5(`${this.data.order_no}***zk3c***order#*`),
+      },
+      success: (res)=> {
+        console.log(res,'修改订单状态')
+       if(res.data.code==1000){
+        this.setData({
+          confirmHide: 1
+        });
+        this.getOrders();
+       
+       }
+        wx.hideLoading()
+        
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
   },
   onShareAppMessage: function () {
     return {

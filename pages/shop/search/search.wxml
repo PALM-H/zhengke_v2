@@ -7,23 +7,28 @@
       <text class="righttext" bindtap="goSearch">搜索</text>
     </view>
   </view>
-  <view class="resultlist">
-    <block wx:for="{{resultListArr}}" wx:key="unique">
+  <scroll-view scroll-y style="calc(100vh-100rpx)" bindscrolltolower="scrollToLower" class="resultlist">
+    <block wx:if="{{resultList.length!=0}}">
+      <block wx:for="{{resultList}}" wx:key="unique">
       <view class="resultwrap flexwrap" bindtap="goDetail">
         <view class="imagewrap">
-          <image src="{{item.url}}"></image>
+          <image src="{{item.img}}"></image>
           <view class="shadow"></view>
           <view class="textwrap">
-            <text>￥{{item.price}}</text>
+            <text>￥{{item.sell_price}}</text>
           </view>
         </view>
         <view class="itemname">
           <text>{{item.name}}</text>
         </view>
         <view class="sales">
-          <text>销量：{{item.sales}}</text>
+          <text>销量：{{item.sell_num}}</text>
         </view>
       </view>
     </block> 
-  </view>
+    </block>
+    <block wx:else>
+      空空如也~
+    </block>
+  </scroll-view>
 </view>

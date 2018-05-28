@@ -55,12 +55,12 @@
       "pagePath":"pages/news/news",
       "iconPath":"images/news.png",
       "selectedIconPath":"images/news-on.png",
-      "text":"新闻"
+      "text":"咨询"
     },{
       "pagePath":"pages/shop/index/index",
       "iconPath":"images/buy.png",
       "selectedIconPath":"images/buy-on.png",
-      "text":"商城"
+      "text":"发现"
     },{
       "pagePath":"pages/mine/index/index",
       "iconPath":"images/mine.png",

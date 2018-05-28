@@ -26,7 +26,7 @@
   color: #6a6a6a;
   font-size: 24rpx;
 }
-.titlewrap .status{
+.titlewrap .order_id{
   position: absolute;
   display: inline-block;
   color: #00a7ff;
@@ -217,7 +217,7 @@
   background: #fff;
   z-index: 3;
 }
-.express .msglist .expmsg:first-child .point{
+.express .msglist .expmsg:not(:last-child) .point{
   background: #00a7ff;
 }
 .express .msglist .expmsg .topline{
@@ -344,7 +344,7 @@
   right: 182rpx;
 }
 .footerwrap .lastrightbtn{
-  right: 334rpx;
+  right: 206rpx;
 }
 
 .confirm{

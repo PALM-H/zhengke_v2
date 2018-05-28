@@ -7,6 +7,7 @@ Page({
   onLoad: function () {
     
   },
+ 
   onShareAppMessage: function () {
     return {
       title: '挣客3C行业平台服务商',
