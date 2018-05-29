@@ -87,7 +87,7 @@
   position: relative;
   display: inline-block;
   width: 48rpx;
-  height: 50rpx;
+  min-height: 50rpx;
   margin-right: 24rpx;
 }
 .itemwrap .imagewrap image{
@@ -98,8 +98,8 @@
   position: relative;
   display: inline-block;
   width: 590rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  min-height: 50rpx;
+  line-height:1.5;
 }
 .itemwrap .textwrap text{
   font-size: 30rpx;
