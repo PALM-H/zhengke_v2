@@ -82,7 +82,7 @@ Page({
   },
   goCmMsg:function(){
     wx.navigateTo({
-      url: '../cmend/cmend'
+      url: '../cmend/cmend?order_id='+this.data.order_id
     })
   },
   goService:function(){

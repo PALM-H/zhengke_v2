@@ -22,10 +22,30 @@ Page({
     itemArr: [],
     page:1,
     pageNum:15,
-    page_count:0
+    page_count:0,
+
+    //window高度
+    windowHeight:0
   },
 	onLoad() {
    this.getTab();
+  
+  },
+  onShow(){
+    wx.getSystemInfo({
+      success: (res)=> {
+        this.setData({
+          windowHeight:res.windowHeight
+        })
+        // console.log(res.model)
+        // console.log(res.pixelRatio)
+        // console.log(res.windowWidth)
+        // console.log(res.windowHeight)
+        // console.log(res.language)
+        // console.log(res.version)
+        // console.log(res.platform)
+      }
+    })
   },
 
   //获取tab

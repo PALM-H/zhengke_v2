@@ -58,17 +58,32 @@ Page({
   },
   callphone(e){
     wx.makePhoneCall({  
-      phoneNumber: this.data.phone
+      phoneNumber: this.data.store_phone
     })  
   },
   clickToMap(e){
-    wx.openLocation({
-      latitude: parseFloat(this.data.latitude),
-      longitude: parseFloat(this.data.longitude),
-      scale: 28,
-      name: this.data.name,
-      address: this.data.address
+    return;
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function(res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        wx.openLocation({
+          latitude: latitude,
+          longitude: longitude,
+          scale: 28,
+          name:'测试名称',
+          address:'测试地址'
+        })
+      }
     })
+    // wx.openLocation({
+    //   latitude: parseFloat(this.data.latitude),
+    //   longitude: parseFloat(this.data.longitude),
+    //   scale: 18,
+    //   name: this.data.store_name,
+    //   address: this.data.store_address
+    // })
   },
   onShareAppMessage () {
     return {
