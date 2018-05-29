@@ -82,7 +82,19 @@
         </view>
       </view>
     </view>
-    <view class="quick quick-list flexwrap" bindtap="goService">
+     
+      <view class="quick quick-list flexwrap">
+      <view class="quick-item flexwrap">
+        <view class="imagewrap">
+          <image src="../../../images/mine/icon8.png"></image>
+        </view>
+        <button class="lianxi" open-type='contact'>联系客服</button>
+        <view class="rightimage">
+          <image src="../../../images/mine/right-arrow.png"></image>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="quick quick-list flexwrap" bindtap="goService">
       <view class="quick-item flexwrap">
         <view class="imagewrap">
           <image src="../../../images/mine/icon8.png"></image>
@@ -94,7 +106,7 @@
           <image src="../../../images/mine/right-arrow.png"></image>
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="quick quick-list flexwrap" bindtap="goCollection">
       <view class="quick-item flexwrap">
         <view class="imagewrap">

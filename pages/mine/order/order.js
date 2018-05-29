@@ -95,9 +95,12 @@ Page({
       url: '../tips/tips?type=1'
     })
   },
-  goComment:function(){
+  goComment:function(e){
+    let index=e.currentTarget.dataset.index;
+    let goods_id=e.currentTarget.dataset.goods_id;
+    let order_id=e.currentTarget.dataset.order_id;
     wx.navigateTo({
-      url: '../remark/remark'
+      url: `../remark/remark?goods_id=${goods_id}&order_id=${order_id}&index=${index}`
     })
   },
   showConfirm:function(e){
@@ -155,8 +158,8 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '挣客3C行业平台服务商',
-      imageUrl: '/images/share.jpg',
+      title: app.globalData.store_name,
+      imageUrl: app.globalData.logo_path,
       path: '/pages/index/index'
     }
   }

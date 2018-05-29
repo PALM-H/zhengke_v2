@@ -70,11 +70,21 @@ page{
   position: relative;  
 }  
 .swiper{
-  height: 276rpx;
+  height: 374rpx;
 }
 .swiper image{
   width:100%;
-  height:276rpx;
+  height:374rpx;
+}
+.swiper .textwrap{
+  position: absolute;
+  width: 100%;
+  bottom: 46rpx;
+  text-align: center;
+}
+.swiper .textwrap text{
+  font-size: 34rpx;
+  color: #ffffff;
 }
 
 .dots{  
@@ -86,7 +96,7 @@ page{
   justify-content: center;  
 }  
 .dots .dot{  
-  margin: 0 5rpx;  
+  margin: 0 10rpx;  
   width: 12rpx;  
   height: 12rpx;  
   background: #fff;  

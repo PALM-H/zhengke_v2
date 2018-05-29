@@ -15,11 +15,10 @@ Page({
     title: '',
     user: '',
     time: '',
-    content: '',
+    content: '',//文章内容，可能是图片或者链接
+    h5Url:'',
+    contentType:'',
     store:null,//广告
-    
-
-    
 
     //swiper
     indicatorDots: false,
@@ -36,12 +35,11 @@ Page({
       id: options.id,
       type:options.type
     });
-   //获取文章详情
+   
     this.getInfo();
-    //获取文章底部广告
+
+    
     this.get_foot_banner();
-  
-  
   },
   get_foot_banner(){
     wx.request({
@@ -75,18 +73,33 @@ Page({
       },
       success:(res)=> {
         wx.hideLoading()
-        console.log(res,'获取文章/广告详情');
-       
-        if(res.data.code==1000){
-          this.setData({
-            store:res.data.info.store,
-            title: res.data.info.title,
-            user: res.data.info.author,
-            time: res.data.info.add_time,
-            // content: res.data.info.content,
-          });
+        console.log(res,'获取文章详情');
+        this.setData({
+          store:res.data.info.store,
+          title: res.data.info.title,
+					user: res.data.info.author,
+					time: res.data.info.add_time,
+					// content: res.data.info.content,
+        });
+        if(res.data.info.type==="article"){
           WxParse.wxParse('article', 'html', res.data.info.content, this, 5);
+          this.setData({
+            contentType:'article'
+          })
+          
+        }else if(res.data.info.type==="img"){
+          this.setData({
+            content:'http://service.ixingtu.com/ixtres/news/image/20180413/1523587100332024657.jpg',
+            contentType:'img'
+          })
+        }else if(res.data.info.type==="url"){
+          this.setData({
+            h5Url:'https://www.baidu.com',
+            contentType:'url'
+          })
         }
+        
+       
         
       },
       fail: (err)=>{

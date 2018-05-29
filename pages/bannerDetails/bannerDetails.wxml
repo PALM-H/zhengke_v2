@@ -9,8 +9,16 @@
       <text>{{user}}　{{time}}</text>
     </view>
     <view class="container">
+    <block wx:if="{{contentType=='article'}}">
       <import src="../../wxParse/wxParse.wxml"/>
       <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    </block>
+    <block wx:elif="{{contentType=='img'}}">
+        <image src="{{content}}"/>
+    </block>
+    <block wx:else>
+        <web-view src="{{h5Url}}"></web-view>
+    </block>
     
       
       
@@ -22,8 +30,7 @@
       <text class="address" selectable>地址：{{store.store_address}}</text>
     </view>
   </view>
-  
-  <block wx:if="{{imgUrls.length>0}}">
+   <block wx:if="{{imgUrls.length>0}}">
   <image class="ad-line" src="../../images/ad-line.png" />
     <view class="ad">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}"

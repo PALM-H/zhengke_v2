@@ -35,7 +35,7 @@
       <view class="titlewrap flexwrap">
         <text class="title">商品评价</text>
       </view>
-      <block wx:for="{{goods_info}}" wx:key="unique">
+      <block wx:for="{{order_goods}}" wx:key="unique">
       <view class="itemlist">
         <view class="itemwrap">
           <image class="itemimg" src="{{item.img}}"></image>
@@ -46,7 +46,7 @@
             <text>{{item.spec}}</text>
           </view>
           <view class="pricewrap">
-            <text>￥{{item.sell_price}}</text>
+            <text>￥{{item.goods_price}}</text>
           </view>
         </view>
       </view>

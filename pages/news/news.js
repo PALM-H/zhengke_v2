@@ -18,13 +18,20 @@ Page({
     duration: 500,
 		swiperCurrent: 0,
 
-    //list
-		itemArr: [
-			
-		]
+    //文章list
+    itemArr: [],
+    page:1,
+    pageNum:15,
+    page_count:0
   },
 	onLoad() {
+   this.getTab();
+  },
+
+  //获取tab
+  getTab(){
     wx.showLoading({
+      title:'加载中...',
       mask: true,
     })
     wx.request({
@@ -37,21 +44,44 @@ Page({
         m_id: app.globalData.merchant_id
       },
       success: (res)=> {
-        console.log(res.data.data,'21tabTitle')
-        this.setData({
-          tabs: res.data.data,
-          tabWidth: res.data.data.length*120+120
-        });
-				this.getAtcList(0)
+        wx.hideLoading()
+        console.log(res,'获取tab标题 ')
+        if(res.data.code==1000){
+          this.setData({
+            tabs: res.data.data,
+            tabWidth: res.data.data.length*120+120
+          });
+          //一开始默认是推荐
+				this.getAtcList(true)
+        }
+        
       },
       fail: (err)=>{
         console.log(err);
       }
     })
   },
+
 	//获取分类文章
-	getAtcList(id){
-		var that = this;
+	getAtcList(init){
+    if(init){
+      this.setData({
+        page:1,
+        itemArr:[],
+        imgUrls:[]
+      })
+    }else{
+      if(this.data.page>=this.data.page_count){
+        console.log('已经到总页面数');
+        return;
+      }
+      this.setData({
+        page:this.data.page+1
+      })
+    }
+
+
+
 		wx.request({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -59,36 +89,52 @@ Page({
       url: app.globalData.apiUrl+'con=contentapi&act=get_article_list',
       method: "POST",
       data: {
-        cid: id,
+        c_id: this.data.activeIndex,
         m_id:app.globalData.merchant_id,
-        page: 1
+        page: this.data.page,
+        pageNum:this.data.pageNum
       },
-      success: function(res) {
-        console.log(res.data,'22article')
-        that.setData({
-          itemArr: res.data.info.list,
-					imgUrls: res.data.banner_list
-        });
+      success: (res)=> {
+        console.log(res,'获取分类文章')
         wx.hideLoading()
-      },
-      fail: function(err){
+        if(res.data.code==1000){
+          this.setData({
+            imgUrls: res.data.banner_list,
+            page_count:res.data.info.page_count
+          });
+          if(this.data.itemArr.length>0){
+            this.setData({
+              itemArr: this.data.itemArr.concat(res.data.info.list)
+            })
+          }else{
+            this.setData({
+              itemArr: res.data.info.list
+            })
+          
+        }
+        console.log(this.data.page_count,111);
+      }
+    },
+      
+      fail: (err)=>{
         console.log(err);
       }
     })
-	},
+  },
+  //滑动底部
+  scrollToLower(){
+    console.log('已经滑到底部了');
+    this.getAtcList();
+  },
 	//navbar点击事件
   tabClick: function(e) {
 		wx.showLoading({
       mask: true,
     })
     this.setData({
-			activeIndex: e.currentTarget.id
+			activeIndex: e.currentTarget.dataset.id
 		});
-		if(e.currentTarget.id == 0){
-			this.getAtcList(0)
-		}else{
-			this.getAtcList(this.data.tabs[e.currentTarget.id-1].c_id)
-		}
+    this.getAtcList(true)
   },
 	//轮播切换相关
   swiperChange: function(e){  
@@ -99,7 +145,7 @@ Page({
   //轮播图点击
   handleBannerClick(e){
     wx.navigateTo({
-      url: `../article/article?id=${e.currentTarget.dataset.id}&type=${e.currentTarget.dataset.type}`
+      url: `../bannerDetails/bannerDetails?id=${e.currentTarget.dataset.id}&type=${e.currentTarget.dataset.type}`
     })
   },
 	//文章点击事件
@@ -110,8 +156,8 @@ Page({
   },
 	onShareAppMessage: function () {
     return {
-      title: '挣客3C行业平台服务商',
-      imageUrl: '/images/share.jpg',
+      title: app.globalData.store_name,
+      imageUrl: app.globalData.logo_path,
       path: '/pages/index/index'
     }
   }

@@ -68,8 +68,8 @@ Page({
 
   onShareAppMessage: function () {
     return {
-      title: '挣客3C行业平台服务商',
-      imageUrl: '/images/share.jpg',
+      title: app.globalData.store_name,
+      imageUrl: app.globalData.logo_path,
       path: '/pages/index/index'
     }
   }

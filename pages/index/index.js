@@ -47,6 +47,8 @@ Page({
         //   latitude: res.data.info.latitude,
         //   longitude: res.data.info.longitude,
         });
+        app.globalData.store_name=res.data.info.store_name;
+        app.globalData.logo_path=res.data.info.logo_path;
         wx.hideLoading()
       },
       fail: (err)=>{
@@ -70,8 +72,8 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '挣客3C行业平台服务商',
-      imageUrl: '/images/share.jpg',
+      title: app.globalData.store_name,
+      imageUrl: app.globalData.logo_path,
       path: '/pages/index/index'
     }
   }

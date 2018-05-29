@@ -93,6 +93,23 @@
   height: 47rpx;
   margin: 0 auto;
 }
+.quick .lianxi{
+  width:100%;
+  padding:0;
+  margin:0;
+  position:absolute;
+  left:0;
+  background:none;
+  text-align:left;
+  padding-left:88rpx;
+  font-size:25rpx;
+  color:#6a6a6a;
+
+
+}
+.quick .lianxi:after{
+  border: none;
+}
 .quick-first{
   border-top: 1rpx #eeeeee solid;
   width: 690rpx;

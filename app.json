@@ -3,9 +3,10 @@
     
     "pages/index/index",
     "pages/mine/index/index",
-    
     "pages/news/news",
     "pages/article/article",
+    "pages/bannerDetails/bannerDetails",
+
     "pages/shop/index/index",
     "pages/shop/class/class",
     "pages/shop/itemlist/itemlist",
@@ -21,13 +22,12 @@
     "pages/mine/article/article",
     "pages/mine/msg/msg",
     "pages/mine/address/address",
-    "pages/mine/editadrs3/editadrs3",
     "pages/mine/editadrs/editadrs",
     "pages/mine/addadrs/addadrs",
-    
     "pages/mine/order/order",
     "pages/mine/detail/detail",
     "pages/mine/remark/remark",
+    "pages/mine/remark2/remark2",
     "pages/mine/cmend/cmend",
     "pages/mine/service/service",
     "pages/mine/apply/apply",
@@ -38,7 +38,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "挣客",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle":"black"
   },
   "tabBar":{

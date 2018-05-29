@@ -7,8 +7,7 @@ Page({
   data: {
     goods_id:'',//从order页面获取
     order_id:'',//从order页面获取
-    goods_info:null,//从order页面获取
-    index:0,//从order页面获取
+    order_goods:null,//从order页面获取
 
     prMark: [0,0,0], //总体评价数组
     itemMark: [0,0], //注意：itemMark为商品打分数组，对接后台时应根据后台数据重新赋值，例如3个商品请赋值 [0,0,0] ，或根据自己思路修改
@@ -18,8 +17,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       goods_id:options.goods_id,
-      order_id:options.order_id,
-      index:options.index
+      order_id:options.order_id
     })
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];   //当前页面
@@ -27,7 +25,7 @@ Page({
     console.log(options,11);
     console.log(prevPage,111);
       this.setData({
-        goods_info:prevPage.data.orders[this.data.index].goods_info
+        order_goods:prevPage.data.orders.order_goods
       })
     
   },
@@ -55,7 +53,7 @@ Page({
       integrity_score:this.data.prMark[2],
       product_scores:JSON.stringify(this.data.product_scores)
     }
-   
+    console.log(params,11);
     wx.request({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -87,13 +85,14 @@ Page({
   },
   save: function () {
   let product_scores=[];
-   this.data.goods_info.forEach((ele,index) => {
+   this.data.order_goods.forEach((ele,index) => {
      //产品id,商品与描述一致性评分,评论内容
      product_scores.push([ele.product_id,this.data.itemMark[index],this.data.evaluate[index]])
    });
    this.setData({
     product_scores:product_scores
    })
+   console.log(product_scores,111);
    this.evaluateOrders()
   },
   //主项目评分 

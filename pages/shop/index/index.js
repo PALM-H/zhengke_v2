@@ -6,13 +6,7 @@ Page({
     userInfo: null,
 
     searchFill: false,
-    imgUrls: [
-      {url:'../../../images/shop/exp-banner.jpg'},
-      {url:'../../../images/shop/exp-banner.jpg'},
-      {url:'../../../images/shop/exp-banner.jpg'},
-      {url:'../../../images/shop/exp-banner.jpg'},
-      {url:'../../../images/shop/exp-banner.jpg'}
-    ],
+    imgUrls: [],
     indicatorDots: false,
     autoplay: true,
     interval: 4000,
@@ -44,7 +38,8 @@ Page({
     }
 
     
-
+    //获取banner
+    this.getBanner();
 
     //获取商品分类
     this.getCategoryList();
@@ -56,6 +51,40 @@ Page({
    
   },
 
+   //轮播图点击
+   handleBannerClick(e){
+    wx.navigateTo({
+      url: `../../bannerDetails/bannerDetails?id=${e.currentTarget.dataset.id}&type=${e.currentTarget.dataset.type}`
+    })
+  },
+	//获取banner
+	getBanner(){
+		wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: app.globalData.apiUrl+'con=contentapi&act=get_article_list',
+      method: "POST",
+      data: {
+        c_id: 0,
+        m_id:app.globalData.merchant_id,
+      },
+      success: (res)=> {
+        console.log(res,'获取banner')
+        wx.hideLoading()
+        if(res.data.code==1000){
+          this.setData({
+            imgUrls: res.data.banner_list,
+          });
+        
+        }
+    },
+      
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
 
   getUserInfo(e){
     console.log(e.detail.userInfo);
@@ -227,8 +256,8 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '挣客3C行业平台服务商',
-      imageUrl: '/images/share.jpg',
+      title: app.globalData.store_name,
+      imageUrl: app.globalData.logo_path,
       path: '/pages/index/index'
     }
   }

@@ -314,6 +314,25 @@
   font-size: 20rpx;
   color: #797979;
 }
+.bottom .iconwrap .textwrap .lianxi{
+ padding:0;
+margin:0;
+line-height:1;
+font-size:20rpx;
+background:none;
+color:#6a6a6a;
+height:100rpx;
+position:absolute;
+top:5rpx;
+z-index:1;
+width:96rpx;
+padding-top:62rpx;
+
+}
+.bottom .iconwrap .textwrap .lianxi:after{
+ border:none;
+}
+
 .bottom .btnwrap{
   width: 225rpx;
   height: 100%;

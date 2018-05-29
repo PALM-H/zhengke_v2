@@ -60,6 +60,7 @@ App({
                       } else {
                         
                         this.globalData.uid = res.data.userInfo.uid;
+                        console.log(this.globalData.uid,'this.globalData.uid');
                         if (this.userInfoReadyCallback) {
                           this.userInfoReadyCallback();
                         }
@@ -90,11 +91,17 @@ App({
     merchant_id: 670, //商人ID
     apiUrl: "https://www.znnkee.com/smallprogram_mall/zk3c/index.php?",
 
-    //用户选中的信息
+    //用户选中的地址信息
     userName: "",
     userPhone: "",
     address: "",
-    addressid:""
+    addressid:"",
+
+  //小程序分享的信息
+  logo_path:'',
+  store_name:'',
+
+
 
   }
 });

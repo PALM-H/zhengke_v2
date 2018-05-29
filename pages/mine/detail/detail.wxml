@@ -105,7 +105,7 @@
       </view>
       </block>
       <block wx:if="{{order_status == 4 }}">
-      <view class="rightbtn footbtn red" catchtap="goComment">
+      <view class="rightbtn footbtn red" data-goods_id="{{orders.goods_id}}" data-order_id="{{orders.order_info.order_id}}" catchtap="goComment">
         <text>去评价</text>
       </view>
       <view class="subrightbtn footbtn blue" bindtap="goService">
@@ -119,6 +119,7 @@
       <view class="subrightbtn footbtn blue" bindtap="goService">
         <text>申请售后</text>
       </view>
+      <!-- <button class="subrightbtn footbtn2 blue lianxi" open-type='contact'>申请售后</button> -->
       </block>
     </view>
   </view>

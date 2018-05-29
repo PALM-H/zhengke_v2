@@ -2,20 +2,24 @@
 <view class="page">
   <view  class="navbar">
     <scroll-view class="navbar-scroll" scroll-x="true" style="width: {{tabWidth}}rpx">
-      <view id="0" class="navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
+      <view data-id="0" class="navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
         <text>推荐</text>
       </view>
-      <block wx:for="{{tabs}}" wx:key="*this">
-        <view id="{{index+1}}" class="navbar-item {{activeIndex == index+1 ? 'active' : ''}}" bindtap="{{activeIndex != index+1 ? 'tabClick' : ''}}">
+      <block wx:for="{{tabs}}" wx:key="unique">
+        <view data-id="{{item.c_id}}" class="navbar-item {{activeIndex == item.c_id ? 'active' : ''}}" bindtap="{{activeIndex != item.c_id ? 'tabClick' : ''}}">
           <text>{{item.name}}</text>
         </view>
       </block>
     </scroll-view>
   </view>
-  <view class="swiper-container">  
+
+  <scroll-view scroll-y style="height:1600rpx;" bindscrolltolower="scrollToLower" class="itemwrap">
+
+    <block wx:if="{{imgUrls.length>0}}">
+    <view class="swiper-container">  
     <swiper class="swiper" indicator-dots="{{indicatorDots}}"
       autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
-      <block wx:for="{{imgUrls}}">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
         <swiper-item  bindtap="handleBannerClick" data-id="{{item.banner_id}}" data-type="2">
           <image src="{{item.cover_url}}" class="slide-image"/>
           <view class="textwrap">
@@ -30,8 +34,10 @@
       </block>  
     </view> 
   </view> 
-  <view class="itemwrap">
-    <block wx:for="{{itemArr}}">  
+  </block>
+
+
+    <block wx:for="{{itemArr}}" wx:key="unique">  
       <view class="item">
         <view class="item-container" bindtap="itemClick" data-type="1" data-id="{{item.id}}">
           <image src="{{item.cover_url}}" class="item-image"/>
@@ -41,6 +47,6 @@
         </view>
       </view>
     </block>  
-  </view>
+  </scroll-view>
   
 </view>

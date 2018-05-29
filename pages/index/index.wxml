@@ -2,14 +2,15 @@
 <view class="page">
   <view class="header">
     <image class="logo" src="{{logo_path}}" mode="aspectFill"  bindtap="clickTest"></image>
-    <text class="title">3C行业平台服务商</text>
+    <text class="title">{{store_name}}</text>
     <text class="subtitle">商城平台</text>
     <view class="attestation">
       <!--<text>挣客认证3C服务商</text>-->
       <image src="../../images/3c.png" />
     </view>
   </view>
-<view class="swiper-container">
+<block wx:for="{{ad.length>0}}">
+  <view class="swiper-container">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}"
   autoplay="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{ad}}">
@@ -19,6 +20,7 @@
   </block>
 </swiper>
 </view>
+</block>
   <view class="management-container">
     <view class="t1">经营范围</view>
     <view class="label-wrap">

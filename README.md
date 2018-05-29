@@ -1,6 +1,8 @@
 # 目录说明
 
-- shop 商城
+- news 咨询
+    - 
+- shop 发现
     - index 商城首页
     - class 商品分类页面
     - itemlist 商品列表页面
