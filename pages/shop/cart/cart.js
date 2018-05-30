@@ -9,6 +9,9 @@ Page({
     
   },
   onLoad(options) {
+   
+  },
+  onShow(){
     this.getShoppingCartGoods();
   },
   removeCart(id) {
