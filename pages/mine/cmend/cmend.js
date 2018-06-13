@@ -8,6 +8,7 @@ Page({
     evaluates:[],
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.setData({
       order_id:options.order_id
     })

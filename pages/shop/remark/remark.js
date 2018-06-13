@@ -12,6 +12,7 @@ Page({
     remarkList:[],
   },
   onLoad(options){
+    wx.hideShareMenu()
     let pages = getCurrentPages();
     let currPage = pages[pages.length - 1];   //当前页面
     let prevPage = pages[pages.length - 2];  //上一个页面

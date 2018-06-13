@@ -4,7 +4,7 @@ Page({
     activeIndex: 0
   },
   onLoad: function () {
-    
+    wx.hideShareMenu()
   },
   //navbar点击事件
   tabClick: function(e) {

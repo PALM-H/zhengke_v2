@@ -29,7 +29,13 @@
   </block> 
   </block>
   <block wx:else>
-    <text>你还没有添加收货地址</text>
+     <view class="empty-sec" style="height:100vh;">
+        <view class="empty-wrap">
+          <image class="empty" src="/images/empty.png"/>
+          <view>
+          <text>暂无收货地址</text></view>
+        </view>
+  </view>
   </block>
   <view class="bottom" bindtap="addAdrs">
     <text>添加地址</text>

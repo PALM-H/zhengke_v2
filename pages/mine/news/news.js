@@ -6,7 +6,7 @@ Page({
     newsList:[]
   },
   onLoad() {
-    
+    wx.hideShareMenu()
   },
   onShow(){
     this.getNewsList()

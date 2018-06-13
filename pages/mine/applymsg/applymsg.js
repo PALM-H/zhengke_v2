@@ -4,7 +4,7 @@ Page({
     
   },
   onLoad: function () {
-    
+    wx.hideShareMenu()
   },
   onShareAppMessage: function () {
     return {

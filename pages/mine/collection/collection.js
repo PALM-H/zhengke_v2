@@ -16,6 +16,7 @@ Page({
     ]
   },
   onLoad: function () {
+    wx.hideShareMenu()
   },
   onShow(){
     this.getCollectionList()
@@ -48,6 +49,10 @@ Page({
           this.setData({
             collectionList:res.data.attention_list
           })
+        }else{
+          this.setData({
+            collectionList:[]
+          })
         }
       },
       fail: (err)=>{
@@ -77,11 +82,13 @@ Page({
         console.log('取消收藏:',res)
         if(res.data.code==1002){//取消收藏
           wx.showToast({
-            title: res.data.msg,
+            title: '取消收藏成功',
             icon:'success',
             duration: 2000
           })
-          this.getCollectionList();
+          setTimeout(() => {
+            this.getCollectionList();  
+          }, 500);
         }else{
           wx.showToast({
             title: res.data.msg,

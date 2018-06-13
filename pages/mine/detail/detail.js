@@ -17,6 +17,7 @@ Page({
     confirmHide: 1
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     // 注意：此处仅仅为了演示需要，才把订单状态从订单列表页传到订单详情页，整合后台后应传递订单号，详情页中后台根据订单号返回状态
     this.setData({
       order_id: options.order_id,
@@ -29,7 +30,46 @@ Page({
     // }
     
   },
-  
+  //取消订单
+  cancelOrder(){
+    wx.showModal({
+      title: '提示',
+      content: '你确定要取消订单吗？',
+      success: (res)=> {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            header: {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            url: app.globalData.apiUrl+'con=mallapi&act=del_order',
+            method: "POST",
+            data: {
+              order_id: this.data.order_id,
+              md5_sign:util.hexMD5(`${this.data.order_id}***zk3c***order#*`),
+            },
+            success: (res)=> {
+              console.log(res,'取消订单')
+             if(res.data.code==1000){
+                wx.navigateBack();
+             }
+              wx.hideLoading()
+              
+             
+            },
+            fail: (err)=>{
+              console.log(err);
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+          return;
+        }
+      }
+    })
+    
+  },
+
     //订单列表详情
     getOrderDetail(){
      

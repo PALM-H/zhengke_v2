@@ -20,3 +20,4 @@
     - order 订单列表
     - detail 订单列表详情
     - remark 评价页面
+    - collection 我的收藏

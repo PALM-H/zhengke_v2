@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-
+const util = require("../../../utils/util.js");
 //article.js
 var WxParse = require('../../../wxParse/wxParse.js');
 
@@ -12,11 +12,12 @@ Page({
     selectSpec:[],//已选的规格
     selectSpecStr:'',
     pro_num:1,//对应规格要购买的数量
-    pro_id:'',//商品规格id
+    pro_id:'',//商品规格id,
+    money:'',
   
     remarkList:[],//商品评价
     goodsParams:[],//商品参数
-    detailTabActive : 0,
+    detailTabActive : 1,
     cartList: [],//立即购买
     
 
@@ -35,10 +36,15 @@ Page({
       {title:'版本',activeNum:'1',defaultNum:'1',ver:[{id:'1',name:'低配'},{id:'2',name:'标准'},{id:'3',name:'高贵'},{id:'4',name:'尊享'}]},
       {title:'颜色',activeNum:'9',defaultNum:'9',ver:[{id:'5',name:'银色'},{id:'6',name:'黑色'},{id:'7',name:'白色'},{id:'8',name:'灰色'},{id:'9',name:'粉色'}]},
       {title:'内存',activeNum:'12',defaultNum:'12',ver:[{id:'10',name:'3+32G'},{id:'11',name:'4+64G'},{id:'12',name:'6+128G'}]}
-    ]
+    ],
+    goodParams:0,
+    goodParams2:0,
+    toView:'',
+    initView:true
+
   },
   onLoad(options){
-    console.log(options);
+    console.log(options,111);
     this.setData({
       gid:options.id
     })
@@ -46,6 +52,36 @@ Page({
     this.getGoodsInfo();
     this.getGoodsEvaluateInfo();
     this.getGoodsParams();
+    this.getGoodsParams2();
+  },
+scroll(e){
+  console.log(e.detail.scrollTop,111111111);
+  console.log(e.detail.scrollHeight);
+  this.setData({
+    scrollTop:e.detail.scrollTop
+  })
+},
+  changeSpecMoney(){
+    let selectSpec=this.data.selectSpec;
+    let selectLabel=[];
+    selectSpec.forEach(ele=>{
+      selectLabel.push(ele.selectedId);
+    })
+    selectLabel.join(',');
+    console.log(selectLabel,77777);
+    let pro_id='';//标签id
+    let buy_info=this.data.goodsInfo.buy_info;
+    buy_info.some(ele=>{
+      if(ele.split(',#,')[0].indexOf(selectLabel)!=-1){
+        
+        let a=ele.split(',#,')[1];
+        let money=a.slice(0,a.indexOf(','));
+        console.log(money);
+        this.setData({
+          money:money
+        })
+      }
+    })
   },
 //设置商品规格字符串
   setSelectSpecStr(){
@@ -132,6 +168,7 @@ Page({
         pro_num: this.data.pro_num
       },
       success: (res)=> {
+        wx.hideLoading()
         console.log('添加到购物车:',res)
         if(res.data.code==1000){
           wx.showToast({
@@ -148,7 +185,7 @@ Page({
           })
         }
         
-        wx.hideLoading()
+        
       },
       fail: (err)=>{
         console.log(err);
@@ -231,8 +268,7 @@ Page({
             })
 
            this.setSelectSpecStr()
-
-            
+          this.changeSpecMoney();            
                         
            
         }
@@ -289,20 +325,62 @@ Page({
       method: "POST",
       data:{
           gid:this.data.gid,
-          type:this.data.detailTabActive
+          type:1
       },
       success: (res)=> {
         wx.hideLoading()        
         if(res.data.code==1000){
           console.log(res,'获取商品图文详情、清单及参数');
-
-          if(this.data.detailTabActive==0){
-            WxParse.wxParse('article', 'html', res.data.info,this,5)
-          }else{
-            WxParse.wxParse('article2', 'html', res.data.info,this,5)
-          }
+          this.setData({
+            goodParams:1
+          })
+            WxParse.wxParse('article', 'html', res.data.info,this,5);
+          
                         
+        }else{
+          this.setData({
+            goodParams:0,
+          })
         }
+       
+       
+       
+      },
+      fail: (err)=>{
+        console.log(err);
+      }
+    })
+  },
+  getGoodsParams2(){
+    wx.showLoading({
+      title:'加载中...',
+      mask: true,
+    })
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: `${app.globalData.apiUrl}con=mallapi&act=goods_info_view`,
+      method: "POST",
+      data:{
+          gid:this.data.gid,
+          type:2
+      },
+      success: (res)=> {
+        wx.hideLoading()        
+        if(res.data.code==1000){
+          console.log(res,'获取商品图文详情、清单及参数');
+          this.setData({
+            goodParams2:1
+          })
+            WxParse.wxParse('article2', 'html', res.data.info,this,5);
+                        
+        }else{
+          this.setData({
+            goodParams2:0,
+          })
+        }
+       
        
       },
       fail: (err)=>{
@@ -325,10 +403,18 @@ Page({
   },
   //详情部分切换事件
   changeDetail: function(e) {
+   
     this.setData({
 			detailTabActive: e.currentTarget.dataset.num
     });
-    this.getGoodsParams();
+    if(!this.data.initView){
+      this.setData({
+        toView:'aaa'
+      })
+    }
+    this.setData({
+      initView:false
+    })
   },
   //查看购物车
   seeCartPage: function(e){  
@@ -368,11 +454,13 @@ Page({
       spec:this.data.selectSpecStr,
       goods_pic:this.data.goodsInfo.img,
       goods_name:this.data.goodsInfo.name,
-      sell_price:this.data.goodsInfo.sell_price,
+      // sell_price:this.data.goodsInfo.sell_price,
+      sell_price:this.data.money
     }]
     this.setData({
       cartList:cartList
     })
+  
     console.log(this.data.cartList);
     wx.navigateTo({
       url: '../confirm/confirm'
@@ -397,6 +485,7 @@ Page({
 
 
     this.setSelectSpecStr()
+    this.changeSpecMoney();
   },
   hideVer: function(e){  
     this.setData({  
@@ -413,6 +502,7 @@ Page({
     });
 
   this.setSelectSpecStr();
+  this.changeSpecMoney();
   },
   //数量输入框离开焦点
   bindKeyInput: function(e) {
@@ -445,8 +535,8 @@ Page({
   onShareAppMessage() {
     return {
       title: app.globalData.store_name,
-      imageUrl: app.globalData.logo_path,
-      path: '/pages/shop/detail/detail?id='+this.data.gid
+      // imageUrl: app.globalData.logo_path,
+      path: util.getCurrentPageUrlWithArgs()
     }
   }
 })

@@ -26,6 +26,7 @@ Page({
     showDistpicker: false
   },
   onLoad:function(options){
+    wx.hideShareMenu()
     this.setData({
       id:options.id,
       is_default:options.is_default

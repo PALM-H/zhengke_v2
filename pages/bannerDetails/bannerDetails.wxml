@@ -1,6 +1,8 @@
 <!--article.wxml-->
 <view class="page">
+
   <view class="article-wrap">
+   
     <view class="title">
       <!--<text selectable>{{title}}</text>-->
        <rich-text selectable nodes="{{title}}" bindtap="tap"></rich-text>  
@@ -8,6 +10,12 @@
     <view class="user">
       <text>{{user}}　{{time}}</text>
     </view>
+   <view class="msg">
+      <image src="{{store.logo_path}}" mode="aspectFill"/>
+      <text class="name">{{store.store_name}}</text>
+      <text class="phone" selectable>热线：{{store.store_phone}}</text>
+      <text class="address" selectable>地址：{{store.store_address}}</text>
+</view>
     <view class="container">
     <block wx:if="{{contentType=='article'}}">
       <import src="../../wxParse/wxParse.wxml"/>
@@ -23,13 +31,12 @@
       
       
     </view>
-    <view class="msg">
-      <image src="{{store.logo_path}}" />
-      <text class="name">{{store.store_name}}</text>
-      <text class="phone" selectable>热线：{{store.store_phone}}</text>
-      <text class="address" selectable>地址：{{store.store_address}}</text>
-    </view>
+    
   </view>
+
+
+
+
    <block wx:if="{{imgUrls.length>0}}">
   <image class="ad-line" src="../../images/ad-line.png" />
     <view class="ad">

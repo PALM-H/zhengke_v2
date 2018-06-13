@@ -3,7 +3,7 @@
     <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 请先微信授权 </button>
   </view>
 
-<scroll-view scroll-y class="page" bindscroll="scroll">
+<scroll-view scroll-y class="page" bindscroll="scroll" bindscrolltolower="scrollToLower">
 	<image class="shopcart" src="../../../images/shop/icon0.png" bindtap="goCart"></image>
 	<view class="searchwrap {{searchFill? 'blue':''}}">
 		<view class="search flexwrap" bindtap="goSearch">
@@ -36,7 +36,7 @@
   </block>
 
 	<!--商品分类 -->
-	<view class="goodsClass-section">
+	<!-- <view class="goodsClass-section">
 		<view class="subquickwrap flexwrap">
 			<block wx:for="{{categoryList}}" wx:for-index="index" wx:for-item="item" wx:key="unique">
 				<view class="itemwrap" data-id="{{item.id}}" bindtap="goClassPage">
@@ -48,18 +48,18 @@
 				<image src="/images/shop/icon8.png"></image>
 				<text>更多</text>
 			</view>
-		</view>
+		</view> 
 		
-	</view>
+	</view>-->
 
 
 <!--推荐商品-->
-	<view class="recommend-section">
+	 <view class="recommend-section" wx:if="{{recommendGoodsList.length>0}}">
 		<view class="title flexwrap">
 			<image src="../../../images/shop/icon9.png"></image>
 			<text>推荐商品</text>
 		</view>
-		<view class="itemlist flexwrap">
+		<scroll-view scroll-x="true" class="itemlist">
 			<block wx:for="{{recommendGoodsList}}" wx:key="unique">
 				<view class="itemwrap" data-id="{{item.id}}" bindtap="goDetailPage">
 					<view class="imgwrap">
@@ -72,16 +72,16 @@
 					</view>
 				</view>
 			</block>
-		</view>
-	</view>
+		</scroll-view>
+	</view> 
 
 
 	<!--新品上线-->
-	<view class="floortitle">
+	<!-- <view class="floortitle">
 		<image src="../../../images/shop/strip.jpg"></image>
 		<text>新品上架</text>
 		<image src="../../../images/shop/strip.jpg"></image>
-	</view>
+	</view> -->
 	<view class="itemlist">
 		<block wx:for="{{newGoodsList}}" wx:key="unique">
 			<view class="floatwrap" data-id="{{item.id}}" bindtap="goDetailPage">

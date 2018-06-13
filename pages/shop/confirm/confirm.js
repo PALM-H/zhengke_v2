@@ -12,22 +12,26 @@ Page({
     coupon_code:'',//优惠码
     isCheck:false,//优惠码是否被检测过
     codeTips:'* 优惠码领取需要从商家处进行获取，暂不使用时请勿输入',
+    coupon_money:'',
 
     addressList:[],//收货地址列表
     name: '',//收货人名称
     phone: '',//收货手机
     address: '',//收货地址
     addressid:'',//收货地址id
-    desc:''
+    desc:'',
+
+    order_id:0
     
   },
   onLoad(options){
-    //获取默认地址
-    this.getAddressList();
+    wx.hideShareMenu()
     
    this.getCartListForCartPage();
   },
   onShow(){
+     //获取默认地址
+     this.getAddressList();
     this.setData({
       name:app.globalData.userName,
       phone:app.globalData.userPhone,
@@ -43,6 +47,7 @@ Page({
     let cartList=[];
     let pro_ids=[];
     let product_info=[];
+    console.log(prevPage,111);
     prevPage.data.cartList.forEach(ele => {
       if(ele.isSelect===1){
         cartList.push(ele)
@@ -100,13 +105,15 @@ Page({
        if(res.data.code==1000){
         this.setData({
           isCheck:true,
-          coupon_code:'',
+          // coupon_code:'',
+          coupon_money:res.data.coupon_money,
           codeTips:res.data.msg
          })
        }else if(res.data.code==1001){
         this.setData({
           isCheck:false,
           coupon_code:'',
+          coupon_money:0,
           codeTips:'请输入优惠码'
          })
        }
@@ -114,6 +121,7 @@ Page({
          this.setData({
           isCheck:false,
           coupon_code:'',
+          coupon_money:0,
           codeTips:res.data.msg
          })
        }
@@ -189,12 +197,51 @@ Page({
       }
     })
   },
+  //微信支付
+  pay_order(){
+    wx.showLoading({
+      title: "加载中...",
+      mask: true
+    });
+    wx.request({
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url: `${app.globalData.apiUrl}con=mallapi&act=pay_order`,
+      method: "POST",
+      data:{
+        merchant_id: app.globalData.merchant_id,
+        user_id: app.globalData.uid,
+        order_id:this.data.order_id,
+        md5_sign:util.hexMD5(`${app.globalData.merchant_id}${app.globalData.uid}***zk3c***order#*`)
+        
+      },
+      success: res => {
+        wx.hideLoading();
+        console.log(res,'微信支付');
+       
+        
+      },
+      fail: err => {
+        this.setData({
+          cartList: []
+        });
+        console.log(err);
+      }
+    });
+  },
+
+
+
+
+
+
   goPay: function(e) {
     if(this.data.addressList.length==0){
       wx.showModal({
         title: '提示',
         showCancel:false,
-        content: '请添加你的默认地址'
+        content: '请添加你的收货地址'
       })
       return;
     }
@@ -236,7 +283,19 @@ Page({
       data:params,
       success: (res)=> {
         wx.hideLoading()
-        console.log(res,'添加订单')
+        console.log(res,'添加订单成功')
+        if(res.data.code==1000){
+          this.setData({
+            order_id:res.data.order_list.order_id
+          })
+          console.log(this.data.order_id,1111);
+          wx.showToast({
+            title: '添加订单成功',
+            icon: 'success',
+            duration: 2000
+          })
+          // this.pay_order()
+        }
         // if(res.data.code==1000){
         //   this.getAddressList(); 
         // }else{

@@ -1,43 +1,46 @@
 
 <view class="page">
-  <view class="itemlist">
-	<block wx:if="{{cartList.length!=0}}">
-			<block wx:for="{{cartList}}" wx:key="unique">
-			<view class="itemwrap flexwrap">
-				<view class="pickwrap flexwrap" data-index="{{index}}" bindtap="selectThis">
-					<image src="/images/shop/pick-{{item.isSelect==0?'off':'on'}}.png"></image>
+  <view class="itemlist" wx:if="{{cartList.length!=0}}">
+	<block wx:for="{{cartList}}" wx:key="unique">
+	<view class="itemwrap flexwrap">
+		<view class="pickwrap flexwrap" data-index="{{index}}" bindtap="selectThis">
+			<image src="/images/shop/pick-{{item.isSelect==0?'off':'on'}}.png"></image>
+		</view>
+		<image class="itemimg" src="{{item.goods_pic}}"></image>
+		<view class="rightwrap">
+			<view class="name">
+				<text>{{item.goods_name}}</text>
+			</view>
+			<view class="ver">
+				<text>{{item.spec}}</text>
+			</view>
+			<view class="price">
+				<text>￥ {{item.sell_price}}</text>
+			</view>
+			<view class="num flexwrap">
+				<view class="reduce flexwrap" data-index="{{index}}" bindtap="reduceNum">
+					<image src="../../../images/shop/icon34.png"></image>
 				</view>
-				<image class="itemimg" src="{{item.goods_pic}}"></image>
-				<view class="rightwrap">
-					<view class="name">
-						<text>{{item.goods_name}}</text>
-					</view>
-					<view class="ver">
-						<text>{{item.spec}}</text>
-					</view>
-					<view class="price">
-						<text>￥ {{item.sell_price}}</text>
-					</view>
-					<view class="num flexwrap">
-						<view class="reduce flexwrap" data-index="{{index}}" bindtap="reduceNum">
-							<image src="../../../images/shop/icon34.png"></image>
-						</view>
-						<view class="number">
-							<input type="number" value="{{item.pro_num}}" data-index="{{index}}" bindblur="bindKeyInput" />
-						</view>
-						<view class="add flexwrap" data-index="{{index}}" bindtap="addNum">
-							<image src="../../../images/shop/icon35.png"></image>
-						</view>
-					</view>
+				<view class="number">
+					<input type="number" value="{{item.pro_num}}" data-index="{{index}}" bindblur="bindKeyInput" />
+				</view>
+				<view class="add flexwrap" data-index="{{index}}" bindtap="addNum">
+					<image src="../../../images/shop/icon35.png"></image>
 				</view>
 			</view>
-		</block>
-	</block>
-	<block wx:else>
-		你的购物车为空
+		</view>
+	</view>
 	</block>
 	</view>
-
+	<block wx:if="{{cartList.length==0}}">
+		<view class="empty-sec" style="height:100vh;">
+			<view class="empty-wrap">
+			<image class="empty" src="/images/empty.png"/>
+			<view>
+			<text>购物车空空如也...</text></view>
+			</view>
+		</view>
+	</block>
 	<view class="bottom flexwrap" wx:if="{{cartList.length!=0}}">
 		<view class="selectall flexwrap" bindtap="handleSelectAll">
 			<image src="../../../images/shop/pick-{{isSelectAll?'on':'off'}}.png"></image>

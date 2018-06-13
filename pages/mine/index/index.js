@@ -9,6 +9,7 @@ Page({
     nickName:''
   },
   onLoad: function () {
+    wx.hideShareMenu()
     if(app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -23,18 +24,21 @@ Page({
           userInfo: app.globalData.userInfo,
           hasUserInfo: true
         })
+        console.log(app.globalData.uid,'app.globalData.uid');
         this.getUserAvatar();
       }
     }
   },
   onShow(){
-    this.getUserAvatar();
+    if(app.globalData.uid){
+      this.getUserAvatar();
+    }
   },
   getUserAvatar(){
-    wx.showLoading({
-      title:'加载中...',
-      mask: true,
-    })
+    // wx.showLoading({
+    //   title:'加载中...',
+    //   mask: true,
+    // })
     wx.request({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -50,10 +54,10 @@ Page({
         if(res.data.code==1000){
           this.setData({
             avatarUrl:res.data.user.avatarUrl,
-            nickName:res.data.user.nickName
+            nickName:res.data.user.nickName ||''
           })
         }
-        wx.hideLoading()
+        // wx.hideLoading()
       },
       fail: (err)=>{
         console.log(err);
@@ -61,7 +65,7 @@ Page({
     })
   },
   getUserInfo(e){
-    console.log(e.detail.userInfo);
+    console.log(e.detail.userInfo,'用户点击按钮获取微信授权');
     wx.showLoading({
       title:'加载中...',
       mask: true,
@@ -71,17 +75,18 @@ Page({
         wx.hideLoading();
         if (res.authSetting["scope.userInfo"]) {
           console.log("授权成功");
-          app.globalData.userInfo=e.detail.userInfo;
-          this.setData({
-            userInfo: app.globalData.userInfo,
-            hasUserInfo: true
-          })
+          // app.globalData.userInfo=e.detail.userInfo;
+          // this.setData({
+          //   userInfo: app.globalData.userInfo,
+          //   hasUserInfo: true
+          // })
+          app.login();
         } else {
           console.log("授权失败");
           wx.showModal({
             title: "用户未授权",
             content:
-              "如需正常使用功能，请按确定并在授权管理中选中“用户信息”，然后点按确定。",
+              "为了能正常使用该小程序，请允许将信息授权给我们信息仅作登录使用，我们服务器并不保存任何信息，请放心授权",
             showCancel: false,
             success: res => {
               if (res.confirm) {

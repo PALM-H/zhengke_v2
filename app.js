@@ -7,7 +7,28 @@ App({
     logs.unshift(Date.now());
     wx.setStorageSync("logs", logs);
 
+
+    
+    this.globalData.merchant_id = 670;
     this.login();
+    
+    //获取ext 里面的商人m_id
+    // let extConfig = wx.getExtConfigSync ? wx.getExtConfigSync() : {}
+    // console.log(Object.keys(extConfig)==0)
+    // console.log(extConfig, 555555)
+    // if(Object.keys(extConfig)==0){
+    //   wx.showModal({
+    //     title: "商人id为空",
+    //     showCancel: false
+    //   });
+    // }else{
+    //   this.globalData.merchant_id=extConfig.m_id;
+      
+    //   this.login();
+    // }
+    
+    
+    
 
   },
   login() {
@@ -26,14 +47,14 @@ App({
               console.log('之前已经授权成功过了');
               //2.小程序调用wx.getUserInfo得到rawData, signatrue, encryptData.
               wx.getUserInfo({
+                lang:'zh_CN',
                 success: res => {
-                  
+                  console.log(res,'getUserInfor的res');
                   // 可以将 res 发送给后台解码出 unionId
                   this.globalData.userInfo = res.userInfo;
                   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
                   // 所以此处加入 callback 以防止这种情况
                   
-                  console.log(res,9999999);
                   //3.小程序调用server获取token接口, 传入code, rawData, signature, encryptData.
                   let params = {
                     merchant_id: this.globalData.merchant_id,
@@ -58,17 +79,16 @@ App({
                           showCancel: false
                         });
                       } else {
-                        
                         this.globalData.uid = res.data.userInfo.uid;
                         console.log(this.globalData.uid,'this.globalData.uid');
                         if (this.userInfoReadyCallback) {
                           this.userInfoReadyCallback();
                         }
-                        wx.showToast({
-                          title: "登录成功",
-                          icon: "success",
-                          duration: 2000
-                        });
+                        // wx.showToast({
+                        //   title: "登录成功",
+                        //   icon: "success",
+                        //   duration: 2000
+                        // });
                       }
                     },
                     fail: err => {
@@ -88,7 +108,7 @@ App({
     code: "", //通过wx.login获取的code
     uid: null,
     userInfo: null, //用户信息
-    merchant_id: 670, //商人ID
+    merchant_id: 0, //商人ID
     apiUrl: "https://www.znnkee.com/smallprogram_mall/zk3c/index.php?",
 
     //用户选中的地址信息

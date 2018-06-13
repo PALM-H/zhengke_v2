@@ -47,7 +47,6 @@
 /*经营范围*/
 .management-container{
   text-align:center;
-  border-bottom:1rpx solid #eeeeee;
 
 }
 .management-container .t1{
@@ -71,15 +70,27 @@
 }
 
 
-
+.kefuwrap .kefu{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:122rpx;
+  background:none;
+  z-index:666;
+}
+.kefuwrap .kefu:after{
+  border:none;
+}
 
 .itemwrap{
+  position:relative;
   width: 670rpx;
   height: 50rpx;
   padding: 36rpx 0;
   margin: 0 auto;
 }
-.itemwrap:not(.first-item){
+.itemwrap{
   border-top: 1rpx solid #eeeeee;
 }
 
@@ -94,6 +105,24 @@
   width: 48rpx;
   height: 50rpx;
 }
+
+.itemwrap .rightimage{
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  color:#a5a5a5;
+}
+.itemwrap .rightimage text{
+ margin-right:10rpx;
+ font-size:30rpx;
+ position:relative;
+ top:-3rpx;
+}
+.itemwrap .rightimage image{
+  width: 17rpx;
+  height: 29rpx;
+}
+
 .itemwrap .textwrap{
   position: relative;
   display: inline-block;

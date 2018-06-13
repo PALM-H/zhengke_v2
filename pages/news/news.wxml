@@ -29,7 +29,7 @@
       </block>
     </swiper>
     <view class="dots">  
-      <block wx:for="{{imgUrls}}">  
+      <block wx:for="{{imgUrls}}" wx:key="unique">  
         <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view> 
       </block>  
     </view> 

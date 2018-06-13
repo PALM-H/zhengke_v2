@@ -7,10 +7,9 @@
       <text class="righttext" bindtap="goSearch">搜索</text>
     </view>
   </view>
-  <scroll-view scroll-y style="calc(100vh-100rpx)" bindscrolltolower="scrollToLower" class="resultlist">
-    <block wx:if="{{resultList.length!=0}}">
+  <scroll-view scroll-y style="1600rpx" bindscrolltolower="scrollToLower" class="resultlist" wx:if="{{!!resultList}}">
       <block wx:for="{{resultList}}" wx:key="unique">
-      <view class="resultwrap flexwrap" bindtap="goDetail">
+      <view class="resultwrap flexwrap" data-id="{{item.id}}" bindtap="goDetail">
         <view class="imagewrap">
           <image src="{{item.img}}"></image>
           <view class="shadow"></view>
@@ -26,9 +25,14 @@
         </view>
       </view>
     </block> 
-    </block>
-    <block wx:else>
-      空空如也~
-    </block>
   </scroll-view>
+  <block wx:if="{{!resultList}}">
+    <view class="empty-sec" style="height:100vh;">
+        <view class="empty-wrap">
+          <image class="empty" src="/images/empty.png"/>
+          <view>
+          <text>暂无搜索结果</text></view>
+        </view>
+  </view>
+  </block>
 </view>

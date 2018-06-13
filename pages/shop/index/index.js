@@ -1,5 +1,6 @@
 //获取应用实例
 const app = getApp()
+const util = require("../../../utils/util.js");
 Page({
   data: {
     hasUserInfo:false,
@@ -18,9 +19,15 @@ Page({
     categoryList: [],//商品分类
     recommendGoodsList:[],//推荐商品列表
     newGoodsList:[],//最新商品列表
+
+      page:1,//最新商品列表分页
+      pageSize:15,
+      totalPage:0
+
    
   },
   onLoad(){
+    
    if(app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -35,6 +42,7 @@ Page({
           hasUserInfo: true
         })
       }
+      console.log(app.globalData.uid,'app.globalData.uid');
     }
 
     
@@ -47,10 +55,16 @@ Page({
     //获取推荐商品列表
     this.getRecommendGoodsList(1);
     //获取最新商品列表
-    this.getNewGoodsList(2);
+    this.getNewGoodsList(2,true);
+
+    
    
   },
-
+  //滑动底部
+  scrollToLower(){
+    console.log('已经滑到底部了');
+    this.getNewGoodsList(2);
+  },
    //轮播图点击
    handleBannerClick(e){
     wx.navigateTo({
@@ -97,11 +111,12 @@ Page({
         wx.hideLoading();
         if (res.authSetting["scope.userInfo"]) {
           console.log("授权成功");
-          app.globalData.userInfo=e.detail.userInfo;
-          this.setData({
-            userInfo: app.globalData.userInfo,
-            hasUserInfo: true
-          })
+          // app.globalData.userInfo=e.detail.userInfo;
+          // this.setData({
+          //   userInfo: app.globalData.userInfo,
+          //   hasUserInfo: true
+          // })
+          app.login();
         } else {
           console.log("授权失败");
           wx.showModal({
@@ -170,14 +185,23 @@ Page({
     })
     
     wx.request({
-      url:`${app.globalData.apiUrl}con=mallapi&act=goods_list&merchant_id=${app.globalData.merchant_id}&type=${type}`,
-      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url:`${app.globalData.apiUrl}con=mallapi&act=goods_list`,
+      method: "POST",
+      data: {
+        merchant_id:app.globalData.merchant_id,
+        type:type,
+        page_size:10000
+      },
       success: (res)=> {
         console.log(res,'3获取推荐商品列表')
         if(res.data.code==1000){
             this.setData({
-              recommendGoodsList:res.data.product_list.data.slice(0,1)
+              recommendGoodsList:res.data.product_list.data
             })
+            console.log(this.data.recommendGoodsList,88888888888)
             wx.hideLoading()
         }
        
@@ -188,22 +212,42 @@ Page({
     })
   },
   //获取最新商品列表
-  getNewGoodsList(type){
+  getNewGoodsList(type,init){
+    if(this.data.page>=this.data.totalPage &&!init){
+      console.log('已经加载完毕~')
+      return;
+    }
     wx.showLoading({
       title:'加载中...',
       mask: true,
     })
+      this.setData({
+        page:!init?this.data.page+1:1
+      })
     
     wx.request({
-      url:`${app.globalData.apiUrl}con=mallapi&act=goods_list&merchant_id=${app.globalData.merchant_id}&type=${type}`,
-      method: "GET",
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      url:`${app.globalData.apiUrl}con=mallapi&act=goods_list`,
+      method: "POST",
+      data: {
+        merchant_id:app.globalData.merchant_id,
+        type:type,
+        page_size:this.data.pageSize,
+        p:this.data.page
+      },
       success: (res)=> {
         console.log(res,'3获取最新商品列表')
+        wx.hideLoading()
         if(res.data.code==1000){
             this.setData({
-              newGoodsList:res.data.product_list.data
+              newGoodsList:this.data.newGoodsList.concat(res.data.product_list.data),
+              page:res.data.product_list.page.page,
+              totalPage:res.data.product_list.page.totalPage
             })
-            wx.hideLoading()
+            
+            
         }
        
       },
@@ -254,11 +298,14 @@ Page({
       url: '../detail/detail?id='+e.currentTarget.dataset.id
     })
   },
+  onReachBottom(){
+    console.log(1111)
+  },
   onShareAppMessage() {
     return {
       title: app.globalData.store_name,
-      imageUrl: app.globalData.logo_path,
-      path: '/pages/index/index'
+      // imageUrl: app.globalData.logo_path,
+      path: util.getCurrentPageUrlWithArgs()
     }
   }
 })

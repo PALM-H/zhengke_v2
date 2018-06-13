@@ -8,6 +8,7 @@ Page({
     activeClass: 0
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.setData({
       activeClass: options.id
     });

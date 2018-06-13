@@ -10,6 +10,7 @@ Page({
     articleList:[]
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.setData({
       id:options.id
     })

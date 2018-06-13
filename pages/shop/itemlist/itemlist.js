@@ -15,6 +15,7 @@ Page({
     
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.setData({
       cid:this.options.id
     })

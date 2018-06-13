@@ -11,7 +11,7 @@
 			</view>
 			</block>
 			<block wx:else>
-				<button type="primary" style="display:inline-block; font-size:30rpx;width:120rpx;">点击添加收货地址</button>
+				<button type="primary" style="display:inline-block; font-size:30rpx;width:320rpx;">点击添加收货地址</button>
 			</block>
 		</view>
 		<view class="rightwrap flexwrap">
@@ -46,7 +46,7 @@
 		</view>
 		<view class="msgwrap flexwrap">
 			<text class="lefttext">合计总额</text>
-			<text class="righttext">￥{{total}}</text>
+			<text class="righttext">￥{{total-coupon_money}}</text>
 		</view>
 		<view class="code flexwrap">
 			<text class="lefttext">请输入优惠码</text>
@@ -67,7 +67,7 @@
 	</view>
 	<view class="bottom flexwrap">
 		<view class="total flexwrap">
-			<text>需支付：￥{{total}}</text>
+			<text>需支付：￥{{total-coupon_money}}</text>
 		</view>
 		<view class="pay flexwrap" bindtap="goPay">
 			<text>确认并提交订单</text>

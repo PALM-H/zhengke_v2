@@ -4,7 +4,7 @@ Page({
     activeTab: 0
   },
   onLoad: function () {
-    
+    wx.hideShareMenu()
   },
   chooseImage: function () {
     var that = this;

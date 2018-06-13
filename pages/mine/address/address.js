@@ -17,6 +17,7 @@ Page({
     
   },
   onShow(){
+    wx.hideShareMenu()
     this.getAddressList();
   },
   //delAdrs

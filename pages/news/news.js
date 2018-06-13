@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-
+const util = require("../../utils/util.js");
 //news.js
 
 Page({
@@ -37,6 +37,7 @@ Page({
         this.setData({
           windowHeight:res.windowHeight
         })
+        console.log(this.data.windowHeight,111);
         // console.log(res.model)
         // console.log(res.pixelRatio)
         // console.log(res.windowWidth)
@@ -177,8 +178,8 @@ Page({
 	onShareAppMessage: function () {
     return {
       title: app.globalData.store_name,
-      imageUrl: app.globalData.logo_path,
-      path: '/pages/index/index'
+      // imageUrl: app.globalData.logo_path,
+      path: util.getCurrentPageUrlWithArgs()
     }
   }
 });

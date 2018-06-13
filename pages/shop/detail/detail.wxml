@@ -1,5 +1,5 @@
-
 <view class="page">
+<scroll-view scroll-y class="scr" scroll-into-view="{{toView}}">
 	<!--swiper-->
 	<view class="swiper-container">  
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
@@ -39,7 +39,7 @@
 		</view>
 		<view class="botwrap flexwrap">
 			<view class="lefttext">
-				<text>￥{{goodsInfo.sell_price}}</text>
+				<text>￥{{money}}</text>
 			</view>
 			<view class="righttext">
 				<text>销量：{{goodsInfo.sell_sum}}</text>
@@ -108,7 +108,13 @@
 				</block>
 			</block>
 			<block wx:else>
-				<text>暂无评论</text>
+				<view class="empty-sec" style="height:550rpx;">
+					<view class="empty-wrap">
+					<image class="empty" src="/images/empty.png"/>
+					<view>
+					<text>暂无商品评价</text></view>
+					</view>
+			</view>
 			</block>
 		</view>
 		<view class="moreremark flexwrap" bindtap="goMoreREmarkPage" wx:if="{{remarkList.length>0}}">
@@ -121,24 +127,47 @@
 
 
 
-	<view class="detail">
+	<view class="detail" id="aaa">
 		<view class="tab flexwrap">
-			<view class="tabtext flexwrap {{detailTabActive==0?'active':''}}" data-num="0" bindtap="changeDetail">
+			<view class="tabtext flexwrap {{detailTabActive==1?'active':''}}" data-num="1" bindtap="changeDetail">
 				<text>商品详情</text>
 			</view>
-			<view class="tabtext flexwrap {{detailTabActive==1?'active':''}}" data-num="1" bindtap="changeDetail">
+			<view class="tabtext flexwrap {{detailTabActive==2?'active':''}}" data-num="2" bindtap="changeDetail">
 				<text>清单及参数</text>
 			</view>
 		</view>
 		<!-- 注意：detl为商品详情，parm为商品参数，接入后台后请自行替换里面的内容, 商品详情内容务必调用wxparse插件处理，具体可参考之前新闻文章页，示例内容是用图片替代（此内容到时是后台传过来的html转换内容，跟目前格式不搭，故现在写了也是白写），样式已经作了相应限制 -->
-		<view class="detl {{detailTabActive!=0?'hide':''}}">
-			<import src="../../../wxParse/wxParse.wxml"/>
-      		<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-
+		<view class="detl {{detailTabActive!=1?'hide':''}}" id="detl">
+			<block wx:if="{{goodParams==1}}">
+				<import src="../../../wxParse/wxParse.wxml"/>
+      			<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+			</block>
+			
+			<block wx:else>
+				<view class="empty-sec" style="height:550rpx;">
+					<view class="empty-wrap">
+					<image class="empty" src="/images/empty.png"/>
+					<view>
+					<text>商家很懒，并未上传详情</text></view>
+					</view>
+				</view>
+			</block>
 		</view>
-		<view class="parm {{detailTabActive!=1?'hide':''}}">
-		<import src="../../../wxParse/wxParse.wxml"/>
-		<template is="wxParse" data="{{wxParseData:article2.nodes}}"/>
+		<view class="parm {{detailTabActive!=2?'hide':''}}" id="parm">
+		<block wx:if="{{goodParams2==1}}">
+			<import src="../../../wxParse/wxParse.wxml"/>
+			<template is="wxParse" data="{{wxParseData:article2.nodes}}"/>
+		</block>
+		<block wx:else>
+				<view class="empty-sec" style="height:550rpx;">
+					<view class="empty-wrap">
+					<image class="empty" src="/images/empty.png"/>
+					<view>
+					<text>商家很懒，并未设置参数</text></view>
+					</view>
+				</view>
+		</block>
+		
 		</view>
 	</view>
 	<view class="bottom flexwrap">
@@ -186,7 +215,7 @@
 			<view class="topwrap">
 				<view class="transparent"></view>
 				<view class="whitewrap">
-					<view class="price">￥{{goodsInfo.sell_price}}</view>
+					<view class="price">￥{{money}}</view>
 					<view class="explain">
 						<text>选择 {{selectSpecStr}}</text>
 
@@ -250,4 +279,4 @@
 		</view>
 		<view class="blackcover" bindtap="hideVer"></view>
 	</view>
-</view>
+</scroll-view></view>

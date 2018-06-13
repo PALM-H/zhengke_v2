@@ -22,6 +22,7 @@ Page({
     longitude: '',
   },
   onLoad (options) {
+    
     // wx.showLoading({
     //   mask: true,
     // })
@@ -47,6 +48,7 @@ Page({
         //   latitude: res.data.info.latitude,
         //   longitude: res.data.info.longitude,
         });
+        console.log(this.data.ad,'ad');
         app.globalData.store_name=res.data.info.store_name;
         app.globalData.logo_path=res.data.info.logo_path;
         wx.hideLoading()
@@ -85,10 +87,19 @@ Page({
     //   address: this.data.store_address
     // })
   },
+  previewImage(e){
+    console.log(1123);
+    let current=e.target.dataset.src;  
+    wx.previewImage({  
+        current: current, // 当前显示图片的http链接  
+        urls: this.data.store_imgs // 需要预览的图片http链接列表  
+    })  
+  },
+ 
   onShareAppMessage () {
     return {
       title: app.globalData.store_name,
-      imageUrl: app.globalData.logo_path,
+      // imageUrl: app.globalData.logo_path,
       path: '/pages/index/index'
     }
   }

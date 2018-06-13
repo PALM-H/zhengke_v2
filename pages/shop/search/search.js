@@ -3,19 +3,25 @@ const app = getApp()
 
 Page({
   data: {
-    resultList:[],
+    resultList:null,
     p:1,//页码，默认第一页
     page_size:15,//每一页的数量
     totalPage:0,//总页码数
     keyword:''
    
   },
+  onLoad(){
+    wx.hideShareMenu()
+    console.log(!this.data.resultList,11111);
+  },
   goDetail: function(e){  
+    let id=e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../detail/detail'
+      url: '../detail/detail?id='+id
     })
   },
   goSearch(){
+    
     this.getResultList(true);
   },
   bindinput(e){

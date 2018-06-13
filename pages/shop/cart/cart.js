@@ -5,13 +5,23 @@ Page({
   data: {
     cartList: [],
     isSelectAll: false,
-    total: 0
+    total: 0,
+     //window高度
+     windowHeight:0
     
   },
   onLoad(options) {
-   
+    wx.hideShareMenu()
   },
   onShow(){
+    wx.getSystemInfo({
+      success: (res)=> {
+        this.setData({
+          windowHeight:res.windowHeight
+        })
+      
+      }
+    })
     this.getShoppingCartGoods();
   },
   removeCart(id) {
@@ -81,6 +91,9 @@ Page({
         });
         console.log(this.data.cartList, '获取购物车商品');
        }else{
+         this.setData({
+          cartList:[]
+         })
          console.log('获取失败');
        }
         

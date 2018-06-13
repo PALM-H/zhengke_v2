@@ -9,11 +9,11 @@
       <image src="../../images/3c.png" />
     </view>
   </view>
-<block wx:for="{{ad.length>0}}">
+<block wx:if="{{ad.length>0}}">
   <view class="swiper-container">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}"
   autoplay="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{ad}}">
+  <block wx:for="{{ad}}" wx:key="unique">
     <swiper-item>
       <image src="{{item.cover_img}}" mode="aspectFill" class="slide-image"/>
     </swiper-item>
@@ -37,14 +37,42 @@
       <text>{{store_name}}</text>
     </view>
   </view>
-  <view class="itemwrap flexwrap">
+
+
+  <!-- 电话 -->
+  <view class="itemwrap flexwrap" bindtap="callphone">
     <view class="imagewrap">
       <image src="../../images/phone.png"></image>
     </view>
     <view class="textwrap">
-      <text selectable bindtap="callphone">{{store_phone}}</text>
+      <text selectable >{{store_phone}}</text>
     </view>
+    <view class="rightimage">
+      <text>立即拨打</text>
+          <image src="../../images/arrow.png"></image>
+        </view>
   </view>
+
+    <!-- 客服 -->
+  <view class="itemwrap flexwrap kefuwrap">
+    <button class="kefu" open-type='contact'></button>
+    <view class="imagewrap">
+      <image src="../../images/kefu.png"></image>
+    </view>
+    <view class="textwrap">
+      <text selectable >在线微信客服</text>
+    </view>
+    <view class="rightimage">
+      <text>立即沟通</text>
+          <image src="../../images/arrow.png"></image>
+        </view>
+  </view>
+
+
+
+
+
+
   <view class="itemwrap flexwrap">
     <view class="imagewrap">
       <image src="../../images/location.png"></image>
@@ -62,8 +90,8 @@
     </view>
   </view>
   <view class="ablumwrap">
-    <block wx:for="{{store_imgs}}">   
-      <view class="picwrap">
+    <block wx:for="{{store_imgs}}" wx:key="unique">   
+      <view class="picwrap" data-src="{{item}}" bindtap="previewImage" >
         <image src="{{item}}"></image>
       </view>
     </block>  

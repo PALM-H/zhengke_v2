@@ -20,7 +20,7 @@ Page({
       ]
     },
     onload:function(options){
-
+      wx.hideShareMenu()
     },
     backPage(){
       let pages = getCurrentPages();

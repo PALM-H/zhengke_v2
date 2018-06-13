@@ -12,7 +12,7 @@ Page({
     
   },
   onLoad: function (options) {
-    
+    wx.hideShareMenu()
     // activeIndex 1-待付款 2-待发货 3-待收货 4-待评价 5-已完成 0-所有 可酌情调整
       this.setData({
         activeIndex: options.index

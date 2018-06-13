@@ -1,6 +1,7 @@
 /**app.wxss**/
 
 page{
+   -webkit-overflow-scrolling:touch;
     height: 100%;
     background-color: #ffffff;
     font-size: 16px;
@@ -16,6 +17,22 @@ page{
 
 .hide{
   display: none;
+}
+.empty-sec{
+  background:#fff;
+  width:100%;
+  display: flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+}
+.empty-sec .empty-wrap{
+  text-align:center;
+  color:#d5d2d2;
+}
+.empty-sec .empty-wrap .empty{
+  width:286rpx;
+  height:234rpx;
 }
 
 

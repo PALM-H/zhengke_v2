@@ -6,6 +6,7 @@ Page({
     action: ''
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.setData({
       type: options.type
     });

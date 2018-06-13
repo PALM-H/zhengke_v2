@@ -1,6 +1,6 @@
 //获取应用实例
 const app = getApp()
-
+const util = require("../../utils/util.js");
 
 //article.js
 
@@ -105,8 +105,8 @@ Page({
   onShareAppMessage(){
     return {
       title: app.globalData.store_name,
-      imageUrl: app.globalData.logo_path,
-      path: '/pages/index/index'
+      // imageUrl: app.globalData.logo_path,
+      path: util.getCurrentPageUrlWithArgs()
     }
   }
 })

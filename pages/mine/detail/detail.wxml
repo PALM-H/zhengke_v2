@@ -86,7 +86,7 @@
       <view class="pay" bindtap="goPay">
         <text>去支付</text>
       </view>
-      <view class="cancel">
+      <view class="cancel" bindtap="cancelOrder">
         <text>取消订单</text>
       </view>
       </block>

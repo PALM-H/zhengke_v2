@@ -1,8 +1,10 @@
 @import "/wxParse/wxParse.wxss";
 .page{
   background: #f2f2f2;
-  height:100vh;
-  overflow: scroll;
+  height:100%;
+}
+.scr{
+  height:100%;
 }
 
 .swiper-container{  
@@ -245,8 +247,9 @@
 .detail{
   width: 100%;
   background: #fff;
-  margin-bottom: 90rpx;
+  padding-bottom: 100rpx;
   margin-top: 15rpx;
+  text-align:center;
 }
 .detail .tab{
   width: 700rpx;
@@ -273,6 +276,7 @@
   color: #00a7ff;
 }
 .detail .detl{
+  -webkit-overflow-scrolling:touch;
   width: 100%;
 }
 .detail .detl image,.detail .parm image{
@@ -280,9 +284,7 @@
   vertical-align: top;
 }
 .detail .parm{
-  width: 700rpx;
-  margin: 0 auto;
-  padding: 15rpx 0;
+  width: 100%;
 }
 
 .bottom{

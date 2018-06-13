@@ -16,6 +16,7 @@ Page({
     product_scores:[],
   },
   onLoad: function (options) {
+    wx.hideShareMenu()
     this.setData({
       goods_id:options.goods_id,
       order_id:options.order_id,

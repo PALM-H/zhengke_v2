@@ -8,6 +8,7 @@ Page({
     nickName: ''
   },
   onLoad: function () {
+    wx.hideShareMenu()
     this.getUserAvatar() 
   },
   bindinputnickname(e){

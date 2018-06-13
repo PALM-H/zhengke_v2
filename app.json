@@ -55,7 +55,7 @@
       "pagePath":"pages/news/news",
       "iconPath":"images/news.png",
       "selectedIconPath":"images/news-on.png",
-      "text":"咨询"
+      "text":"资讯"
     },{
       "pagePath":"pages/shop/index/index",
       "iconPath":"images/buy.png",
