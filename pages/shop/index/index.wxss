@@ -117,7 +117,6 @@ page{
 }
 .goodsClass-section .subquickwrap{
   width: 100%;
-  height: 165rpx;
   justify-content:space-around;
 }
 .goodsClass-section .itemwrap{
@@ -148,7 +147,7 @@ page{
 .recommend-section{
   margin-top: 15rpx;
   width: 100%;
-  height: 290rpx;
+  height: 380rpx;
   padding: 15rpx 0;
   background: #fff;
 }
@@ -171,14 +170,14 @@ page{
 }
 .recommend-section .itemlist{
   width: 750rpx;
-  height: 230rpx;
+  height: 280rpx;
   margin-top: 14rpx;
   white-space: nowrap;
 }
 .recommend-section .itemlist .itemwrap{
   position: relative;
   width:250rpx;
-  height: 230rpx;
+  height: 240rpx;
   display:inline-block;
   
 }
@@ -218,7 +217,11 @@ page{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+.recommend-section .itemwrap .price{
+  margin-left:26rpx;
+  font-size:26rpx;
+  color:red;
+}
 .floortitle{
   position: relative;
   margin-top: 15rpx;
@@ -247,24 +250,23 @@ page{
   position: relative;
   width: 50%;
   float: left;
-  padding: 5rpx;
   box-sizing: border-box;
 }
 .itemlist .floatwrap .itemwrap{
   position: relative;
   width: 100%;
-  height: 440rpx;
+  height: 516rpx;
   background: #fff;
 }
 .itemlist .floatwrap .itemwrap .imgwrap{
   width: 100%;
-  height: 293rpx;
+  height: 375rpx;
   text-align: center;
   padding-top:15rpx;
 }
 .itemlist .floatwrap .itemwrap .imgwrap image{
-  width: 293rpx;
-  height: 293rpx;
+  width: 375rpx;
+  height: 375rpx;
 }
 .itemlist .floatwrap .itemwrap .namewrap{
   width: 335rpx;
@@ -288,4 +290,8 @@ page{
   right: 0;
   color: #bbbbbb;
   font-size: 22rpx
+}
+.loading-finished{
+  line-height:3;
+  text-align:center;
 }

@@ -278,6 +278,7 @@
 .detail .detl{
   -webkit-overflow-scrolling:touch;
   width: 100%;
+  min-height:1000rpx;
 }
 .detail .detl image,.detail .parm image{
   width: 100%;
@@ -285,6 +286,7 @@
 }
 .detail .parm{
   width: 100%;
+  min-height:1000rpx;
 }
 
 .bottom{

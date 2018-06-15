@@ -50,7 +50,7 @@
 			</view>
 		</view> 
 		
-	</view>-->
+	</view> -->
 
 
 <!--推荐商品-->
@@ -64,9 +64,10 @@
 				<view class="itemwrap" data-id="{{item.id}}" bindtap="goDetailPage">
 					<view class="imgwrap">
 						<image src="{{item.img}}"></image>
-						<view class="blackwrap"></view>
-						<text>￥ {{item.sell_price}}</text>
+						<!-- <view class="blackwrap"></view> -->
+						
 					</view>
+					<view class="price">￥{{item.sell_price}}</view>
 					<view class="textwrap">
 						<text>{{item.name}}</text>
 					</view>
@@ -100,4 +101,5 @@
 			</view>
 		</block>
 	</view>
+	<view class="loading-finished" wx:if="{{page>=totalPage}}">已经加载完毕~</view>
 </scroll-view>

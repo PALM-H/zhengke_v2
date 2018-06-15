@@ -41,8 +41,12 @@ Page({
               subCategoryList:res.data.cat_list.data
             })
            
+        }else{
+          this.setData({
+            subCategoryList:[]
+          })
         }
-       
+       console.log(1111111,this.data.subCategoryList)
       },
       fail: (err)=>{
         console.log(err);

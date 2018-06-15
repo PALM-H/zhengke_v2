@@ -1,5 +1,5 @@
 <view class="page">
-<scroll-view scroll-y class="scr" scroll-into-view="{{toView}}">
+<scroll-view scroll-y class="scr">
 	<!--swiper-->
 	<view class="swiper-container">  
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
@@ -141,6 +141,7 @@
 			<block wx:if="{{goodParams==1}}">
 				<import src="../../../wxParse/wxParse.wxml"/>
       			<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+				 
 			</block>
 			
 			<block wx:else>

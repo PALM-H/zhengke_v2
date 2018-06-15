@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    autofocus:false,
     resultList:null,
     p:1,//页码，默认第一页
     page_size:15,//每一页的数量
@@ -13,6 +14,9 @@ Page({
   onLoad(){
     wx.hideShareMenu()
     console.log(!this.data.resultList,11111);
+    this.setData({
+      autofocus:true
+    })
   },
   goDetail: function(e){  
     let id=e.currentTarget.dataset.id;
