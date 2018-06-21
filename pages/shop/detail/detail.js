@@ -39,14 +39,16 @@ Page({
     ],
     goodParams:0,
     goodParams2:0,
-    toView:'',
-    initView:true
+    node1:'',
+    node2:''
+   
 
   },
   onLoad(options){
     console.log(options,111);
     this.setData({
       gid:options.id
+      // gid:563
     })
     //获取商品详情
     this.getGoodsInfo();
@@ -334,8 +336,16 @@ scroll(e){
           this.setData({
             goodParams:1
           })
-            WxParse.wxParse('article', 'html', res.data.info,this,5);
-          
+            // setTimeout(() => {
+            //   WxParse.wxParse('article', 'html', res.data.info,this,5);
+            // }, 0);
+            let node1=res.data.info;
+            node1=node1.replace(/<img/gi,'<img style="width:100% !important;"')
+            console.log(node1,666)
+            this.setData({
+              node1: node1
+            })
+     
                         
         }else{
           this.setData({
@@ -373,7 +383,15 @@ scroll(e){
           this.setData({
             goodParams2:1
           })
-            WxParse.wxParse('article2', 'html', res.data.info,this,5);
+          //  setTimeout(() => {
+          //   WxParse.wxParse('article2', 'html', res.data.info,this,5);
+          //  }, 0);
+          let node2=res.data.info;
+            node2=node2.replace(/<img/gi,'<img style="width:100% !important;"')
+            console.log(node2,666)
+            this.setData({
+              node2: node2
+            })
                         
         }else{
           this.setData({
@@ -407,14 +425,7 @@ scroll(e){
     this.setData({
 			detailTabActive: e.currentTarget.dataset.num
     });
-    if(!this.data.initView){
-      this.setData({
-        toView:'aaa'
-      })
-    }
-    this.setData({
-      initView:false
-    })
+   
   },
   //查看购物车
   seeCartPage: function(e){  

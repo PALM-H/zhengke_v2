@@ -14,7 +14,6 @@
 .itemlist .itemwrap{
   position: relative;
   width: 100%;
-  height: 170rpx;
   padding: 30rpx 0;
   border-bottom: 1rpx solid #d8d8d8;
 }
@@ -36,7 +35,6 @@
 .itemlist .itemwrap .rightwrap{
   position: relative;
   width: 430rpx;
-  height: 170rpx;
   margin-left: 30rpx;
 }
 .itemlist .itemwrap .rightwrap .name{
@@ -49,18 +47,18 @@
   width: 100%;
   font-size: 22rpx;
   color: #bbbbbb;
-  margin-top: 10rpx;
+  margin-top: 30rpx;
 }
 .itemlist .itemwrap .rightwrap .price{
   width: 100%;
   font-size: 23rpx;
   color: #c62626;
-  margin-top: 10rpx;
+  margin-top: 30rpx;
 }
 .itemlist .itemwrap .rightwrap .num{
   position: absolute;
   right: 20rpx;
-  bottom: 0;
+  bottom: -10rpx;
   width: 115rpx;
   height: 48rpx;
   border: 1rpx solid #b8b8b8;

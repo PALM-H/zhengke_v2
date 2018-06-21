@@ -1,9 +1,9 @@
 @import "/wxParse/wxParse.wxss";
+.detl image,.detl img{
+  width:100%;
+}
 .page{
   background: #f2f2f2;
-  height:100%;
-}
-.scr{
   height:100%;
 }
 
@@ -489,17 +489,19 @@ padding-top:62rpx;
   position: absolute;
   right: 24rpx;
   width: 115rpx;
-  height: 48rpx;
+  height: 52rpx;
   border: 1rpx solid #b8b8b8;
   border-radius: 4rpx;
   font-size: 18rpx;
   color: #2f2f2f;
+  padding:2rpx 0;
 }
 .selectver .numwrap .num .reduce,.selectver .numwrap .num .add{
   width: 40rpx;
   height: 48rpx;
   align-items: center;
   justify-content: center;
+  border:0;
 }
 .selectver .reduce image,.selectver .add image{
   width: 20rpx;
@@ -509,11 +511,20 @@ padding-top:62rpx;
   width: 35rpx;
   height: 48rpx;
   line-height: 48rpx;
+  background:rgba(0,0,0,0);
 }
 .selectver .numwrap .num .number input{
+ 
   width: 35rpx;
   height: 48rpx;
+  line-height:48rpx;
   text-align: center;
+  background:rgba(0,0,0,0);
+  
+}
+.selectver .numwrap .num .number input:after{
+  background:rgba(0,0,0,0);
+  border:none;
 }
 .selectver .verbottom{
   width: 100%;

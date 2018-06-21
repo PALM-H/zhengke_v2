@@ -245,6 +245,7 @@ page{
 
 .itemlist{
   position: relative;
+  overflow:hidden;
 }
 .itemlist .floatwrap{
   position: relative;

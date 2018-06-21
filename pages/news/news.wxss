@@ -11,7 +11,7 @@
 .navbar-item{
   display: inline-block;
   position: relative;
-  width: 120rpx;
+  min-width: 120rpx;
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;

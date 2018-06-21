@@ -69,9 +69,17 @@ Page({
         console.log(res,'获取tab标题 ')
         if(res.data.code==1000){
           this.setData({
-            tabs: res.data.data,
-            tabWidth: res.data.data.length*120+120
+            tabs: res.data.data
           });
+          if(res.data.data.length<6){
+            this.setData({
+              tabWidth:750/res.data.data.length
+            });
+          }else{
+            this.setData({
+              tabWidth:120
+            });
+          }
           //一开始默认是推荐
 				this.getAtcList(true)
         }

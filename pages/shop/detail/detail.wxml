@@ -1,5 +1,4 @@
 <view class="page">
-<scroll-view scroll-y class="scr">
 	<!--swiper-->
 	<view class="swiper-container">  
 		<swiper class="swiper" indicator-dots="{{indicatorDots}}"
@@ -127,7 +126,7 @@
 
 
 
-	<view class="detail" id="aaa">
+	<view class="detail">
 		<view class="tab flexwrap">
 			<view class="tabtext flexwrap {{detailTabActive==1?'active':''}}" data-num="1" bindtap="changeDetail">
 				<text>商品详情</text>
@@ -137,11 +136,11 @@
 			</view>
 		</view>
 		<!-- 注意：detl为商品详情，parm为商品参数，接入后台后请自行替换里面的内容, 商品详情内容务必调用wxparse插件处理，具体可参考之前新闻文章页，示例内容是用图片替代（此内容到时是后台传过来的html转换内容，跟目前格式不搭，故现在写了也是白写），样式已经作了相应限制 -->
-		<view class="detl {{detailTabActive!=1?'hide':''}}" id="detl">
+		<scroll-view scroll-y class="detl {{detailTabActive!=1?'hide':''}}" id="detl">
 			<block wx:if="{{goodParams==1}}">
-				<import src="../../../wxParse/wxParse.wxml"/>
-      			<template is="wxParse" data="{{wxParseData:article.nodes}}"/>
-				 
+				<!-- <import src="../../../wxParse/wxParse.wxml"/>
+      			<template is="wxParse" data="{{wxParseData:article.nodes}}"/> -->
+				 <rich-text nodes="{{node1}}"></rich-text>
 			</block>
 			
 			<block wx:else>
@@ -153,11 +152,12 @@
 					</view>
 				</view>
 			</block>
-		</view>
-		<view class="parm {{detailTabActive!=2?'hide':''}}" id="parm">
+		</scroll-view>
+		<scroll-view scroll-y class="parm {{detailTabActive!=2?'hide':''}}" id="parm">
 		<block wx:if="{{goodParams2==1}}">
-			<import src="../../../wxParse/wxParse.wxml"/>
-			<template is="wxParse" data="{{wxParseData:article2.nodes}}"/>
+			<!-- <import src="../../../wxParse/wxParse.wxml"/>
+			<template is="wxParse" data="{{wxParseData:article2.nodes}}"/> -->
+			<rich-text nodes="{{node2}}"></rich-text>
 		</block>
 		<block wx:else>
 				<view class="empty-sec" style="height:550rpx;">
@@ -169,7 +169,7 @@
 				</view>
 		</block>
 		
-		</view>
+		</scroll-view>
 	</view>
 	<view class="bottom flexwrap">
 		<view class="iconwrap" bindtap="starGoods">
@@ -234,7 +234,7 @@
 			</view>
 
 			<!--遍历参数-->
-			<view class="tablists">
+			<scroll-view scroll-y style="height:700rpx;" class="tablists">
 				<block wx:for="{{selectSpec}}" wx:key="unique" wx:for-index="vIdx" wx:for-item="vItem">
 					<view class="tabwrap">
 						<view class="titlewrap">
@@ -249,7 +249,7 @@
 						</view>
 					</view>
 				</block>
-			</view>
+			</scroll-view>
 			
 			<view class="numwrap">
 				<view class="flexwrap">
@@ -280,4 +280,4 @@
 		</view>
 		<view class="blackcover" bindtap="hideVer"></view>
 	</view>
-</scroll-view></view>
+</view>

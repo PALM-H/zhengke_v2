@@ -1,12 +1,12 @@
 <!--news.wxml-->
 <view class="page">
   <view  class="navbar">
-    <scroll-view class="navbar-scroll" scroll-x="true" style="width: {{tabWidth}}rpx">
-      <view data-id="0" class="navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
+    <scroll-view class="navbar-scroll" scroll-x="true" style="width: 750rpx">
+      <view data-id="0" style="width: {{tabWidth}}rpx"  class="navbar-item {{activeIndex == 0 ? 'active' : ''}}" bindtap="{{activeIndex != 0 ? 'tabClick' : ''}}">
         <text>推荐</text>
       </view>
       <block wx:for="{{tabs}}" wx:key="unique">
-        <view data-id="{{item.c_id}}" class="navbar-item {{activeIndex == item.c_id ? 'active' : ''}}" bindtap="{{activeIndex != item.c_id ? 'tabClick' : ''}}">
+        <view data-id="{{item.c_id}}" style="width: {{tabWidth}}rpx" class="navbar-item {{activeIndex == item.c_id ? 'active' : ''}}" bindtap="{{activeIndex != item.c_id ? 'tabClick' : ''}}">
           <text>{{item.name}}</text>
         </view>
       </block>
